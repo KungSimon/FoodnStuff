@@ -11,5 +11,17 @@ namespace FoodnStuff
         {
 
         }
+
+        private void registerButton_Click(object sender, EventArgs e)
+        {
+            RegisterUser registerUser = new RegisterUser();
+            registerUser.Show();
+        }
+
+        private void logInWorkerButton_Click(object sender, EventArgs e)
+        {
+            WorkerLogIn workerLogIn = new WorkerLogIn();
+            workerLogIn.Show();
+        }
     }
 }
