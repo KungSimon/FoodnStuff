@@ -11,6 +11,7 @@ namespace FoodnStuff
         public List<Products> ProductsOutOnDelivery { get; set; } = new List<Products>();
         public int TransportID { get; set; }
         public bool Available { get; set; } = true;
+        public int Capacity { get; set; }
 
         public Transport(int _id)
         {
