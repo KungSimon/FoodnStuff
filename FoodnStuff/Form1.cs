@@ -13,13 +13,13 @@ namespace FoodnStuff
 
         private void registerButton_Click(object sender, EventArgs e)
         {
-            RegisterUser registerUser = new RegisterUser();
+            RegisterUser registerUser = new RegisterUser(userManager);
             registerUser.Show();
         }
 
         private void logInWorkerButton_Click(object sender, EventArgs e)
         {
-            WorkerLogIn workerLogIn = new WorkerLogIn();
+            WorkerLogIn workerLogIn = new WorkerLogIn(userManager);
             workerLogIn.Show();
         }
 
@@ -27,7 +27,6 @@ namespace FoodnStuff
         {
             string userName = usernameTextBox.Text;
             string password = passwordTextBox.Text;
-
             foreach (User user in userManager.RegisteredCustomers)
             {
                 if (user.Username == userName && user.Password == password)

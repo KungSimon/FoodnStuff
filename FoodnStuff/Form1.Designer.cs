@@ -50,15 +50,10 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
-            tabPage4 = new TabPage();
-            button2 = new Button();
-            readyToBeShippedListBox = new ListBox();
-            ordersListBox = new ListBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
-            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -66,7 +61,6 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(1, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -282,45 +276,6 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 0;
             // 
-            // tabPage4
-            // 
-            tabPage4.Controls.Add(button2);
-            tabPage4.Controls.Add(readyToBeShippedListBox);
-            tabPage4.Controls.Add(ordersListBox);
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(985, 493);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Shipments";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(391, 165);
-            button2.Name = "button2";
-            button2.Size = new Size(146, 29);
-            button2.TabIndex = 2;
-            button2.Text = "Add to shipping";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // readyToBeShippedListBox
-            // 
-            readyToBeShippedListBox.FormattingEnabled = true;
-            readyToBeShippedListBox.ItemHeight = 20;
-            readyToBeShippedListBox.Location = new Point(564, 48);
-            readyToBeShippedListBox.Name = "readyToBeShippedListBox";
-            readyToBeShippedListBox.Size = new Size(281, 344);
-            readyToBeShippedListBox.TabIndex = 1;
-            // 
-            // ordersListBox
-            // 
-            ordersListBox.FormattingEnabled = true;
-            ordersListBox.ItemHeight = 20;
-            ordersListBox.Location = new Point(86, 48);
-            ordersListBox.Name = "ordersListBox";
-            ordersListBox.Size = new Size(281, 344);
-            ordersListBox.TabIndex = 0;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -336,7 +291,6 @@
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            tabPage4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -348,7 +302,6 @@
         private ListBox catagoryListBox;
         private TabPage tabPage2;
         private TabPage tabPage3;
-        private TabPage tabPage4;
         private Button addToCartButton;
         private Label searchLabel;
         private Label cartLabel;
@@ -365,8 +318,5 @@
         private TextBox usernameTextBox;
         private Button logInButton;
         private ListBox itemsListBox;
-        private ListBox readyToBeShippedListBox;
-        private ListBox ordersListBox;
-        private Button button2;
     }
 }

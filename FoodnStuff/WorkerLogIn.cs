@@ -13,10 +13,10 @@ namespace FoodnStuff
     public partial class WorkerLogIn : Form
     {
         private UserManager userManager;
-        public WorkerLogIn()
+        public WorkerLogIn(UserManager userManager)
         {
             InitializeComponent();
-            userManager = new UserManager();
+            this.userManager = userManager;
         }
 
         private void logInButton_Click(object sender, EventArgs e)
