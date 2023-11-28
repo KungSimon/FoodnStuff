@@ -51,9 +51,9 @@
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
             tabPage4 = new TabPage();
-            ordersListBox = new ListBox();
-            readyToBeShippedListBox = new ListBox();
             button2 = new Button();
+            readyToBeShippedListBox = new ListBox();
+            ordersListBox = new ListBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -72,7 +72,6 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(993, 526);
             tabControl1.TabIndex = 0;
-            tabControl1.Visible = false;
             // 
             // tabPage1
             // 
@@ -209,10 +208,12 @@
             logInButton.TabIndex = 8;
             logInButton.Text = "Log In";
             logInButton.UseVisualStyleBackColor = true;
+            logInButton.Click += logInButton_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = SystemColors.ControlText;
             label1.Location = new Point(821, 366);
             label1.Name = "label1";
             label1.Size = new Size(122, 20);
@@ -232,7 +233,8 @@
             // registerLabel
             // 
             registerLabel.AutoSize = true;
-            registerLabel.Location = new Point(7, 366);
+            registerLabel.ForeColor = SystemColors.ControlText;
+            registerLabel.Location = new Point(17, 366);
             registerLabel.Name = "registerLabel";
             registerLabel.Size = new Size(335, 20);
             registerLabel.TabIndex = 5;
@@ -240,7 +242,7 @@
             // 
             // registerButton
             // 
-            registerButton.Location = new Point(68, 405);
+            registerButton.Location = new Point(78, 405);
             registerButton.Name = "registerButton";
             registerButton.Size = new Size(160, 29);
             registerButton.TabIndex = 4;
@@ -292,14 +294,14 @@
             tabPage4.Text = "Shipments";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // ordersListBox
+            // button2
             // 
-            ordersListBox.FormattingEnabled = true;
-            ordersListBox.ItemHeight = 20;
-            ordersListBox.Location = new Point(86, 48);
-            ordersListBox.Name = "ordersListBox";
-            ordersListBox.Size = new Size(281, 344);
-            ordersListBox.TabIndex = 0;
+            button2.Location = new Point(391, 165);
+            button2.Name = "button2";
+            button2.Size = new Size(146, 29);
+            button2.TabIndex = 2;
+            button2.Text = "Add to shipping";
+            button2.UseVisualStyleBackColor = true;
             // 
             // readyToBeShippedListBox
             // 
@@ -310,14 +312,14 @@
             readyToBeShippedListBox.Size = new Size(281, 344);
             readyToBeShippedListBox.TabIndex = 1;
             // 
-            // button2
+            // ordersListBox
             // 
-            button2.Location = new Point(391, 165);
-            button2.Name = "button2";
-            button2.Size = new Size(146, 29);
-            button2.TabIndex = 2;
-            button2.Text = "Add to shipping";
-            button2.UseVisualStyleBackColor = true;
+            ordersListBox.FormattingEnabled = true;
+            ordersListBox.ItemHeight = 20;
+            ordersListBox.Location = new Point(86, 48);
+            ordersListBox.Name = "ordersListBox";
+            ordersListBox.Size = new Size(281, 344);
+            ordersListBox.TabIndex = 0;
             // 
             // Form1
             // 

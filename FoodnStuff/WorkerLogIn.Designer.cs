@@ -43,6 +43,7 @@
             logInButton.TabIndex = 13;
             logInButton.Text = "Log In";
             logInButton.UseVisualStyleBackColor = true;
+            logInButton.Click += logInButton_Click;
             // 
             // passwordLabel
             // 
@@ -52,6 +53,7 @@
             passwordLabel.Size = new Size(73, 20);
             passwordLabel.TabIndex = 12;
             passwordLabel.Text = "Password:";
+            
             // 
             // usernameLabel
             // 
@@ -61,6 +63,7 @@
             usernameLabel.Size = new Size(78, 20);
             usernameLabel.TabIndex = 11;
             usernameLabel.Text = "Username:";
+            
             // 
             // passwordTextBox
             // 
@@ -68,6 +71,7 @@
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(229, 27);
             passwordTextBox.TabIndex = 10;
+            
             // 
             // usernameTextBox
             // 
@@ -75,6 +79,7 @@
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(229, 27);
             usernameTextBox.TabIndex = 9;
+            
             // 
             // WorkerLogIn
             // 
