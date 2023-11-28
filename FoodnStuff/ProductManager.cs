@@ -13,6 +13,7 @@ namespace FoodnStuff
         // Use this dictionary to create a Listbox or something similar and use the keys as category name then grab the list with that key and unpack all products
         public Dictionary<string, List<Products>> CategoryDictionary { get; set; } = new Dictionary<string, List<Products>>();
         public List<string> keyList = new List<string>();
+        public List<Order> Orders { get; set; } = new List<Order>(); 
 
         // IDManager gives the product unique IDs
         public static int IDManager = 0;
@@ -20,7 +21,13 @@ namespace FoodnStuff
         {
 
         }
-        
+        public void AddOrder(Order _order)
+        {
+            //This is a list of our products in the order
+            
+            Orders.Add(_order);
+        }
+
         // Function goes through Inventory and sorts them into our dictionary
         private void CategorySorter()
         {
