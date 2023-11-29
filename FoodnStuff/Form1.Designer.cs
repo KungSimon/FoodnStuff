@@ -86,11 +86,12 @@
             // 
             itemsListBox.FormattingEnabled = true;
             itemsListBox.ItemHeight = 20;
-            itemsListBox.Location = new Point(424, 87);
+            itemsListBox.Location = new Point(417, 87);
             itemsListBox.Name = "itemsListBox";
             itemsListBox.Size = new Size(508, 384);
             itemsListBox.TabIndex = 4;
             itemsListBox.Visible = false;
+            itemsListBox.SelectedIndexChanged += itemsListBox_SelectedIndexChanged;
             // 
             // addToCartButton
             // 
@@ -121,10 +122,11 @@
             // 
             catagoryListBox.FormattingEnabled = true;
             catagoryListBox.ItemHeight = 20;
-            catagoryListBox.Location = new Point(467, 27);
+            catagoryListBox.Location = new Point(11, 147);
             catagoryListBox.Name = "catagoryListBox";
             catagoryListBox.Size = new Size(383, 324);
             catagoryListBox.TabIndex = 0;
+            catagoryListBox.SelectedIndexChanged += catagoryListBox_SelectedIndexChanged;
             // 
             // tabPage2
             // 

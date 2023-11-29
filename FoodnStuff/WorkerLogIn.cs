@@ -13,7 +13,7 @@ namespace FoodnStuff
     public partial class WorkerLogIn : Form
     {
         private UserManager userManager;
-        public WorkerLogIn(UserManager userManager)
+        public WorkerLogIn(UserManager userManager, Form1 form1)
         {
             InitializeComponent();
             this.userManager = userManager;
@@ -24,6 +24,8 @@ namespace FoodnStuff
             string userName = usernameTextBox.Text;
             string password = passwordTextBox.Text;
 
+            bool LogInSuccess = false;
+
             foreach (User admin in userManager.Administrators)
             {
                 if (admin.Username ==  userName && admin.Password == password) 
@@ -31,9 +33,15 @@ namespace FoodnStuff
                     MessageBox.Show("Log in successful");
                     //return;
                     Close();
+                    AdminMenu adminMenu = new AdminMenu(userManager, admin);
+                    adminMenu.Show();
+                    LogInSuccess = true;
                 }
             }
-            MessageBox.Show("Invalid username or password. Please try again");
+            if (!LogInSuccess)
+            {
+                MessageBox.Show("Invalid username or password. Please try again");
+            }
         }
     }
 }
