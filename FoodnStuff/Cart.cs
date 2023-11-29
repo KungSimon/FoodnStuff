@@ -14,5 +14,10 @@ namespace FoodnStuff
         {
 
         }
+
+        public void AddProduct(Products products)
+        {
+            ProductsInCart.Add(products);
+        }
     }
 }

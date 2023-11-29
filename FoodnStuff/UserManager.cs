@@ -31,14 +31,36 @@ namespace FoodnStuff
             }
         }
 
+        // Function to check if User is an admin
+        public bool AdminCheck(User _user)
+        {
+            if (Administrators.Contains(_user))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        // Register customer and inser their cart
+        public void RegisterCustomerAtCheckout(Cart _tempCart, string _name, string _userName, string _address, string _password)
+        {
+            RegisterCustomer(_name, _userName, _address, _password);
+            var thisUser = RegisteredCustomers[RegisteredCustomers.Count - 1];
+            thisUser.UseTempCart(_tempCart);
+        }
+
         public void RegisterCustomer(string _name, string _userName, string _address, string _password)
         {
- 
             RegisteredCustomers.Add(new User(_name, _userName, _address, _password, UserID));
         }
 
-        public void RegisterAdministrator(User _User, string _name, string _userName, string _address, string _password)
+
+        // To register an admin you must be logged in as admin and declare username and password
+        public void RegisterAdministrator(User _User, string _userName, string _password)
         {
+            // Placeholder strings
+            string _name = "";
+            string _address = "";
             // If the user is an administrator then they can add another administrator
             if (Administrators.Exists(u => u == _User))
             {

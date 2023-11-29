@@ -21,11 +21,27 @@ namespace FoodnStuff
         {
 
         }
-        public void AddOrder(Order _order)
+
+
+        // Function that adds the product to cart
+        public void AddToCart(Cart _myCart, Products _product, int _quantity)
         {
+            // Uses secondary constructor of Products to create a copy with new quantity
+            Products cartProduct = new Products(_product, _quantity);
+            _myCart.AddProduct(cartProduct);
+        }
+
+        // Function doesnt require login and therefor works for both logged in and anonoymous users 
+        public bool AddOrder(Cart _checkoutCart, string _myAddress, string _myName)
+        {
+            // Fail checking
+            if (_checkoutCart == null || _checkoutCart.ProductsInCart.Count == 0) return false;
             //This is a list of our products in the order
             
-            Orders.Add(_order);
+            // Creates new Order and adds it to the Order list
+            Orders.Add(new Order(_checkoutCart.ProductsInCart, _myAddress, _myName));
+            // Returns true if successfully added order otherwise false
+            return true;
         }
 
         // Function goes through Inventory and sorts them into our dictionary

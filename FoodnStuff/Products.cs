@@ -21,7 +21,17 @@ namespace FoodnStuff
             Quantity = _quantity;
             Price = _price;
             ID = _id;
-        }        
+        }
+
+        public Products(Products _originalProduct, int _orderQuantity)
+        {
+            Name = _originalProduct.Name;
+            Quantity = _orderQuantity;
+            Price = _originalProduct.Price;
+            ID = _originalProduct.ID;
+            Description = _originalProduct.Description;
+            Category = _originalProduct.Category;
+        }
 
         public void EditDescription(string _description)
         {

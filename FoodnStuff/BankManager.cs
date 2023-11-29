@@ -9,6 +9,7 @@ namespace FoodnStuff
     public class BankManager
     {
         public List<BankAccount> BankAccounts = new List<BankAccount>();
+        private BankAccount ActiveAccount;
         public BankManager()
         {
             BankAccounts.Add(new BankAccount(0000, 0000, 1000));
@@ -24,11 +25,26 @@ namespace FoodnStuff
             {
                 if (account.CardPin == pin && account.CardNumber == number)
                 {
-                    // Maybe we also add which account is active.
+                    ActiveAccount = account;
                     return true;
                 }
             }
             return false;
+        }
+
+        public void LogOut()
+        {
+            ActiveAccount = null;
+        }
+
+        public bool Pay(int _cost)
+        {
+            // Failcheck
+            if (ActiveAccount == null) return false;
+            if (ActiveAccount.CashMoney < _cost) return false;
+            // Successfully pay
+            ActiveAccount.CashMoney -= _cost;
+            return true;
         }
     }
 }
