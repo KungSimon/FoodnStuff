@@ -33,7 +33,7 @@ namespace FoodnStuff
         }
         public ProductManager()
         {
-            
+
         }
 
 
@@ -103,7 +103,6 @@ namespace FoodnStuff
         {
             // Increment ID
             int productID = ProductID;
-            ProductID++;
             // This creates a new product and adds it to the inventory
             Inventory.Add(new Products(_category, _name, _price, _quantity, productID));
             MessageBox.Show($"{Inventory.Count} has been added");

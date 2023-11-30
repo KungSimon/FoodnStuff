@@ -14,7 +14,7 @@ namespace FoodnStuff
 
         // We create a default admin, and therefore start at 1
         private static int _userID = 1;
-        public static int UserID
+        public int UserID
         {
             get
             {
