@@ -73,13 +73,25 @@ namespace FoodnStuff
             {
                 LoadProductManager(productManager, pathDirectory[0]);
             }
+            else
+            {
+                productManager = new ProductManager();
+            }
             if (filePathExist(pathDirectory[1]))
             {
                 LoadUserManager(userManager, pathDirectory[1]);
             }
+            else
+            {
+                userManager = new UserManager();
+            }
             if (filePathExist(pathDirectory[2]))
             {
                 LoadBankManager(bankManager, pathDirectory[2]);
+            }
+            else
+            {
+                bankManager = new BankManager();
             }
         }
 
@@ -127,6 +139,8 @@ namespace FoodnStuff
         {
             bankManager.BankAccounts = ImportFromJson<List<BankAccount>>($"{_folder}/bankManagerBankJSON");
         }
+
+
 
         public bool filePathExist(string filePath)
         {
