@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
@@ -96,7 +95,7 @@ namespace FoodnStuff
         private void LoadProductManager(ProductManager _productManager, string _folder)
         {
             _productManager.ProductID = ImportFromJson<int>($"{_folder}/productManagerProductIDJSON");
-            _productManager.Inventory = ImportFromJson<ObservableCollection<Products>>($"{_folder}/productManagerListJSON");
+            _productManager.Inventory = ImportFromJson<List<Products>>($"{_folder}/productManagerListJSON");
         }
 
         public void SaveUserManager(List<User> _registeredCustomers, List<User> _administrators, int _userID, string _folder)

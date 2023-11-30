@@ -62,7 +62,6 @@ namespace FoodnStuff
             itemsListBox.DataSource = null;
             itemsListBox.DataSource = ProductManager.Inventory;
             itemsListBox.DisplayMember = "Name";
-            MessageBox.Show($"{ProductManager.Inventory.Count} amount of products");
         }
     }
 }
