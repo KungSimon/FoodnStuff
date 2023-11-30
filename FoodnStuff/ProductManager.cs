@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,12 +10,11 @@ namespace FoodnStuff
     public class ProductManager
     {
         // Main list that contains everything available
-        public List<Products> Inventory { get; set; } = new List<Products>();
+        public ObservableCollection<Products> Inventory { get; set; } = new ObservableCollection<Products>();
         // Use this dictionary to create a Listbox or something similar and use the keys as category name then grab the list with that key and unpack all products
         public Dictionary<string, List<Products>> CategoryDictionary { get; set; } = new Dictionary<string, List<Products>>();
         public List<string> keyList = new List<string>();
         public List<Order> Orders { get; set; } = new List<Order>();
-
         // IDManager gives the product unique IDs
         private static int productID = 0;
         public int ProductID

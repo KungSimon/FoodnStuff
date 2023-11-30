@@ -44,7 +44,7 @@ namespace FoodnStuff
                 MessageBox.Show("Invalid quantity. Please enter a valid quantity number.");
             }
             productManager.CreateProduct(_category, _name, inputprice, inputQuantity);
-            //adminMenu.uppdateListBox();
+            adminMenu.uppdateListBox();
         }
         
     }
