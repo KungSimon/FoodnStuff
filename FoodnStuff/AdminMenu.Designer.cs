@@ -31,13 +31,14 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             label1 = new Label();
-            removeButton = new Button();
+            removeItemButton = new Button();
             addNewItemButton = new Button();
-            listBox1 = new ListBox();
+            itemsListBox = new ListBox();
             tabPage2 = new TabPage();
             listBox2 = new ListBox();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            logOutButton = new Button();
             registerButton = new Button();
             passwordLabel = new Label();
             usernameLabel = new Label();
@@ -64,9 +65,9 @@
             // tabPage1
             // 
             tabPage1.Controls.Add(label1);
-            tabPage1.Controls.Add(removeButton);
+            tabPage1.Controls.Add(removeItemButton);
             tabPage1.Controls.Add(addNewItemButton);
-            tabPage1.Controls.Add(listBox1);
+            tabPage1.Controls.Add(itemsListBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -84,14 +85,15 @@
             label1.TabIndex = 3;
             label1.Text = "label1";
             // 
-            // removeButton
+            // removeItemButton
             // 
-            removeButton.Location = new Point(494, 315);
-            removeButton.Name = "removeButton";
-            removeButton.Size = new Size(118, 29);
-            removeButton.TabIndex = 2;
-            removeButton.Text = "Remove item";
-            removeButton.UseVisualStyleBackColor = true;
+            removeItemButton.Location = new Point(494, 315);
+            removeItemButton.Name = "removeItemButton";
+            removeItemButton.Size = new Size(118, 29);
+            removeItemButton.TabIndex = 2;
+            removeItemButton.Text = "Remove item";
+            removeItemButton.UseVisualStyleBackColor = true;
+            removeItemButton.Click += removeItemButton_Click;
             // 
             // addNewItemButton
             // 
@@ -101,15 +103,17 @@
             addNewItemButton.TabIndex = 1;
             addNewItemButton.Text = "Add new item";
             addNewItemButton.UseVisualStyleBackColor = true;
+            addNewItemButton.Click += addNewItemButton_Click;
             // 
-            // listBox1
+            // itemsListBox
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 20;
-            listBox1.Location = new Point(21, 40);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(276, 304);
-            listBox1.TabIndex = 0;
+            itemsListBox.FormattingEnabled = true;
+            itemsListBox.ItemHeight = 20;
+            itemsListBox.Location = new Point(21, 40);
+            itemsListBox.Name = "itemsListBox";
+            itemsListBox.Size = new Size(276, 304);
+            itemsListBox.TabIndex = 0;
+            itemsListBox.SelectedIndexChanged += itemsListBox_SelectedIndexChanged;
             // 
             // tabPage2
             // 
@@ -142,6 +146,7 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(logOutButton);
             tabPage4.Controls.Add(registerButton);
             tabPage4.Controls.Add(passwordLabel);
             tabPage4.Controls.Add(usernameLabel);
@@ -154,6 +159,16 @@
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Add a new admin";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // logOutButton
+            // 
+            logOutButton.Location = new Point(680, 17);
+            logOutButton.Name = "logOutButton";
+            logOutButton.Size = new Size(94, 29);
+            logOutButton.TabIndex = 14;
+            logOutButton.Text = "Log out";
+            logOutButton.UseVisualStyleBackColor = true;
+            logOutButton.Click += logOutButton_Click;
             // 
             // registerButton
             // 
@@ -221,9 +236,9 @@
         private TabPage tabPage2;
         private TabPage tabPage3;
         private Label label1;
-        private Button removeButton;
+        private Button removeItemButton;
         private Button addNewItemButton;
-        private ListBox listBox1;
+        private ListBox itemsListBox;
         private ListBox listBox2;
         private TabPage tabPage4;
         private Button registerButton;
@@ -231,5 +246,6 @@
         private Label usernameLabel;
         private TextBox passwordTextBox;
         private TextBox usernameTextBox;
+        private Button logOutButton;
     }
 }

@@ -23,7 +23,7 @@ namespace FoodnStuff
 
         private void logInWorkerButton_Click(object sender, EventArgs e)
         {
-            WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this);
+            WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager);
 
             workerLogIn.Show();
             Hide();

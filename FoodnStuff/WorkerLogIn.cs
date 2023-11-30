@@ -13,10 +13,12 @@ namespace FoodnStuff
     public partial class WorkerLogIn : Form
     {
         private UserManager userManager;
-        public WorkerLogIn(UserManager userManager, Form1 form1)
+        private ProductManager productManager;
+        public WorkerLogIn(UserManager userManager, Form1 form1, ProductManager productManager)
         {
             InitializeComponent();
             this.userManager = userManager;
+            this.productManager = productManager;
         }
 
         private void logInButton_Click(object sender, EventArgs e)
@@ -33,7 +35,7 @@ namespace FoodnStuff
                     MessageBox.Show("Log in successful");
                     //return;
                     Close();
-                    AdminMenu adminMenu = new AdminMenu(userManager, admin);
+                    AdminMenu adminMenu = new AdminMenu(userManager, admin, productManager);
                     adminMenu.Show();
                     LogInSuccess = true;
                 }

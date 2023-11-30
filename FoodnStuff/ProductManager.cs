@@ -33,7 +33,7 @@ namespace FoodnStuff
         }
         public ProductManager()
         {
-
+            
         }
 
 
@@ -99,13 +99,14 @@ namespace FoodnStuff
             }
         }
 
-        public void CreateProduct(string _name, int _price, int _quantity)
+        public void CreateProduct(string _category, string _name, int _price, int _quantity)
         {
             // Increment ID
             int productID = ProductID;
             ProductID++;
             // This creates a new product and adds it to the inventory
-            Inventory.Add(new Products(_name, _price, _quantity, productID));
+            Inventory.Add(new Products(_category, _name, _price, _quantity, productID));
+            MessageBox.Show($"{Inventory.Count} has been added");
             // Updates categories
             CategorySorter();
         }
