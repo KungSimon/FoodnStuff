@@ -13,10 +13,24 @@ namespace FoodnStuff
         // Use this dictionary to create a Listbox or something similar and use the keys as category name then grab the list with that key and unpack all products
         public Dictionary<string, List<Products>> CategoryDictionary { get; set; } = new Dictionary<string, List<Products>>();
         public List<string> keyList = new List<string>();
-        public List<Order> Orders { get; set; } = new List<Order>(); 
+        public List<Order> Orders { get; set; } = new List<Order>();
 
         // IDManager gives the product unique IDs
-        public static int IDManager = 0;
+        private static int productID = 0;
+        public int ProductID
+        {
+            get
+            {
+                return productID++;
+            }
+            set
+            {
+                if (productID == 0)
+                {
+                    productID = value;
+                }
+            }
+        }
         public ProductManager()
         {
 
@@ -88,8 +102,8 @@ namespace FoodnStuff
         public void CreateProduct(string _name, int _price, int _quantity)
         {
             // Increment ID
-            int productID = IDManager;
-            IDManager++;
+            int productID = ProductID;
+            ProductID++;
             // This creates a new product and adds it to the inventory
             Inventory.Add(new Products(_name, _price, _quantity, productID));
             // Updates categories
