@@ -8,11 +8,11 @@ namespace FoodnStuff
 {
     public class Order
     {
-        public List<Products> InCart = new List<Products>();
+        public List<Product> InCart = new List<Product>();
         public string Address;
         public string Name;
 
-        public Order(List<Products> list, string address, string name)
+        public Order(List<Product> list, string address, string name)
         {
             
             InCart = list;

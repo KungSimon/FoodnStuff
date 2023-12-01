@@ -9,9 +9,9 @@ namespace FoodnStuff
     public class ProductManager
     {
         // Main list that contains everything available
-        public List<Products> Inventory { get; set; } = new List<Products>();
+        public List<Product> Inventory { get; set; } = new List<Product>();
         // Use this dictionary to create a Listbox or something similar and use the keys as category name then grab the list with that key and unpack all products
-        public Dictionary<string, List<Products>> CategoryDictionary { get; set; } = new Dictionary<string, List<Products>>();
+        public Dictionary<string, List<Product>> CategoryDictionary { get; set; } = new Dictionary<string, List<Product>>();
         public List<string> keyList = new List<string>();
         public List<Order> Orders { get; set; } = new List<Order>();
         public List<Transport> Transports { get; set; }
@@ -39,10 +39,10 @@ namespace FoodnStuff
 
 
         // Function that adds the product to cart
-        public void AddToCart(Cart _myCart, Products _product, int _quantity)
+        public void AddToCart(Cart _myCart, Product _product, int _quantity)
         {
             // Uses secondary constructor of Products to create a copy with new quantity
-            Products cartProduct = new Products(_product, _quantity);
+            Product cartProduct = new Product(_product, _quantity);
             _myCart.AddProduct(cartProduct);
         }
 
@@ -65,7 +65,7 @@ namespace FoodnStuff
             // Get list of all keys in our category dictionary
             keyList = new List<string>(CategoryDictionary.Keys);
             // Create a list of products that have the same category
-            List<Products> CategoryList = new List<Products>();
+            List<Product> CategoryList = new List<Product>();
             string currentKey = string.Empty;
             
             // Makes sure we have an inventory
@@ -83,7 +83,7 @@ namespace FoodnStuff
             //}
 
             // Go through every item in our inventory and adds it to the dictionary list depending on category
-            foreach (Products product in Inventory)
+            foreach (Product product in Inventory)
             {
                 // If we find the category of product then we take the list and add product to it
                 if (CategoryDictionary.TryGetValue(product.Category, value: out var myList))
@@ -94,7 +94,7 @@ namespace FoodnStuff
                 else
                 {
                     // If the category/key does not exist then we create it.
-                    myList = new List<Products> {product};
+                    myList = new List<Product> {product};
                     CategoryDictionary.Add(product.Category, myList);
                 }
             }
@@ -105,7 +105,7 @@ namespace FoodnStuff
             // Increment ID
             int productID = ProductID;
             // This creates a new product and adds it to the inventory
-            Inventory.Add(new Products(_category, _name, _price, _quantity, productID));
+            Inventory.Add(new Product(_category, _name, _price, _quantity, productID));
             MessageBox.Show($"{Inventory.Count} has been added");
             // Updates categories
             CategorySorter();

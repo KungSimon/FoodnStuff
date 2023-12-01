@@ -95,7 +95,7 @@ namespace FoodnStuff
             }
         }
 
-        public void SaveProductManager(List<Products> _products, int _idManager, string _folder)
+        public void SaveProductManager(List<Product> _products, int _idManager, string _folder)
         {
             // Inventory
             // IDManager
@@ -107,7 +107,7 @@ namespace FoodnStuff
         private void LoadProductManager(ProductManager _productManager, string _folder)
         {
             _productManager.ProductID = ImportFromJson<int>($"{_folder}/productManagerProductIDJSON");
-            _productManager.Inventory = ImportFromJson<List<Products>>($"{_folder}/productManagerListJSON");
+            _productManager.Inventory = ImportFromJson<List<Product>>($"{_folder}/productManagerListJSON");
         }
 
         public void SaveUserManager(List<User> _registeredCustomers, List<User> _administrators, int _userID, string _folder)
