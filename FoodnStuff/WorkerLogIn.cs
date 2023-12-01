@@ -12,13 +12,11 @@ namespace FoodnStuff
 {
     public partial class WorkerLogIn : Form
     {
-        private UserManager userManager;
-        private ProductManager productManager;
+        private UserManager userManager = UserManager.GetInstance();
+        private ProductManager productManager = ProductManager.GetInstance();
         public WorkerLogIn(UserManager userManager, Form1 form1, ProductManager productManager)
         {
             InitializeComponent();
-            this.userManager = userManager;
-            this.productManager = productManager;
         }
 
         private void logInButton_Click(object sender, EventArgs e)
@@ -30,7 +28,7 @@ namespace FoodnStuff
 
             foreach (User admin in userManager.Administrators)
             {
-                if (admin.Username ==  userName && admin.Password == password) 
+                if (admin.Username == userName && admin.Password == password)
                 {
                     MessageBox.Show("Log in successful");
                     //return;

@@ -12,12 +12,10 @@ namespace FoodnStuff
 {
     public partial class RegisterUser : Form
     {
-        private UserManager userManager;
+        private UserManager userManager = UserManager.GetInstance();
         public RegisterUser(UserManager userManager)
         {
             InitializeComponent();
-            this.userManager = userManager;
-            
         }
 
         private void registerButton_Click(object sender, EventArgs e)
@@ -26,7 +24,7 @@ namespace FoodnStuff
             string userName = usernameTextBox.Text;
             string address = addressTextBox.Text;
             string password = passwordTextBox.Text;
-            
+
 
             userManager.RegisterCustomer(name, userName, address, password);
             MessageBox.Show("Registration successful!");

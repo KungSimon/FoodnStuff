@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseTransport));
             listBoxAvailableTransports = new ListBox();
             shipOrderButton = new Button();
             label1 = new Label();
@@ -36,17 +37,19 @@
             // listBoxAvailableTransports
             // 
             listBoxAvailableTransports.FormattingEnabled = true;
-            listBoxAvailableTransports.ItemHeight = 25;
-            listBoxAvailableTransports.Location = new Point(60, 84);
+            listBoxAvailableTransports.ItemHeight = 20;
+            listBoxAvailableTransports.Location = new Point(48, 67);
+            listBoxAvailableTransports.Margin = new Padding(2, 2, 2, 2);
             listBoxAvailableTransports.Name = "listBoxAvailableTransports";
-            listBoxAvailableTransports.Size = new Size(195, 279);
+            listBoxAvailableTransports.Size = new Size(157, 224);
             listBoxAvailableTransports.TabIndex = 0;
             // 
             // shipOrderButton
             // 
-            shipOrderButton.Location = new Point(86, 381);
+            shipOrderButton.Location = new Point(69, 305);
+            shipOrderButton.Margin = new Padding(2, 2, 2, 2);
             shipOrderButton.Name = "shipOrderButton";
-            shipOrderButton.Size = new Size(131, 34);
+            shipOrderButton.Size = new Size(105, 27);
             shipOrderButton.TabIndex = 1;
             shipOrderButton.Text = "Ship Order";
             shipOrderButton.UseVisualStyleBackColor = true;
@@ -54,20 +57,23 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(25, 39);
+            label1.Location = new Point(20, 31);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(269, 25);
+            label1.Size = new Size(224, 20);
             label1.TabIndex = 2;
             label1.Text = "Available transport to ship order";
             // 
             // ChooseTransport
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 538);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(560, 430);
             Controls.Add(label1);
             Controls.Add(shipOrderButton);
             Controls.Add(listBoxAvailableTransports);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "ChooseTransport";
             Text = "ChooseTransport";
             ResumeLayout(false);

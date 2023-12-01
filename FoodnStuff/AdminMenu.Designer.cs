@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMenu));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             label1 = new Label();
@@ -64,6 +65,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(removeItemButton);
             tabPage1.Controls.Add(addNewItemButton);
@@ -117,6 +119,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.BackgroundImage = (Image)resources.GetObject("tabPage2.BackgroundImage");
             tabPage2.Controls.Add(listBox2);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
@@ -137,6 +140,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Size = new Size(795, 421);
@@ -146,6 +150,7 @@
             // 
             // tabPage4
             // 
+            tabPage4.BackgroundImage = (Image)resources.GetObject("tabPage4.BackgroundImage");
             tabPage4.Controls.Add(logOutButton);
             tabPage4.Controls.Add(registerButton);
             tabPage4.Controls.Add(passwordLabel);
@@ -216,7 +221,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(798, 446);
             Controls.Add(tabControl1);
             Name = "AdminMenu";
             Text = "AdminMenu";

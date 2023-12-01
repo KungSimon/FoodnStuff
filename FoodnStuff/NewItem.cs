@@ -13,11 +13,10 @@ namespace FoodnStuff
     public partial class NewItem : Form
     {
         private AdminMenu adminMenu;
-        private ProductManager productManager;
+        private ProductManager productManager = ProductManager.GetInstance();
         public NewItem(ProductManager _productManager, AdminMenu adminMenu)
         {
             InitializeComponent();
-            this.productManager = _productManager;
             this.adminMenu = adminMenu;
         }
 
@@ -45,7 +44,11 @@ namespace FoodnStuff
             }
             productManager.CreateProduct(_category, _name, inputprice, inputQuantity);
             adminMenu.uppdateListBox();
+            catagoryTextBox.Text = "";
+            itemNameTextBox.Text = "";
+            priceNumeric.ResetText();
+            quantityNumeric.ResetText();
         }
-        
+
     }
 }

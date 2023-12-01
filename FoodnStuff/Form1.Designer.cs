@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             itemsListBox = new ListBox();
@@ -50,6 +51,7 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
+            logOutButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -69,6 +71,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
             tabPage1.Controls.Add(itemsListBox);
             tabPage1.Controls.Add(addToCartButton);
             tabPage1.Controls.Add(searchLabel);
@@ -130,6 +133,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.BackgroundImage = (Image)resources.GetObject("tabPage2.BackgroundImage");
             tabPage2.Controls.Add(proceedToCheckoutButton);
             tabPage2.Controls.Add(button1);
             tabPage2.Controls.Add(cartLabel);
@@ -180,6 +184,8 @@
             // 
             // tabPage3
             // 
+            tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
+            tabPage3.Controls.Add(logOutButton);
             tabPage3.Controls.Add(logInButton);
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(logInWorkerButton);
@@ -278,6 +284,15 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 0;
             // 
+            // logOutButton
+            // 
+            logOutButton.Location = new Point(871, 15);
+            logOutButton.Name = "logOutButton";
+            logOutButton.Size = new Size(94, 29);
+            logOutButton.TabIndex = 15;
+            logOutButton.Text = "Log out";
+            logOutButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -320,5 +335,6 @@
         private TextBox usernameTextBox;
         private Button logInButton;
         private ListBox itemsListBox;
+        private Button logOutButton;
     }
 }

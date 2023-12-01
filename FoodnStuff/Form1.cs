@@ -4,13 +4,11 @@ namespace FoodnStuff
 {
     public partial class Form1 : Form
     {
-        private UserManager userManager;
-        private ProductManager productManager;
+        private UserManager userManager = UserManager.GetInstance();
+        private ProductManager productManager = ProductManager.GetInstance();
         public Form1()
         {
             InitializeComponent();
-            userManager = new UserManager();
-            productManager = new ProductManager();
         }
 
 
@@ -27,7 +25,7 @@ namespace FoodnStuff
 
             workerLogIn.Show();
             Hide();
-            
+
         }
 
         private void logInButton_Click(object sender, EventArgs e)
@@ -39,6 +37,8 @@ namespace FoodnStuff
                 if (user.Username == userName && user.Password == password)
                 {
                     MessageBox.Show("Log in successful");
+                    usernameTextBox.Text = "";
+                    passwordTextBox.Text = "";
                     return;
                 }
             }
