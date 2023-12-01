@@ -15,8 +15,9 @@ namespace FoodnStuff
         public int ID { get; set; }
         public int Price { get; set; }
 
-        public Products(string _name, int _price, int _quantity, int _id)
+        public Products(string _category, string _name, int _price, int _quantity, int _id)
         {
+            Category = _category;
             Name = _name;
             Quantity = _quantity;
             Price = _price;
@@ -36,6 +37,10 @@ namespace FoodnStuff
         public void EditDescription(string _description)
         {
             Description = _description;
+        }
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
