@@ -14,6 +14,7 @@ namespace FoodnStuff
         public Dictionary<string, List<Products>> CategoryDictionary { get; set; } = new Dictionary<string, List<Products>>();
         public List<string> keyList = new List<string>();
         public List<Order> Orders { get; set; } = new List<Order>();
+        public List<Transport> Transports { get; set; }
 
         // IDManager gives the product unique IDs
         private static int productID = 0;
