@@ -8,6 +8,7 @@ namespace FoodnStuff
 {
     public class ProductManager
     {
+        private static ProductManager instance = null;
         // Main list that contains everything available
         public List<Product> Inventory { get; set; } = new List<Product>();
         // Use this dictionary to create a Listbox or something similar and use the keys as category name then grab the list with that key and unpack all products
@@ -32,9 +33,18 @@ namespace FoodnStuff
                 }
             }
         }
-        public ProductManager()
+        private ProductManager()
         {
 
+        }
+
+        public static ProductManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ProductManager();
+            }
+            return instance;
         }
 
 
