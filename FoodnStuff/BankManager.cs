@@ -8,15 +8,24 @@ namespace FoodnStuff
 {
     public class BankManager
     {
+        private static BankManager instance = null;
         public List<BankAccount> BankAccounts = new List<BankAccount>();
         private BankAccount ActiveAccount;
-        public BankManager()
+        private BankManager()
         {
             BankAccounts.Add(new BankAccount(0000, 0000, 1000));
             BankAccounts.Add(new BankAccount(1111, 1111, 1000));
             BankAccounts.Add(new BankAccount(2222, 2222, 1000));
             BankAccounts.Add(new BankAccount(3333, 3333, 1000));
             BankAccounts.Add(new BankAccount(4444, 4444, 1000));
+        }
+        public static BankManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new BankManager();
+            }
+            return instance;
         }
 
         public bool TryLogin(int number, int pin)

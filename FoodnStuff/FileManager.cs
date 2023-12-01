@@ -12,51 +12,54 @@ namespace FoodnStuff
     public class FileManager
     {
         // The Idea is to have static managers so even if we create new FileManagers the other managers are static.
-        private static ProductManager _productManager = null;
-        public ProductManager productManager
-        {
-            get
-            {
-                return _productManager;
-            }
-            set
-            {
-                if (_productManager == null)
-                {
-                    _productManager = value;
-                }
-            }
-        }
-        private static UserManager _userManager = null;
-        public UserManager userManager
-        {
-            get
-            {
-                return _userManager;
-            }
-            set
-            {
-                if (_userManager == null)
-                {
-                    _userManager = value;
-                }
-            }
-        }
-        private static BankManager _bankManager = null;
-        public BankManager bankManager
-        {
-            get
-            {
-                return _bankManager;
-            }
-            set
-            {
-                if (_bankManager == null)
-                {
-                    _bankManager = value;
-                }
-            }
-        }
+        //private static ProductManager _productManager = null;
+        //public ProductManager productManager
+        //{
+        //    get
+        //    {
+        //        return _productManager;
+        //    }
+        //    set
+        //    {
+        //        if (_productManager == null)
+        //        {
+        //            _productManager = value;
+        //        }
+        //    }
+        //}
+        //private static UserManager _userManager = null;
+        //public UserManager userManager
+        //{
+        //    get
+        //    {
+        //        return _userManager;
+        //    }
+        //    set
+        //    {
+        //        if (_userManager == null)
+        //        {
+        //            _userManager = value;
+        //        }
+        //    }
+        //}
+        //private static BankManager _bankManager = null;
+        //public BankManager bankManager
+        //{
+        //    get
+        //    {
+        //        return _bankManager;
+        //    }
+        //    set
+        //    {
+        //        if (_bankManager == null)
+        //        {
+        //            _bankManager = value;
+        //        }
+        //    }
+        //}
+        private ProductManager productManager = ProductManager.GetInstance();
+        private UserManager userManager = UserManager.GetInstance();
+        private BankManager bankManager = BankManager.GetInstance();
 
         private string[] pathDirectory { get; set; } = new string[3] {"jsonFolder","jsonFolder","jsonFolder"};
 
@@ -73,25 +76,13 @@ namespace FoodnStuff
             {
                 LoadProductManager(productManager, pathDirectory[0]);
             }
-            else
-            {
-                productManager = new ProductManager();
-            }
             if (filePathExist(pathDirectory[1]))
             {
                 LoadUserManager(userManager, pathDirectory[1]);
             }
-            else
-            {
-                userManager = new UserManager();
-            }
             if (filePathExist(pathDirectory[2]))
             {
                 LoadBankManager(bankManager, pathDirectory[2]);
-            }
-            else
-            {
-                bankManager = new BankManager();
             }
         }
 
