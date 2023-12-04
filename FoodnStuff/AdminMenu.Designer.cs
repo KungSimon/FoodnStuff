@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMenu));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            label1 = new Label();
+            itemLabel = new Label();
             removeItemButton = new Button();
             addNewItemButton = new Button();
             itemsListBox = new ListBox();
@@ -66,7 +66,7 @@
             // tabPage1
             // 
             tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
-            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(itemLabel);
             tabPage1.Controls.Add(removeItemButton);
             tabPage1.Controls.Add(addNewItemButton);
             tabPage1.Controls.Add(itemsListBox);
@@ -78,14 +78,15 @@
             tabPage1.Text = "Item Manager";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // itemLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(523, 27);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 3;
-            label1.Text = "label1";
+            itemLabel.AutoSize = true;
+            itemLabel.Location = new Point(411, 40);
+            itemLabel.Name = "itemLabel";
+            itemLabel.Size = new Size(50, 20);
+            itemLabel.TabIndex = 3;
+            itemLabel.Text = "label1";
+            itemLabel.Visible = false;
             // 
             // removeItemButton
             // 
@@ -240,7 +241,7 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
-        private Label label1;
+        private Label itemLabel;
         private Button removeItemButton;
         private Button addNewItemButton;
         private ListBox itemsListBox;

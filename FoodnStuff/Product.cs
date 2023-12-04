@@ -42,5 +42,9 @@ namespace FoodnStuff
         {
             return Name;
         }
+        public string GetInfo()
+        {
+            return ("Quantity in stock" + Quantity + ", Price: " + Price + "kr" + " ,Category: " + Category);
+        }
     }
 }

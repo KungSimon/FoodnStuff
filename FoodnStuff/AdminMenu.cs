@@ -12,6 +12,7 @@ namespace FoodnStuff
 {
     public partial class AdminMenu : Form
     {
+        //Form1 form1;
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
         //private UserManager userManager;
@@ -47,17 +48,43 @@ namespace FoodnStuff
 
         private void removeItemButton_Click(object sender, EventArgs e)
         {
+            if (itemsListBox.SelectedItem != null)
+            {
+                Product selectedProduct = (Product)itemsListBox.SelectedItem;
 
+                productManager.Inventory.Remove(selectedProduct);
+
+                uppdateListBox();
+
+                MessageBox.Show("Item removed successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to remove.");
+            }
         }
 
         private void logOutButton_Click(object sender, EventArgs e)
         {
+            //Close();
+            //form1.Visible = true;
+            //form1.Show();
 
+            //Not working yet
         }
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (itemsListBox.SelectedItem != null)
+            {
+                Product selectedProduct = (Product)itemsListBox.SelectedItem;
+                itemLabel.Visible = true;
+                itemLabel.Text = selectedProduct.GetInfo();
+            }
+            else
+            {
+                itemLabel.Visible = false;
+            }
         }
         public void uppdateListBox()
         {

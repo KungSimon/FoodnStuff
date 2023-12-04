@@ -84,11 +84,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(usernameTextBox);
             Controls.Add(logInButton);
             Controls.Add(passwordLabel);
             Controls.Add(usernameLabel);
             Controls.Add(passwordTextBox);
-            Controls.Add(usernameTextBox);
             Name = "WorkerLogIn";
             Text = "WorkerLogIn";
             ResumeLayout(false);
