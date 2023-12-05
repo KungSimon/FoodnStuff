@@ -49,14 +49,14 @@
             // 
             // loadTransportButton
             // 
-            shipOrderButton.Location = new Point(363, 304);
-            shipOrderButton.Margin = new Padding(2);
-            shipOrderButton.Name = "shipOrderButton";
-            shipOrderButton.Size = new Size(157, 27);
-            shipOrderButton.TabIndex = 1;
-            shipOrderButton.Text = "Ship Order";
-            shipOrderButton.UseVisualStyleBackColor = true;
-            shipOrderButton.Click += shipOrderButton_Click;
+            loadTransportButton.Location = new Point(363, 304);
+            loadTransportButton.Margin = new Padding(2);
+            loadTransportButton.Name = "shipOrderButton";
+            loadTransportButton.Size = new Size(157, 27);
+            loadTransportButton.TabIndex = 1;
+            loadTransportButton.Text = "Ship Order";
+            loadTransportButton.UseVisualStyleBackColor = true;
+            loadTransportButton.Click += shipOrderButton_Click;
             // 
             // label1
             // 

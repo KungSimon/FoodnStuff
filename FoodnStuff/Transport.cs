@@ -14,7 +14,8 @@ namespace FoodnStuff
         public bool Available { get; set; } = true;
         public int Capacity { get; set; } = 10;
 
-        private ProductManager productManager = ProductManager.GetInstance();
+        // This probably shouldnt be here, it causes recursive loops
+        //private ProductManager productManager = ProductManager.GetInstance();
 
         public Transport(int _id)
         {
@@ -56,14 +57,14 @@ namespace FoodnStuff
         public void CheckCapacity(Product product)
         {
             // En funktion som jämför payloaden med kapaciteten i transporterna
-            foreach (Transport transport in productManager.Transports)
-            {
-                if (transport.Available && transport.Capacity >= product.Quantity)
-                {
-                    transport.LoadTransport(order);
-                    return; 
-                }
-            }
+            //foreach (Transport transport in productManager.Transports)
+            //{
+            //    if (transport.Available && transport.Capacity >= product.Quantity)
+            //    {
+            //        transport.LoadTransport(order);
+            //        return; 
+            //    }
+            //}
         }
     }
 }

@@ -15,6 +15,10 @@ namespace FoodnStuff
             this.chooseTransport = new ChooseTransport();
             //MessageBox.Show("Got here 0");
             fileManager.LoadManagers();
+
+            // Binding listbox
+            catagoryListBox.DataSource = productManager.Inventory;
+            catagoryListBox.DisplayMember = "Name";
         }
 
 

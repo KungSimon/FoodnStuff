@@ -35,9 +35,10 @@ namespace FoodnStuff
         }
         private ProductManager()
         {
-            Transports.Add(new Transport(1));
-            Transports.Add(new Transport(2));
-            Transports.Add(new Transport(3));
+            // Vi vill nog inte ha detta i konstruktorn
+            //Transports.Add(new Transport(1));
+            //Transports.Add(new Transport(2));
+            //Transports.Add(new Transport(3));
         }
         public void SendTransport()
         {
@@ -51,6 +52,45 @@ namespace FoodnStuff
                 instance = new ProductManager();
             }
             return instance;
+        }
+
+        public void UpdateDictionary()
+        {
+            //foreach (var item in Inventory)
+            //{
+            //    if (CategoryDictionary.TryGetValue(item.Category, out List<Product> category))
+            //    {
+            //        // The category exists in the dictionary
+            //        // You can use the 'category' variable here
+            //        bool ItemExist = false;
+            //        foreach (Product product in category)
+            //        {
+            //            if (item.ID == product.ID)
+            //            {
+            //                ItemExist = true;
+            //                break;
+            //            }
+            //        }
+            //        if (ItemExist)
+            //        {
+            //            var list = CategoryDictionary[item.Category];
+            //            int index = list.FindIndex(product => product.ID == item.ID);
+            //            if (index != -1)
+            //            {
+            //                list[index].Quantity += item.Quantity;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            CategoryDictionary.Add(item.Category, new List<Product> { item });
+            //        }
+            //    }
+            //    else
+            //    {
+            //        // The category does not exist in the dictionary
+            //    }
+            //}
+
         }
 
         // Function that adds the product to cart
