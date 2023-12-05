@@ -20,6 +20,7 @@ namespace FoodnStuff
 
         private void registerButton_Click(object sender, EventArgs e)
         {
+            //Här ska det sparas
             string name = nameTextBox.Text;
             string userName = usernameTextBox.Text;
             string address = addressTextBox.Text;

@@ -14,9 +14,11 @@ namespace FoodnStuff
     {
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
-        public WorkerLogIn(UserManager userManager, Form1 form1, ProductManager productManager)
+        private ChooseTransport chooseTransport;
+        public WorkerLogIn(UserManager userManager, Form1 form1, ProductManager productManager, ChooseTransport chooseTransport)
         {
             InitializeComponent();
+            this.chooseTransport = chooseTransport;
         }
 
         private void logInButton_Click(object sender, EventArgs e)
@@ -33,7 +35,7 @@ namespace FoodnStuff
                     MessageBox.Show("Log in successful");
                     //return;
                     Close();
-                    AdminMenu adminMenu = new AdminMenu(userManager, admin, productManager);
+                    AdminMenu adminMenu = new AdminMenu(userManager, admin, productManager, chooseTransport);
                     adminMenu.Show();
                     LogInSuccess = true;
                 }

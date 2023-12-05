@@ -16,5 +16,15 @@ namespace FoodnStuff
         {
             InitializeComponent();
         }
+
+        private void moveToTransportButton_Click(object sender, EventArgs e)
+        {
+            //Ska sparas här i transport ProductsOutOnDelivery?
+        }
+
+        private void shipOrderButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

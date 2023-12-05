@@ -45,6 +45,7 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
+            chooseTransportButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -121,6 +122,7 @@
             // tabPage2
             // 
             tabPage2.BackgroundImage = (Image)resources.GetObject("tabPage2.BackgroundImage");
+            tabPage2.Controls.Add(chooseTransportButton);
             tabPage2.Controls.Add(listBox2);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
@@ -218,6 +220,16 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 9;
             // 
+            // chooseTransportButton
+            // 
+            chooseTransportButton.Location = new Point(446, 138);
+            chooseTransportButton.Name = "chooseTransportButton";
+            chooseTransportButton.Size = new Size(176, 58);
+            chooseTransportButton.TabIndex = 2;
+            chooseTransportButton.Text = "Choose Transport";
+            chooseTransportButton.UseVisualStyleBackColor = true;
+            chooseTransportButton.Click += chooseTransportButton_Click;
+            // 
             // AdminMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -253,5 +265,6 @@
         private TextBox passwordTextBox;
         private TextBox usernameTextBox;
         private Button logOutButton;
+        private Button chooseTransportButton;
     }
 }

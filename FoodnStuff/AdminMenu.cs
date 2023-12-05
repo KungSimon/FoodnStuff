@@ -16,9 +16,10 @@ namespace FoodnStuff
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
         //private UserManager userManager;
+        private ChooseTransport chooseTransport;
         private User Admin;
         //private ProductManager ProductManager;
-        public AdminMenu(UserManager userManager, User admin, ProductManager productManager)
+        public AdminMenu(UserManager userManager, User admin, ProductManager productManager, ChooseTransport chooseTransport)
         {
             InitializeComponent();
             //this.userManager = userManager;
@@ -27,10 +28,14 @@ namespace FoodnStuff
             //LISTBOX NOT DONE YET!
             itemsListBox.DataSource = productManager.Inventory;
             itemsListBox.DisplayMember = "Name";
+
+            this.FormClosing += AdminMenu_FormClosing;
+            this.chooseTransport = chooseTransport;
         }
 
         private void registerButton_Click(object sender, EventArgs e)
         {
+            //Här ska det sparas
             string userName = usernameTextBox.Text;
             string password = passwordTextBox.Text;
             userManager.RegisterAdministrator(Admin, userName, password);
@@ -41,6 +46,7 @@ namespace FoodnStuff
         }
 
         private void addNewItemButton_Click(object sender, EventArgs e)
+        //Här ska det sparas
         {
             NewItem newItem = new NewItem(productManager, this);
             newItem.Show();
@@ -48,6 +54,7 @@ namespace FoodnStuff
 
         private void removeItemButton_Click(object sender, EventArgs e)
         {
+            //Här ska det det försvinna
             if (itemsListBox.SelectedItem != null)
             {
                 Product selectedProduct = (Product)itemsListBox.SelectedItem;
@@ -91,6 +98,26 @@ namespace FoodnStuff
             itemsListBox.DataSource = null;
             itemsListBox.DataSource = productManager.Inventory;
             itemsListBox.DisplayMember = "Name";
+        }
+        private void AdminMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Stäng alla former (Forms) här
+                //Funkar inte får "System.StackOverflowException"
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form != this)
+                    {
+                        form.Close();
+                    }
+                }
+            }
+        }
+
+        private void chooseTransportButton_Click(object sender, EventArgs e)
+        {
+            chooseTransport.Show();
         }
     }
 }

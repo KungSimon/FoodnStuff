@@ -4,11 +4,14 @@ namespace FoodnStuff
 {
     public partial class Form1 : Form
     {
+        private ChooseTransport chooseTransport;
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
         public Form1()
         {
             InitializeComponent();
+            this.FormClosing += Form1_FormClosing;
+            this.chooseTransport = new ChooseTransport();
         }
 
 
@@ -21,7 +24,7 @@ namespace FoodnStuff
 
         private void logInWorkerButton_Click(object sender, EventArgs e)
         {
-            WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager);
+            WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager, chooseTransport);
 
             workerLogIn.Show();
             Hide();
@@ -59,10 +62,34 @@ namespace FoodnStuff
                 }
             };
         }
-
-        private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form != this)
+                    {
+                        //Funkar ej när man försöker stänga i AdminMenu
+                        form.Close();
+                    }
+                }
+            }
+        }
 
+        private void addToCartButton_Click(object sender, EventArgs e)
+        {
+            //Här ska det sparas
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Här ska det försvinna
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Denna ska vara tempcarten
         }
     }
 }

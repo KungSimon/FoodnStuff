@@ -42,6 +42,7 @@
             cartLabel = new Label();
             listBox2 = new ListBox();
             tabPage3 = new TabPage();
+            logOutButton = new Button();
             logInButton = new Button();
             label1 = new Label();
             logInWorkerButton = new Button();
@@ -51,7 +52,6 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
-            logOutButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -94,7 +94,6 @@
             itemsListBox.Size = new Size(508, 384);
             itemsListBox.TabIndex = 4;
             itemsListBox.Visible = false;
-            itemsListBox.SelectedIndexChanged += itemsListBox_SelectedIndexChanged;
             // 
             // addToCartButton
             // 
@@ -104,6 +103,7 @@
             addToCartButton.TabIndex = 3;
             addToCartButton.Text = "Add to cart";
             addToCartButton.UseVisualStyleBackColor = true;
+            addToCartButton.Click += addToCartButton_Click;
             // 
             // searchLabel
             // 
@@ -163,11 +163,12 @@
             button1.TabIndex = 2;
             button1.Text = "Remove item from cart";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // cartLabel
             // 
             cartLabel.AutoSize = true;
-            cartLabel.Location = new Point(107, 25);
+            cartLabel.Location = new Point(31, 41);
             cartLabel.Name = "cartLabel";
             cartLabel.Size = new Size(67, 20);
             cartLabel.TabIndex = 1;
@@ -181,6 +182,7 @@
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(262, 344);
             listBox2.TabIndex = 0;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // tabPage3
             // 
@@ -201,6 +203,15 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Log In";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // logOutButton
+            // 
+            logOutButton.Location = new Point(871, 15);
+            logOutButton.Name = "logOutButton";
+            logOutButton.Size = new Size(94, 29);
+            logOutButton.TabIndex = 15;
+            logOutButton.Text = "Log out";
+            logOutButton.UseVisualStyleBackColor = true;
             // 
             // logInButton
             // 
@@ -284,15 +295,6 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 0;
             // 
-            // logOutButton
-            // 
-            logOutButton.Location = new Point(871, 15);
-            logOutButton.Name = "logOutButton";
-            logOutButton.Size = new Size(94, 29);
-            logOutButton.TabIndex = 15;
-            logOutButton.Text = "Log out";
-            logOutButton.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -301,6 +303,7 @@
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
+            Load += catagoryListBox_SelectedIndexChanged;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
