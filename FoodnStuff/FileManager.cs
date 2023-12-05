@@ -11,59 +11,30 @@ namespace FoodnStuff
 {
     public class FileManager
     {
-        // The Idea is to have static managers so even if we create new FileManagers the other managers are static.
-        //private static ProductManager _productManager = null;
-        //public ProductManager productManager
-        //{
-        //    get
-        //    {
-        //        return _productManager;
-        //    }
-        //    set
-        //    {
-        //        if (_productManager == null)
-        //        {
-        //            _productManager = value;
-        //        }
-        //    }
-        //}
-        //private static UserManager _userManager = null;
-        //public UserManager userManager
-        //{
-        //    get
-        //    {
-        //        return _userManager;
-        //    }
-        //    set
-        //    {
-        //        if (_userManager == null)
-        //        {
-        //            _userManager = value;
-        //        }
-        //    }
-        //}
-        //private static BankManager _bankManager = null;
-        //public BankManager bankManager
-        //{
-        //    get
-        //    {
-        //        return _bankManager;
-        //    }
-        //    set
-        //    {
-        //        if (_bankManager == null)
-        //        {
-        //            _bankManager = value;
-        //        }
-        //    }
-        //}
-        private ProductManager productManager = ProductManager.GetInstance();
-        private UserManager userManager = UserManager.GetInstance();
-        private BankManager bankManager = BankManager.GetInstance();
+        private static FileManager instance = null;
+        private ProductManager productManager;
+        private UserManager userManager;
+        private BankManager bankManager;
 
         private string[] pathDirectory { get; set; } = new string[3] {"jsonFolder","jsonFolder","jsonFolder"};
 
-        public FileManager()
+        private FileManager()
+        {
+            productManager = ProductManager.GetInstance();
+            userManager = UserManager.GetInstance();
+            bankManager = BankManager.GetInstance();
+        }
+
+        public static FileManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new FileManager();
+            }
+            return instance;
+        }
+
+        public void LoadManagers()
         {
             // Look for local directory JSON
             if (filePathExist("pathDirectory.json"))
