@@ -28,28 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button2 = new Button();
+            addToShippingButton = new Button();
             readyToBeShippedListBox = new ListBox();
             ordersListBox = new ListBox();
             chooseTransportButton = new Button();
             SuspendLayout();
             // 
-            // button2
+            // addToShippingButton
             // 
-            button2.Location = new Point(460, 258);
-            button2.Margin = new Padding(4, 4, 4, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(182, 36);
-            button2.TabIndex = 5;
-            button2.Text = "Add to shipping";
-            button2.UseVisualStyleBackColor = true;
+            addToShippingButton.Location = new Point(460, 258);
+            addToShippingButton.Margin = new Padding(4);
+            addToShippingButton.Name = "addToShippingButton";
+            addToShippingButton.Size = new Size(182, 36);
+            addToShippingButton.TabIndex = 5;
+            addToShippingButton.Text = "Add to shipping";
+            addToShippingButton.UseVisualStyleBackColor = true;
+            addToShippingButton.Click += addToShippingButton_Click;
             // 
             // readyToBeShippedListBox
             // 
             readyToBeShippedListBox.FormattingEnabled = true;
             readyToBeShippedListBox.ItemHeight = 25;
             readyToBeShippedListBox.Location = new Point(676, 111);
-            readyToBeShippedListBox.Margin = new Padding(4, 4, 4, 4);
+            readyToBeShippedListBox.Margin = new Padding(4);
             readyToBeShippedListBox.Name = "readyToBeShippedListBox";
             readyToBeShippedListBox.Size = new Size(350, 429);
             readyToBeShippedListBox.TabIndex = 4;
@@ -59,7 +60,7 @@
             ordersListBox.FormattingEnabled = true;
             ordersListBox.ItemHeight = 25;
             ordersListBox.Location = new Point(79, 111);
-            ordersListBox.Margin = new Padding(4, 4, 4, 4);
+            ordersListBox.Margin = new Padding(4);
             ordersListBox.Name = "ordersListBox";
             ordersListBox.Size = new Size(350, 429);
             ordersListBox.TabIndex = 3;
@@ -72,6 +73,7 @@
             chooseTransportButton.TabIndex = 6;
             chooseTransportButton.Text = "Choose Transport";
             chooseTransportButton.UseVisualStyleBackColor = true;
+            chooseTransportButton.Click += chooseTransportButton_Click;
             // 
             // Shipping
             // 
@@ -79,10 +81,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 654);
             Controls.Add(chooseTransportButton);
-            Controls.Add(button2);
+            Controls.Add(addToShippingButton);
             Controls.Add(readyToBeShippedListBox);
             Controls.Add(ordersListBox);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "Shipping";
             Text = "Shipping";
             ResumeLayout(false);
@@ -90,7 +92,7 @@
 
         #endregion
 
-        private Button button2;
+        private Button addToShippingButton;
         private ListBox readyToBeShippedListBox;
         private ListBox ordersListBox;
         private Button chooseTransportButton;

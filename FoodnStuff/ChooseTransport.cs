@@ -12,6 +12,7 @@ namespace FoodnStuff
 {
     public partial class ChooseTransport : Form
     {
+        private ProductManager productManager = ProductManager.GetInstance();
         public ChooseTransport()
         {
             InitializeComponent();

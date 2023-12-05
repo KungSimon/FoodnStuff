@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseTransport));
             listBoxAvailableTransports = new ListBox();
-            shipOrderButton = new Button();
+            loadTransportButton = new Button();
             label1 = new Label();
             readyOrdersListBox = new ListBox();
             moveToTransportButton = new Button();
@@ -44,10 +44,10 @@
             listBoxAvailableTransports.Location = new Point(363, 63);
             listBoxAvailableTransports.Margin = new Padding(2);
             listBoxAvailableTransports.Name = "listBoxAvailableTransports";
-            listBoxAvailableTransports.Size = new Size(157, 224);
+            listBoxAvailableTransports.Size = new Size(195, 279);
             listBoxAvailableTransports.TabIndex = 0;
             // 
-            // shipOrderButton
+            // loadTransportButton
             // 
             shipOrderButton.Location = new Point(363, 304);
             shipOrderButton.Margin = new Padding(2);
@@ -64,7 +64,7 @@
             label1.Location = new Point(325, 27);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(224, 20);
+            label1.Size = new Size(269, 25);
             label1.TabIndex = 2;
             label1.Text = "Available transport to ship order";
             // 
@@ -101,7 +101,7 @@
             // 
             // ChooseTransport
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(560, 430);
@@ -109,7 +109,7 @@
             Controls.Add(moveToTransportButton);
             Controls.Add(readyOrdersListBox);
             Controls.Add(label1);
-            Controls.Add(shipOrderButton);
+            Controls.Add(loadTransportButton);
             Controls.Add(listBoxAvailableTransports);
             Margin = new Padding(2);
             Name = "ChooseTransport";
@@ -121,7 +121,7 @@
         #endregion
 
         private ListBox listBoxAvailableTransports;
-        private Button shipOrderButton;
+        private Button loadTransportButton;
         private Label label1;
         private ListBox readyOrdersListBox;
         private Button moveToTransportButton;

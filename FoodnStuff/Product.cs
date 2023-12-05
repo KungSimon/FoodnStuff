@@ -23,7 +23,6 @@ namespace FoodnStuff
             Price = _price;
             ID = _id;
         }
-
         public Product(Product _originalProduct, int _orderQuantity)
         {
             Name = _originalProduct.Name;
@@ -33,7 +32,6 @@ namespace FoodnStuff
             Description = _originalProduct.Description;
             Category = _originalProduct.Category;
         }
-
         public void EditDescription(string _description)
         {
             Description = _description;

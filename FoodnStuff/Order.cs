@@ -14,10 +14,20 @@ namespace FoodnStuff
 
         public Order(List<Product> list, string address, string name)
         {
-            
             InCart = list;
             Address = address;
             Name = name;
+        }
+
+       //Kolla igenom listan med varor i cart, lägga till gemensam kvantitet
+        public int CheckTotalOrderQuantity()
+        {
+            int quantity = 0;
+            foreach (Product item in InCart) 
+            {
+                quantity += item.Quantity;
+            }
+            return quantity;
         }
     }
 }

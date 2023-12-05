@@ -15,7 +15,7 @@ namespace FoodnStuff
         public Dictionary<string, List<Product>> CategoryDictionary { get; set; } = new Dictionary<string, List<Product>>();
         public List<string> keyList = new List<string>();
         public List<Order> Orders { get; set; } = new List<Order>();
-        public List<Transport> Transports { get; set; }
+        public List<Transport> Transports { get; set; } = new List<Transport>();
 
         // IDManager gives the product unique IDs
         private static int productID = 0;
@@ -35,6 +35,12 @@ namespace FoodnStuff
         }
         private ProductManager()
         {
+            Transports.Add(new Transport(1));
+            Transports.Add(new Transport(2));
+            Transports.Add(new Transport(3));
+        }
+        public void SendTransport()
+        {
 
         }
 
@@ -46,7 +52,6 @@ namespace FoodnStuff
             }
             return instance;
         }
-
 
         // Function that adds the product to cart
         public void AddToCart(Cart _myCart, Product _product, int _quantity)
@@ -109,7 +114,6 @@ namespace FoodnStuff
                 }
             }
         }
-
         public void CreateProduct(string _category, string _name, int _price, int _quantity)
         {
             // Increment ID
