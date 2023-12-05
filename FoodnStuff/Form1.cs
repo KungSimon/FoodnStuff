@@ -7,11 +7,14 @@ namespace FoodnStuff
         private ChooseTransport chooseTransport;
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
+        private FileManager fileManager = FileManager.GetInstance();
         public Form1()
         {
             InitializeComponent();
             this.FormClosing += Form1_FormClosing;
             this.chooseTransport = new ChooseTransport();
+            //MessageBox.Show("Got here 0");
+            fileManager.LoadManagers();
         }
 
 

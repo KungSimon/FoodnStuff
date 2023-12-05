@@ -16,6 +16,20 @@ namespace FoodnStuff
         private UserManager userManager;
         private BankManager bankManager;
 
+        // File names
+        private string ProductManagerInventory = "productManagerInventory";
+        private string ProductManagerID = "productManagerID";
+        private string UserManagerCustomers = "userManagerCustomer";
+        private string UserManagerAdministrators = "userManagerAdministrators";
+        private string UserManagerID = "userManagerID";
+        private string BankManagerAccounts = "bankManagerAccounts";
+
+        // Folder names
+        private string ProductManagerFolder = "jsonFolder";
+        private string UserManagerFolder = "jsonFolder";
+        private string BankManagerFolder = "jsonFolder";
+
+        // Array to save paths
         private string[] pathDirectory { get; set; } = new string[3] {"jsonFolder","jsonFolder","jsonFolder"};
 
         private FileManager()
@@ -34,79 +48,109 @@ namespace FoodnStuff
             return instance;
         }
 
+        public void UpdateFolderPath()
+        {
+            // Function used to update folder paths
+            ProductManagerFolder = pathDirectory[0];
+            UserManagerFolder = pathDirectory[1];
+            BankManagerFolder = pathDirectory[2];
+        }
+
         public void LoadManagers()
         {
+            //MessageBox.Show("Got here 1");
             // Look for local directory JSON
-            if (filePathExist("pathDirectory.json"))
+            if (FilePathExist("pathDirectory.json"))
             {
-                // If json exists then import it into pathDirectory
+                // If json exists then import it into pathDirectory and update your manager paths
                 pathDirectory = ImportFromJson<string[]>("pathDirectory.json");
+                UpdateFolderPath();
             }
-            // We use pathDirectory to find the other managers, this allows us to save them att different locations
-            if (filePathExist(pathDirectory[0]))
+            //MessageBox.Show("Got here 2");
+            // Looking for json folders
+            if (FolderPathExist(ProductManagerFolder))
             {
-                LoadProductManager(productManager, pathDirectory[0]);
+                LoadProductManager(productManager);
             }
-            if (filePathExist(pathDirectory[1]))
+            if (FolderPathExist(UserManagerFolder))
             {
-                LoadUserManager(userManager, pathDirectory[1]);
+                LoadUserManager(userManager);
             }
-            if (filePathExist(pathDirectory[2]))
+            if (FolderPathExist(BankManagerFolder))
             {
-                LoadBankManager(bankManager, pathDirectory[2]);
+                LoadBankManager(bankManager);
             }
         }
 
-        public void SaveProductManager(List<Product> _products, int _idManager, string _folder)
+        public void SaveProductManager(List<Product> _products, int _idManager)
         {
             // Inventory
             // IDManager
-            var productManagerInventoryJson = "productManagerInventoryJSON";
-            var productManagerIDManagerJson = "productManagerIDManagerJSON";
-            ExportToJson(_products, productManagerInventoryJson, _folder);
-            ExportToJson(_idManager, productManagerIDManagerJson, _folder);
+            var productManagerInventoryJson = ProductManagerInventory;
+            var productManagerIDManagerJson = ProductManagerID;
+            ExportToJson(_products, productManagerInventoryJson, ProductManagerFolder);
+            ExportToJson(_idManager, productManagerIDManagerJson, ProductManagerFolder);
         }
-        private void LoadProductManager(ProductManager _productManager, string _folder)
+        private void LoadProductManager(ProductManager _productManager)
         {
-            _productManager.ProductID = ImportFromJson<int>($"{_folder}/productManagerProductIDJSON");
-            _productManager.Inventory = ImportFromJson<List<Product>>($"{_folder}/productManagerListJSON");
+            if (File.Exists($"{ProductManagerFolder}/{ProductManagerInventory}.json"))
+            {
+                _productManager.Inventory = ImportFromJson<List<Product>>($"{ProductManagerFolder}/{ProductManagerInventory}.json");
+            }
+            if (File.Exists($"{ProductManagerFolder}/{ProductManagerID}.json")){
+                _productManager.ProductID = ImportFromJson<int>($"{ProductManagerFolder}/{ProductManagerID}.json");
+            }
         }
 
-        public void SaveUserManager(List<User> _registeredCustomers, List<User> _administrators, int _userID, string _folder)
+        public void SaveUserManager(List<User> _registeredCustomers, List<User> _administrators, int _userID)
         {
             // RegisteredCustomers
             // Administrators
             // UserID
-            var userManagerRegisteredCustomers = "userManagerRegisteredCustomerJSON";
-            var userManagerAdministrators = "userManagerAdministratorsJSON";
-            var userManagerUserID = "userManagerUserIDJSON";
-            ExportToJson(_registeredCustomers, userManagerRegisteredCustomers, _folder);
-            ExportToJson(_administrators, userManagerAdministrators, _folder);
-            ExportToJson(_userID, userManagerUserID, _folder);
+            ExportToJson(_registeredCustomers, UserManagerCustomers, UserManagerFolder);
+            ExportToJson(_administrators, UserManagerAdministrators, UserManagerFolder);
+            ExportToJson(_userID, UserManagerID, UserManagerFolder);
         }
-        private void LoadUserManager(UserManager _userManager, string _folder)
+        private void LoadUserManager(UserManager _userManager)
         {
-            _userManager.RegisteredCustomers = ImportFromJson<List<User>>($"{_folder}/userManagerRegisteredCustomerJSON");
-            _userManager.Administrators = ImportFromJson<List<User>>($"{_folder}/userManagerAdministratorsJSON");
-            _userManager.UserID = ImportFromJson<int>($"{_folder}/userManagerUserIDJSON");
+            if (File.Exists($"{UserManagerFolder}/{UserManagerCustomers}.json"))
+            {
+                _userManager.RegisteredCustomers = ImportFromJson<List<User>>($"{UserManagerFolder}/{UserManagerCustomers}.json");
+            }
+            if (File.Exists($"{UserManagerFolder}/{UserManagerAdministrators}.json"))
+            {
+                _userManager.Administrators = ImportFromJson<List<User>>($"{UserManagerFolder}/{UserManagerAdministrators}.json");
+            }
+            if (File.Exists($"{UserManagerFolder}/{UserManagerID}.json"))
+            {
+                _userManager.UserID = ImportFromJson<int>($"{UserManagerFolder}/{UserManagerID}.json");
+            }
         }
 
-        public void SaveBankManager(List<BankAccount> _bankAccounts, string _folder)
+        public void SaveBankManager(List<BankAccount> _bankAccounts)
         {
             // bankAccounts
-            var bankManagerBankJson = "bankManagerBankJSON";
-            ExportToJson(_bankAccounts, bankManagerBankJson, _folder);
+            ExportToJson(_bankAccounts, BankManagerAccounts, BankManagerFolder);
         }
-        private void LoadBankManager(BankManager bankManager, string _folder)
+        private void LoadBankManager(BankManager bankManager)
         {
-            bankManager.BankAccounts = ImportFromJson<List<BankAccount>>($"{_folder}/bankManagerBankJSON");
+            if (File.Exists($"{BankManagerFolder}/{BankManagerAccounts}.json"))
+            {
+                bankManager.BankAccounts = ImportFromJson<List<BankAccount>>($"{BankManagerFolder}/{BankManagerAccounts}.json");
+            }
         }
 
 
 
-        public bool filePathExist(string filePath)
+        public bool FilePathExist(string filePath)
         {
             if (File.Exists(filePath)) return true;
+            return false;
+        }
+        public bool FolderPathExist(string folderPath)
+        {
+            //MessageBox.Show("Got into FolderPathExist");
+            if (Directory.Exists(folderPath)) return true;
             return false;
         }
         public T ImportFromJson<T>(string filePath)

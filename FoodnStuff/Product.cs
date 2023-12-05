@@ -15,6 +15,10 @@ namespace FoodnStuff
         public int ID { get; set; }
         public int Price { get; set; }
 
+        public Product()
+        {
+
+        }
         public Product(string _category, string _name, int _price, int _quantity, int _id)
         {
             Category = _category;

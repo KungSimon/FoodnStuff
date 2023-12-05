@@ -48,6 +48,14 @@ namespace FoodnStuff
             itemNameTextBox.Text = "";
             priceNumeric.ResetText();
             quantityNumeric.ResetText();
+
+            // Testing filesaving
+            var fm = FileManager.GetInstance();
+            fm.SaveProductManager(productManager.Inventory, productManager.ProductID);
+            var um = UserManager.GetInstance();
+            fm.SaveUserManager(um.RegisteredCustomers, um.Administrators, um.UserID);
+            var bm = BankManager.GetInstance();
+            fm.SaveBankManager(bm.BankAccounts);
         }
 
     }
