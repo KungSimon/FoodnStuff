@@ -40,7 +40,7 @@
             proceedToCheckoutButton = new Button();
             button1 = new Button();
             cartLabel = new Label();
-            listBox2 = new ListBox();
+            cartListBox = new ListBox();
             tabPage3 = new TabPage();
             logOutButton = new Button();
             logInButton = new Button();
@@ -137,7 +137,7 @@
             tabPage2.Controls.Add(proceedToCheckoutButton);
             tabPage2.Controls.Add(button1);
             tabPage2.Controls.Add(cartLabel);
-            tabPage2.Controls.Add(listBox2);
+            tabPage2.Controls.Add(cartListBox);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -174,15 +174,15 @@
             cartLabel.TabIndex = 1;
             cartLabel.Text = "Your cart";
             // 
-            // listBox2
+            // cartListBox
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 20;
-            listBox2.Location = new Point(31, 64);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(262, 344);
-            listBox2.TabIndex = 0;
-            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
+            cartListBox.FormattingEnabled = true;
+            cartListBox.ItemHeight = 20;
+            cartListBox.Location = new Point(31, 64);
+            cartListBox.Name = "cartListBox";
+            cartListBox.Size = new Size(262, 344);
+            cartListBox.TabIndex = 0;
+            cartListBox.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // tabPage3
             // 
@@ -206,12 +206,14 @@
             // 
             // logOutButton
             // 
-            logOutButton.Location = new Point(871, 15);
+            logOutButton.Location = new Point(881, 14);
             logOutButton.Name = "logOutButton";
             logOutButton.Size = new Size(94, 29);
             logOutButton.TabIndex = 15;
             logOutButton.Text = "Log out";
             logOutButton.UseVisualStyleBackColor = true;
+            logOutButton.Visible = false;
+            logOutButton.Click += logOutButton_Click;
             // 
             // logInButton
             // 
@@ -325,7 +327,7 @@
         private Button addToCartButton;
         private Label searchLabel;
         private Label cartLabel;
-        private ListBox listBox2;
+        private ListBox cartListBox;
         private Button proceedToCheckoutButton;
         private Button button1;
         private Label label1;

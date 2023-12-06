@@ -21,6 +21,8 @@ namespace FoodnStuff
             // Binding listbox
             catagoryListBox.DataSource = productManager.Inventory;
             catagoryListBox.DisplayMember = "Name";
+
+
         }
 
 
@@ -51,10 +53,21 @@ namespace FoodnStuff
                     MessageBox.Show("Log in successful");
                     usernameTextBox.Text = "";
                     passwordTextBox.Text = "";
+                    usernameLabel.Visible = false;
+                    passwordLabel.Visible = false;
+                    usernameTextBox.Visible = false;
+                    passwordTextBox.Visible = false;
+                    logInButton.Visible = false;
+                    logOutButton.Visible = true;
+                    logOutButton.Location = new Point(440, 202);
+                    logOutButton.Size = new Size(150, 75);
+                    cartListBox.DataSource = new BindingSource(user.MyCart.ProductsInCart, null);
+                    cartListBox.DisplayMember = "Name";
                     return;
                 }
             }
             MessageBox.Show("Invalid username or password. Please try again");
+            passwordTextBox.Text = "";
         }
 
         private void catagoryListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,7 +90,7 @@ namespace FoodnStuff
                     {
                         key = catagoryListBox.SelectedItem.ToString();
                     }
-                    listBox2.DataSource = new BindingSource(productManager.CategoryDictionary[key], null);
+                    cartListBox.DataSource = new BindingSource(productManager.CategoryDictionary[key], null);
                 }
             };
         }
@@ -109,6 +122,18 @@ namespace FoodnStuff
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Denna ska vara tempcarten
+        }
+
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            usernameLabel.Visible = true;
+            passwordLabel.Visible = true;
+            usernameTextBox.Visible = true;
+            passwordTextBox.Visible = true;
+            logInButton.Visible = true;
+            logOutButton.Visible = false;
+            logOutButton.Location = new Point(881, 14);
+            logOutButton.Size = new Size(94, 29);
         }
     }
 }

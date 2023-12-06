@@ -36,7 +36,7 @@
             addNewItemButton = new Button();
             itemsListBox = new ListBox();
             tabPage2 = new TabPage();
-            listBox2 = new ListBox();
+            chooseTransportButton = new Button();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
             logOutButton = new Button();
@@ -45,7 +45,7 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
-            chooseTransportButton = new Button();
+            editButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -67,6 +67,7 @@
             // tabPage1
             // 
             tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
+            tabPage1.Controls.Add(editButton);
             tabPage1.Controls.Add(itemLabel);
             tabPage1.Controls.Add(removeItemButton);
             tabPage1.Controls.Add(addNewItemButton);
@@ -123,7 +124,6 @@
             // 
             tabPage2.BackgroundImage = (Image)resources.GetObject("tabPage2.BackgroundImage");
             tabPage2.Controls.Add(chooseTransportButton);
-            tabPage2.Controls.Add(listBox2);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -132,14 +132,15 @@
             tabPage2.Text = "Orders";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // chooseTransportButton
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 20;
-            listBox2.Location = new Point(34, 24);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(260, 364);
-            listBox2.TabIndex = 0;
+            chooseTransportButton.Location = new Point(302, 161);
+            chooseTransportButton.Name = "chooseTransportButton";
+            chooseTransportButton.Size = new Size(176, 58);
+            chooseTransportButton.TabIndex = 2;
+            chooseTransportButton.Text = "Choose Transport";
+            chooseTransportButton.UseVisualStyleBackColor = true;
+            chooseTransportButton.Click += chooseTransportButton_Click;
             // 
             // tabPage3
             // 
@@ -220,15 +221,14 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 9;
             // 
-            // chooseTransportButton
+            // editButton
             // 
-            chooseTransportButton.Location = new Point(446, 138);
-            chooseTransportButton.Name = "chooseTransportButton";
-            chooseTransportButton.Size = new Size(176, 58);
-            chooseTransportButton.TabIndex = 2;
-            chooseTransportButton.Text = "Choose Transport";
-            chooseTransportButton.UseVisualStyleBackColor = true;
-            chooseTransportButton.Click += chooseTransportButton_Click;
+            editButton.Location = new Point(638, 315);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(118, 29);
+            editButton.TabIndex = 4;
+            editButton.Text = "Edit item";
+            editButton.UseVisualStyleBackColor = true;
             // 
             // AdminMenu
             // 
@@ -257,7 +257,6 @@
         private Button removeItemButton;
         private Button addNewItemButton;
         private ListBox itemsListBox;
-        private ListBox listBox2;
         private TabPage tabPage4;
         private Button registerButton;
         private Label passwordLabel;
@@ -266,5 +265,6 @@
         private TextBox usernameTextBox;
         private Button logOutButton;
         private Button chooseTransportButton;
+        private Button editButton;
     }
 }

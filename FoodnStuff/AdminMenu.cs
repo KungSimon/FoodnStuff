@@ -117,7 +117,8 @@ namespace FoodnStuff
 
         private void chooseTransportButton_Click(object sender, EventArgs e)
         {
-            chooseTransport.Show();
+            Shipping shipping = new Shipping();
+            shipping.Show();
         }
     }
 }
