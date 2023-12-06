@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 
 namespace FoodnStuff
@@ -15,6 +16,7 @@ namespace FoodnStuff
             this.chooseTransport = new ChooseTransport();
             //MessageBox.Show("Got here 0");
             fileManager.LoadManagers();
+            productManager.CategorySorter();
 
             // Binding listbox
             catagoryListBox.DataSource = productManager.Inventory;
@@ -64,7 +66,17 @@ namespace FoodnStuff
             {
                 if (catagoryListBox.SelectedIndex >= 0)
                 {
-                    string key = catagoryListBox.SelectedItem.ToString();
+                    //MessageBox.Show($"This is the type{(catagoryListBox.SelectedItem).GetType().ToString()}");
+                    string key;
+                    if (catagoryListBox.SelectedItem is Product)
+                    {
+                        Product item = (Product)catagoryListBox.SelectedItem;
+                        key = item.Category;
+                    }
+                    else
+                    {
+                        key = catagoryListBox.SelectedItem.ToString();
+                    }
                     listBox2.DataSource = new BindingSource(productManager.CategoryDictionary[key], null);
                 }
             };

@@ -96,6 +96,7 @@ namespace FoodnStuff
             if (File.Exists($"{ProductManagerFolder}/{ProductManagerInventory}.json"))
             {
                 _productManager.Inventory = ImportFromJson<List<Product>>($"{ProductManagerFolder}/{ProductManagerInventory}.json");
+                _productManager.CategorySorter();
             }
             if (File.Exists($"{ProductManagerFolder}/{ProductManagerID}.json")){
                 _productManager.ProductID = ImportFromJson<int>($"{ProductManagerFolder}/{ProductManagerID}.json");

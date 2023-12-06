@@ -54,45 +54,6 @@ namespace FoodnStuff
             return instance;
         }
 
-        public void UpdateDictionary()
-        {
-            //foreach (var item in Inventory)
-            //{
-            //    if (CategoryDictionary.TryGetValue(item.Category, out List<Product> category))
-            //    {
-            //        // The category exists in the dictionary
-            //        // You can use the 'category' variable here
-            //        bool ItemExist = false;
-            //        foreach (Product product in category)
-            //        {
-            //            if (item.ID == product.ID)
-            //            {
-            //                ItemExist = true;
-            //                break;
-            //            }
-            //        }
-            //        if (ItemExist)
-            //        {
-            //            var list = CategoryDictionary[item.Category];
-            //            int index = list.FindIndex(product => product.ID == item.ID);
-            //            if (index != -1)
-            //            {
-            //                list[index].Quantity += item.Quantity;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            CategoryDictionary.Add(item.Category, new List<Product> { item });
-            //        }
-            //    }
-            //    else
-            //    {
-            //        // The category does not exist in the dictionary
-            //    }
-            //}
-
-        }
-
         // Function that adds the product to cart
         public void AddToCart(Cart _myCart, Product _product, int _quantity)
         {
@@ -115,7 +76,7 @@ namespace FoodnStuff
         }
 
         // Function goes through Inventory and sorts them into our dictionary
-        private void CategorySorter()
+        public void CategorySorter()
         {
             // Get list of all keys in our category dictionary
             keyList = new List<string>(CategoryDictionary.Keys);
@@ -140,6 +101,7 @@ namespace FoodnStuff
             // Go through every item in our inventory and adds it to the dictionary list depending on category
             foreach (Product product in Inventory)
             {
+                MessageBox.Show(product.Category);
                 // If we find the category of product then we take the list and add product to it
                 if (CategoryDictionary.TryGetValue(product.Category, value: out var myList))
                 {
