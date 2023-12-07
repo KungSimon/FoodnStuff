@@ -41,6 +41,7 @@
             cardNumberTextBox.Name = "cardNumberTextBox";
             cardNumberTextBox.Size = new Size(229, 27);
             cardNumberTextBox.TabIndex = 14;
+            cardNumberTextBox.TextChanged += cardNumberTextBox_TextChanged;
             // 
             // purchaseButton
             // 
@@ -76,6 +77,7 @@
             cardPinTextBox.Name = "cardPinTextBox";
             cardPinTextBox.Size = new Size(229, 27);
             cardPinTextBox.TabIndex = 15;
+            cardPinTextBox.TextChanged += cardPinTextBox_TextChanged;
             // 
             // Payment
             // 

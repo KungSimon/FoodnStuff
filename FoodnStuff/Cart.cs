@@ -19,5 +19,17 @@ namespace FoodnStuff
         {
             ProductsInCart.Add(products);
         }
+
+        public int CalculateCartTotal()
+        {
+            int total = 0;
+
+            foreach (Product product in ProductsInCart)
+            {
+                total += product.Price;
+            }
+
+            return total;
+        }
     }
 }

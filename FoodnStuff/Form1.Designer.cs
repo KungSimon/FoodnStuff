@@ -184,7 +184,7 @@
             cartListBox.Name = "cartListBox";
             cartListBox.Size = new Size(262, 344);
             cartListBox.TabIndex = 0;
-            cartListBox.SelectedIndexChanged += listBox2_SelectedIndexChanged;
+            cartListBox.SelectedIndexChanged += cartListBox_SelectedIndexChanged;
             // 
             // tabPage3
             // 

@@ -5,6 +5,8 @@ namespace FoodnStuff
 {
     public partial class Form1 : Form
     {
+        private Cart currentCart;
+        private Payment payment;
         private ChooseTransport chooseTransport;
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
@@ -12,6 +14,8 @@ namespace FoodnStuff
         public Form1()
         {
             InitializeComponent();
+            
+            this.payment = new Payment();
             this.FormClosing += Form1_FormClosing;
             this.chooseTransport = new ChooseTransport();
             //MessageBox.Show("Got here 0");
@@ -24,7 +28,8 @@ namespace FoodnStuff
 
             catagoryListBox.DataSource = new BindingSource(productManager.CategoryDictionary.Keys, null);
             itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary, null);
-
+            currentCart = new Cart();
+            cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
         }
 
 
@@ -65,6 +70,7 @@ namespace FoodnStuff
                     logOutButton.Size = new Size(150, 75);
                     cartListBox.DataSource = new BindingSource(user.MyCart.ProductsInCart, null);
                     cartListBox.DisplayMember = "Name";
+                    currentCart = user.MyCart; 
                     return;
                 }
             }
@@ -141,7 +147,17 @@ namespace FoodnStuff
 
         private void addToCartButton_Click(object sender, EventArgs e)
         {
-
+            if (itemsListBox.SelectedIndex >= 0)
+            {
+                
+                string selectedItem = itemsListBox.SelectedItem.ToString();
+                if (itemsListBox.SelectedItem is Product)
+                {
+                    Product item = (Product)itemsListBox.SelectedItem;
+                    currentCart.AddProduct(item);
+                    cartListBox.Refresh();
+                }
+            }
         }
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,7 +167,12 @@ namespace FoodnStuff
 
         private void proceedToCheckoutButton_Click(object sender, EventArgs e)
         {
+            payment.Show();
+        }
 
+        private void cartListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

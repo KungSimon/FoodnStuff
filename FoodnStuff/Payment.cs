@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,21 @@ namespace FoodnStuff
         public Payment()
         {
             InitializeComponent();
+            purchaseButton.Click += purchaseButton_Click;
         }
 
         private void purchaseButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+            
+
+        private void cardNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cardPinTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
