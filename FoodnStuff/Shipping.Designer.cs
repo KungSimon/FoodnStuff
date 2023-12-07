@@ -28,72 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            addToShippingButton = new Button();
-            readyToBeShippedListBox = new ListBox();
-            ordersListBox = new ListBox();
             chooseTransportButton = new Button();
-            button1 = new Button();
+            transportsListBox = new ListBox();
+            ordersListBox = new ListBox();
+            readyToBeShippedListBox = new ListBox();
+            addToBeShippedButton = new Button();
+            shipOrderButton = new Button();
             SuspendLayout();
             // 
-            // addToShippingButton
+            // chooseTransportButton
             // 
-            addToShippingButton.Location = new Point(368, 206);
-            addToShippingButton.Name = "addToShippingButton";
-            addToShippingButton.Size = new Size(146, 29);
-            addToShippingButton.TabIndex = 5;
-            addToShippingButton.Text = "Add to shipping";
-            addToShippingButton.UseVisualStyleBackColor = true;
-            addToShippingButton.Click += addToShippingButton_Click;
+            chooseTransportButton.Location = new Point(61, 475);
+            chooseTransportButton.Margin = new Padding(4, 4, 4, 4);
+            chooseTransportButton.Name = "chooseTransportButton";
+            chooseTransportButton.Size = new Size(182, 36);
+            chooseTransportButton.TabIndex = 5;
+            chooseTransportButton.Text = "Choose transport";
+            chooseTransportButton.UseVisualStyleBackColor = true;
+            chooseTransportButton.Click += chooseTransportButton_Click;
             // 
-            // readyToBeShippedListBox
+            // transportsListBox
             // 
-            readyToBeShippedListBox.FormattingEnabled = true;
-            readyToBeShippedListBox.ItemHeight = 20;
-            readyToBeShippedListBox.Location = new Point(541, 89);
-            readyToBeShippedListBox.Name = "readyToBeShippedListBox";
-            readyToBeShippedListBox.Size = new Size(281, 344);
-            readyToBeShippedListBox.TabIndex = 4;
+            transportsListBox.FormattingEnabled = true;
+            transportsListBox.ItemHeight = 25;
+            transportsListBox.Location = new Point(391, 32);
+            transportsListBox.Margin = new Padding(4, 4, 4, 4);
+            transportsListBox.Name = "transportsListBox";
+            transportsListBox.Size = new Size(284, 404);
+            transportsListBox.TabIndex = 4;
             // 
             // ordersListBox
             // 
             ordersListBox.FormattingEnabled = true;
-            ordersListBox.ItemHeight = 20;
-            ordersListBox.Location = new Point(63, 89);
+            ordersListBox.ItemHeight = 25;
+            ordersListBox.Location = new Point(25, 32);
+            ordersListBox.Margin = new Padding(4, 4, 4, 4);
             ordersListBox.Name = "ordersListBox";
-            ordersListBox.Size = new Size(281, 344);
+            ordersListBox.Size = new Size(284, 404);
             ordersListBox.TabIndex = 3;
             // 
-            // chooseTransportButton
+            // readyToBeShippedListBox
             // 
-            chooseTransportButton.Location = new Point(530, 455);
-            chooseTransportButton.Margin = new Padding(2, 2, 2, 2);
-            chooseTransportButton.Name = "chooseTransportButton";
-            chooseTransportButton.Size = new Size(133, 27);
-            chooseTransportButton.TabIndex = 6;
-            chooseTransportButton.Text = "Choose Transport";
-            chooseTransportButton.UseVisualStyleBackColor = true;
-            chooseTransportButton.Click += chooseTransportButton_Click;
+            readyToBeShippedListBox.FormattingEnabled = true;
+            readyToBeShippedListBox.ItemHeight = 25;
+            readyToBeShippedListBox.Location = new Point(743, 32);
+            readyToBeShippedListBox.Name = "readyToBeShippedListBox";
+            readyToBeShippedListBox.Size = new Size(284, 404);
+            readyToBeShippedListBox.TabIndex = 8;
             // 
-            // button1
+            // addToBeShippedButton
             // 
-            button1.Location = new Point(689, 455);
-            button1.Margin = new Padding(2);
-            button1.Name = "button1";
-            button1.Size = new Size(133, 27);
-            button1.TabIndex = 7;
-            button1.Text = "Send";
-            button1.UseVisualStyleBackColor = true;
+            addToBeShippedButton.Location = new Point(467, 475);
+            addToBeShippedButton.Name = "addToBeShippedButton";
+            addToBeShippedButton.Size = new Size(112, 34);
+            addToBeShippedButton.TabIndex = 9;
+            addToBeShippedButton.Text = "Add";
+            addToBeShippedButton.UseVisualStyleBackColor = true;
+            addToBeShippedButton.Click += addToBeShippedButton_Click;
+            // 
+            // shipOrderButton
+            // 
+            shipOrderButton.Location = new Point(839, 477);
+            shipOrderButton.Name = "shipOrderButton";
+            shipOrderButton.Size = new Size(112, 34);
+            shipOrderButton.TabIndex = 10;
+            shipOrderButton.Text = "Ship order";
+            shipOrderButton.UseVisualStyleBackColor = true;
+            shipOrderButton.Click += shipOrderButton_Click;
             // 
             // Shipping
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 523);
-            Controls.Add(button1);
-            Controls.Add(chooseTransportButton);
-            Controls.Add(addToShippingButton);
+            ClientSize = new Size(1105, 654);
+            Controls.Add(shipOrderButton);
+            Controls.Add(addToBeShippedButton);
             Controls.Add(readyToBeShippedListBox);
+            Controls.Add(chooseTransportButton);
+            Controls.Add(transportsListBox);
             Controls.Add(ordersListBox);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "Shipping";
             Text = "Shipping";
             ResumeLayout(false);
@@ -101,10 +115,11 @@
 
         #endregion
 
-        private Button addToShippingButton;
-        private ListBox readyToBeShippedListBox;
-        private ListBox ordersListBox;
         private Button chooseTransportButton;
-        private Button button1;
+        private ListBox transportsListBox;
+        private ListBox ordersListBox;
+        private ListBox readyToBeShippedListBox;
+        private Button addToBeShippedButton;
+        private Button shipOrderButton;
     }
 }

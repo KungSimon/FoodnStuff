@@ -22,12 +22,12 @@ namespace FoodnStuff
                 ordersListBox.Items.Add(order);
             }
         }
-        private void addToShippingButton_Click(object sender, EventArgs e)
+        private void chooseTransportButton_Click(object sender, EventArgs e)
         {
             string? name = ordersListBox.SelectedItem as string;
             if (name != null)
             {
-                readyToBeShippedListBox.Items.Add(name);
+                transportsListBox.Items.Add(name);
                 ordersListBox.Items.Remove(name);
             }
             else
@@ -35,10 +35,14 @@ namespace FoodnStuff
                 MessageBox.Show("You have to pick an order");
             }
         }
-        private void chooseTransportButton_Click(object sender, EventArgs e)
+        private void addToBeShippedButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        private void shipOrderButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

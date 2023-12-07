@@ -35,21 +35,35 @@ namespace FoodnStuff
         }
         private ProductManager()
         {
-            // Vi vill nog inte ha detta i konstruktorn
-            //Transports.Add(new Transport(1));
-            //Transports.Add(new Transport(2));
-            //Transports.Add(new Transport(3));
+
         }
         public void SendTransport()
         {
 
         }
+        public List<Transport> CheckCapacity(Order order)
+        {
+            List<Transport> availableTransports = new List<Transport>();
+            foreach (Transport transport in Transports)
+            {
+                int quantity = order.CheckTotalOrderQuantity();
 
+                if (transport.Available && transport.Capacity >= quantity)
+                {
+                    availableTransports.Add(transport);
+                    // Visa vilken transport som det finns capacity i en listbox
+                }
+            }
+            return availableTransports;
+        }
         public static ProductManager GetInstance()
         {
             if (instance == null)
             {
                 instance = new ProductManager();
+                instance.Transports.Add(new Transport(1));
+                instance.Transports.Add(new Transport(2));
+                instance.Transports.Add(new Transport(3));
             }
             return instance;
         }

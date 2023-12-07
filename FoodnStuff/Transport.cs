@@ -46,25 +46,13 @@ namespace FoodnStuff
             {
                 foreach (Product product in order.InCart)
                 {
-                    CheckCapacity(product);
+                    //CheckCapacity(product);
                 }
             }
             else
             {
                 MessageBox.Show("Not enough room, choose a different transport");
             }
-        }
-        public void CheckCapacity(Product product)
-        {
-            // En funktion som jämför payloaden med kapaciteten i transporterna
-            //foreach (Transport transport in productManager.Transports)
-            //{
-            //    if (transport.Available && transport.Capacity >= product.Quantity)
-            //    {
-            //        transport.LoadTransport(order);
-            //        return; 
-            //    }
-            //}
         }
     }
 }
