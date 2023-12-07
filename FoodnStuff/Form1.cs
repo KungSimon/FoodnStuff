@@ -1,11 +1,13 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace FoodnStuff
 {
     public partial class Form1 : Form
     {
-        private Cart currentCart;
+        private Cart currentCart = new Cart();
         private Payment payment;
         private ChooseTransport chooseTransport;
         private UserManager userManager = UserManager.GetInstance();
@@ -14,7 +16,7 @@ namespace FoodnStuff
         public Form1()
         {
             InitializeComponent();
-            
+
             this.payment = new Payment();
             this.FormClosing += Form1_FormClosing;
             this.chooseTransport = new ChooseTransport();
@@ -25,10 +27,9 @@ namespace FoodnStuff
             // Binding listbox
             //catagoryListBox.DataSource = productManager.Inventory;
             catagoryListBox.DisplayMember = "Name";
-
             catagoryListBox.DataSource = new BindingSource(productManager.CategoryDictionary.Keys, null);
             itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary, null);
-            currentCart = new Cart();
+            cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
         }
 
@@ -68,9 +69,7 @@ namespace FoodnStuff
                     logOutButton.Visible = true;
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
-                    cartListBox.DataSource = new BindingSource(user.MyCart.ProductsInCart, null);
-                    cartListBox.DisplayMember = "Name";
-                    currentCart = user.MyCart; 
+                    currentCart = user.MyCart;
                     return;
                 }
             }
@@ -149,14 +148,19 @@ namespace FoodnStuff
         {
             if (itemsListBox.SelectedIndex >= 0)
             {
-                
-                string selectedItem = itemsListBox.SelectedItem.ToString();
+
+                //string selectedItem = itemsListBox.SelectedItem.ToString();
+                //MessageBox.Show($"{itemsListBox.SelectedItem.GetType()}");
                 if (itemsListBox.SelectedItem is Product)
                 {
                     Product item = (Product)itemsListBox.SelectedItem;
-                    currentCart.AddProduct(item);
-                    cartListBox.Refresh();
+                    productManager.AddToCart(currentCart, item, 1);
+                    //currentCart.AddProduct(item);
                 }
+            }
+            foreach (Product product in currentCart.ProductsInCart)
+            {
+                MessageBox.Show($"{product} was in cart");
             }
         }
 
@@ -172,7 +176,12 @@ namespace FoodnStuff
 
         private void cartListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cartListBox.DisplayMember = "Name";
+            cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
         }
     }
 }

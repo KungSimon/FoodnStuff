@@ -17,6 +17,7 @@ namespace FoodnStuff
 
         public void AddProduct(Product products)
         {
+            MessageBox.Show($"Adding {products}");
             ProductsInCart.Add(products);
         }
 
