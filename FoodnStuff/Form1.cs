@@ -19,9 +19,11 @@ namespace FoodnStuff
             productManager.CategorySorter();
 
             // Binding listbox
-            catagoryListBox.DataSource = productManager.Inventory;
+            //catagoryListBox.DataSource = productManager.Inventory;
             catagoryListBox.DisplayMember = "Name";
 
+            catagoryListBox.DataSource = new BindingSource(productManager.CategoryDictionary.Keys, null);
+            itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary, null);
 
         }
 
@@ -73,9 +75,14 @@ namespace FoodnStuff
         private void catagoryListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            catagoryListBox.DataSource = new BindingSource(productManager.CategoryDictionary.Keys, null);
-            itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary, null);
-            catagoryListBox.SelectedIndexChanged += (sender, args) =>
+            if (catagoryListBox.SelectedIndex >= 0)
+            {
+                string selectedCategory = catagoryListBox.SelectedItem.ToString();
+                itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary[selectedCategory], null);
+                itemsListBox.DisplayMember = "Name";
+                itemsListBox.Visible = true;
+            }
+            /*catagoryListBox.SelectedIndexChanged += (sender, args) =>
             {
                 if (catagoryListBox.SelectedIndex >= 0)
                 {
@@ -91,8 +98,10 @@ namespace FoodnStuff
                         key = catagoryListBox.SelectedItem.ToString();
                     }
                     cartListBox.DataSource = new BindingSource(productManager.CategoryDictionary[key], null);
+                    itemsListBox.DisplayMember = "Name";
+                    itemsListBox.Visible = true;
                 }
-            };
+            };*/
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -108,12 +117,6 @@ namespace FoodnStuff
                 }
             }
         }
-
-        private void addToCartButton_Click(object sender, EventArgs e)
-        {
-            //Här ska det sparas
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             //Här ska det försvinna
@@ -134,6 +137,21 @@ namespace FoodnStuff
             logOutButton.Visible = false;
             logOutButton.Location = new Point(881, 14);
             logOutButton.Size = new Size(94, 29);
+        }
+
+        private void addToCartButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void proceedToCheckoutButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

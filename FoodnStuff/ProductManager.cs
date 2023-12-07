@@ -115,7 +115,7 @@ namespace FoodnStuff
             // Go through every item in our inventory and adds it to the dictionary list depending on category
             foreach (Product product in Inventory)
             {
-                MessageBox.Show(product.Category);
+                //MessageBox.Show(product.Category);
                 // If we find the category of product then we take the list and add product to it
                 if (CategoryDictionary.TryGetValue(product.Category, value: out var myList))
                 {

@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            itemsListBox = new ListBox();
             addToCartButton = new Button();
+            itemsListBox = new ListBox();
             searchLabel = new Label();
             searchTextBox = new TextBox();
             catagoryListBox = new ListBox();
@@ -72,8 +72,8 @@
             // tabPage1
             // 
             tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
-            tabPage1.Controls.Add(itemsListBox);
             tabPage1.Controls.Add(addToCartButton);
+            tabPage1.Controls.Add(itemsListBox);
             tabPage1.Controls.Add(searchLabel);
             tabPage1.Controls.Add(searchTextBox);
             tabPage1.Controls.Add(catagoryListBox);
@@ -85,6 +85,16 @@
             tabPage1.Text = "Items";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // addToCartButton
+            // 
+            addToCartButton.Location = new Point(141, 87);
+            addToCartButton.Name = "addToCartButton";
+            addToCartButton.Size = new Size(126, 29);
+            addToCartButton.TabIndex = 5;
+            addToCartButton.Text = "Add to cart";
+            addToCartButton.UseVisualStyleBackColor = true;
+            addToCartButton.Click += addToCartButton_Click;
+            // 
             // itemsListBox
             // 
             itemsListBox.FormattingEnabled = true;
@@ -94,16 +104,7 @@
             itemsListBox.Size = new Size(508, 384);
             itemsListBox.TabIndex = 4;
             itemsListBox.Visible = false;
-            // 
-            // addToCartButton
-            // 
-            addToCartButton.Location = new Point(221, 87);
-            addToCartButton.Name = "addToCartButton";
-            addToCartButton.Size = new Size(94, 29);
-            addToCartButton.TabIndex = 3;
-            addToCartButton.Text = "Add to cart";
-            addToCartButton.UseVisualStyleBackColor = true;
-            addToCartButton.Click += addToCartButton_Click;
+            itemsListBox.SelectedIndexChanged += itemsListBox_SelectedIndexChanged;
             // 
             // searchLabel
             // 
@@ -154,6 +155,7 @@
             proceedToCheckoutButton.TabIndex = 3;
             proceedToCheckoutButton.Text = "Proceed to checkout";
             proceedToCheckoutButton.UseVisualStyleBackColor = true;
+            proceedToCheckoutButton.Click += proceedToCheckoutButton_Click;
             // 
             // button1
             // 
@@ -324,7 +326,6 @@
         private ListBox catagoryListBox;
         private TabPage tabPage2;
         private TabPage tabPage3;
-        private Button addToCartButton;
         private Label searchLabel;
         private Label cartLabel;
         private ListBox cartListBox;
@@ -341,5 +342,6 @@
         private Button logInButton;
         private ListBox itemsListBox;
         private Button logOutButton;
+        private Button addToCartButton;
     }
 }
