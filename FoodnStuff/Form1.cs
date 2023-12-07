@@ -70,6 +70,7 @@ namespace FoodnStuff
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
                     currentCart = user.MyCart;
+                    UpdateTotalCostLabel();
                     return;
                 }
             }
@@ -122,10 +123,7 @@ namespace FoodnStuff
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Här ska det försvinna
-        }
+
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -157,6 +155,7 @@ namespace FoodnStuff
                     productManager.AddToCart(currentCart, item, 1);
                     //currentCart.AddProduct(item);
                 }
+                UpdateTotalCostLabel();
             }
             foreach (Product product in currentCart.ProductsInCart)
             {
@@ -179,6 +178,38 @@ namespace FoodnStuff
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cartListBox.DisplayMember = "Name";
+            cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
+        }
+
+        private void UpdateTotalCostLabel()
+        {
+            int totalCost = currentCart.CalculateCartTotal();
+            totalCostLabel.Text = $"Total Cost: {totalCost} kr";
+        }
+
+        private void totalCostLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeItemFromCartButton_Click(object sender, EventArgs e)
+        {
+            if (cartListBox.SelectedIndex >= 0)
+            {
+                if (cartListBox.SelectedItem is Product)
+                {
+                    Product itemToRemove = (Product)cartListBox.SelectedItem;
+
+                    productManager.RemoveFromCart(currentCart, itemToRemove, 1);
+
+                    UpdateTotalCostLabel();
+                    RefreshCartListBox();
+                }
+            }
+        }
+        private void RefreshCartListBox()
         {
             cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);

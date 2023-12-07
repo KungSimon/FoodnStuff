@@ -32,5 +32,46 @@ namespace FoodnStuff
 
             return total;
         }
+
+        public void RemoveProduct(Product product)
+        {
+            Product productToRemove = null;
+
+            foreach (Product p in ProductsInCart)
+            {
+                if (p.ID == product.ID)
+                {
+                    productToRemove = p;
+                    break;
+                }
+            }
+
+            if (productToRemove != null)
+            {
+                if (productToRemove.Quantity > product.Quantity)
+                {
+                    productToRemove.Quantity -= product.Quantity;
+                }
+                else
+                {
+                    ProductsInCart.Remove(productToRemove);
+                }
+            }
+
+            /*Product productToRemove = ProductsInCart.FirstOrDefault(p => p.ID == product.ID);
+
+            if (productToRemove != null)
+            {
+                if (productToRemove.Quantity > product.Quantity)
+                {
+                    productToRemove.Quantity -= product.Quantity;
+                }
+                else
+                {
+                    ProductsInCart.Remove(productToRemove);
+                }
+            }*/
+        }
+
     }
 }

@@ -143,5 +143,12 @@ namespace FoodnStuff
             // Updates categories
             CategorySorter();
         }
+
+        public void RemoveFromCart(Cart _myCart, Product _product, int _quantity)
+        {
+            Product cartProduct = new Product(_product, _quantity);
+
+            _myCart.RemoveProduct(cartProduct);
+        }
     }
 }
