@@ -9,7 +9,7 @@ namespace FoodnStuff
     {
         private Cart currentCart = new Cart();
         private Payment payment;
-        private ChooseTransport chooseTransport;
+        private Shipping shipping;
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
         private FileManager fileManager = FileManager.GetInstance();
@@ -19,7 +19,7 @@ namespace FoodnStuff
 
             this.payment = new Payment();
             this.FormClosing += Form1_FormClosing;
-            this.chooseTransport = new ChooseTransport();
+            this.shipping = new Shipping();
             //MessageBox.Show("Got here 0");
             fileManager.LoadManagers();
             productManager.CategorySorter();
@@ -43,7 +43,7 @@ namespace FoodnStuff
 
         private void logInWorkerButton_Click(object sender, EventArgs e)
         {
-            WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager, chooseTransport);
+            WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager, shipping);
 
             workerLogIn.Show();
             Hide();

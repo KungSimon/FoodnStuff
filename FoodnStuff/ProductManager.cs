@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace FoodnStuff
         public List<string> keyList = new List<string>();
         public List<Order> Orders { get; set; } = new List<Order>();
         public List<Transport> Transports { get; set; } = new List<Transport>();
-
+        public  List<Transport> availableTransports = new List<Transport>();
         // IDManager gives the product unique IDs
         private static int productID = 0;
         public int ProductID
@@ -37,13 +38,35 @@ namespace FoodnStuff
         {
 
         }
-        public void SendTransport()
+        public void SendTransport(Transport transport)
         {
-
+            transport.Delivered();
         }
-        public List<Transport> CheckCapacity(Order order)
+        public void LoadTansport(Transport transport, Order order)
         {
-            List<Transport> availableTransports = new List<Transport>();
+            // Lägg till ordern i den lediga transporten
+
+
+            //Borde egentligen kanske vara Transport listans transport som ska ändra quantity och availability.
+            //När vi kommer tillbaks på rad 67 så kollar vi inte denna "available transports" availability eller quantity
+            //utan istället den andra, som inte ändrats alls
+            //Transport originalTransport = Transports.FirstOrDefault(x => x.Equals(transport));
+            
+            
+            foreach (Product product in order.InCart)
+            {
+                transport.ProductsOutOnDelivery.Add(product);
+                transport.Capacity -= product.Quantity;
+            }
+            if (transport.Capacity == 0)
+            {
+                
+                transport.Available = false;
+                availableTransports.Remove(transport);
+            }
+        }
+        public List<Transport> CheckTransportAvailability(Order order)
+        {
             foreach (Transport transport in Transports)
             {
                 int quantity = order.CheckTotalOrderQuantity();
@@ -51,7 +74,6 @@ namespace FoodnStuff
                 if (transport.Available && transport.Capacity >= quantity)
                 {
                     availableTransports.Add(transport);
-                    // Visa vilken transport som det finns capacity i en listbox
                 }
             }
             return availableTransports;
@@ -115,15 +137,12 @@ namespace FoodnStuff
             // Go through every item in our inventory and adds it to the dictionary list depending on category
             foreach (Product product in Inventory)
             {
-                //MessageBox.Show(product.Category);
+                MessageBox.Show(product.Category);
                 // If we find the category of product then we take the list and add product to it
                 if (CategoryDictionary.TryGetValue(product.Category, value: out var myList))
                 {
                     // Adds product to the List
-                    if (!myList.Contains(product))
-                    {
-                        myList.Add(product);
-                    }
+                    myList.Add(product);
                 }
                 else
                 {

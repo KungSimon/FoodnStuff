@@ -16,10 +16,10 @@ namespace FoodnStuff
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
         //private UserManager userManager;
-        private ChooseTransport chooseTransport;
+        private Shipping shipping;
         private User Admin;
         //private ProductManager ProductManager;
-        public AdminMenu(UserManager userManager, User admin, ProductManager productManager, ChooseTransport chooseTransport)
+        public AdminMenu(UserManager userManager, User admin, ProductManager productManager, Shipping shipping)
         {
             InitializeComponent();
             //this.userManager = userManager;
@@ -30,7 +30,7 @@ namespace FoodnStuff
             itemsListBox.DisplayMember = "Name";
 
             this.FormClosing += AdminMenu_FormClosing;
-            this.chooseTransport = chooseTransport;
+            this.shipping = shipping;
         }
 
         private void registerButton_Click(object sender, EventArgs e)

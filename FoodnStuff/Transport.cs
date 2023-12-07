@@ -22,37 +22,10 @@ namespace FoodnStuff
             TransportID = _id;
         }
 
-        // Import this list for delivery
-        // En funktion som håller i payloaden
-        // En funktion som jämför om payload är för stor för capacity
-        public void LoadTransport(Order order)
-        {
-            foreach (Product product in order.InCart)
-            {
-                ProductsOutOnDelivery.Add(product);
-            }
-            //Ska merga två listor och loopa igenom för varje item i order listan i product manager
-            //Sen ha en ifsats i en metod i prodcut manager och lägga till i transport listan
-            Available = false;
-        }
         public void Delivered()
         {
             ProductsOutOnDelivery.Clear();
             Available = true;
-        }
-        public void PayLoad(Order order)
-        {
-            if (order.CheckTotalOrderQuantity() <= Capacity)
-            {
-                foreach (Product product in order.InCart)
-                {
-                    //CheckCapacity(product);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Not enough room, choose a different transport");
-            }
         }
     }
 }

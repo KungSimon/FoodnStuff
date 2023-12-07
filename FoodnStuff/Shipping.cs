@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace FoodnStuff
 {
@@ -22,27 +23,75 @@ namespace FoodnStuff
                 ordersListBox.Items.Add(order);
             }
         }
-        private void chooseTransportButton_Click(object sender, EventArgs e)
+        private void shipOrderButton_Click(object sender, EventArgs e)
         {
-            string? name = ordersListBox.SelectedItem as string;
-            if (name != null)
+            //Kallar på funktionen send
+        }
+
+        private void removeFromReadyToBeShippedButton_Click(object sender, EventArgs e)
+        {
+            //Flyttar tillbaka ordern till listan av ordrar
+        }
+
+        private void ordersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //Vill markera en order i orderslistbox och få upp en ledig transport i transportlistbox.
+            //Vill kalla på checkcapacity för att se vilka transporter som finns.
+            //Vill lopa igenom listan på tillgängliga transporter och visa dom i listboxen.
+
+            //if (ordersListBox.SelectedItem is Order order)
+            //{
+            //    productManager.CheckCapacity(order);
+            //    transportsListBox.Visible = true;
+            //    addToBeShippedButton.Visible = true;
+            //    foreach (Transport transport in productManager.availableTransports)
+            //    {
+            //        transportsListBox.Items.Add(transport);
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("You have to pick an order");
+            //}
+        }
+
+        private void pickOrderButton_Click(object sender, EventArgs e)
+        {
+            //Vill markera en order i orderslistbox och få upp en ledig transport i transportlistbox.
+            //Vill kalla på checkcapacity för att se vilka transporter som finns.
+            //Vill lopa igenom listan på tillgängliga transporter och visa dom i listboxen.
+
+            if (ordersListBox.SelectedItem is Order order)
             {
-                transportsListBox.Items.Add(name);
-                ordersListBox.Items.Remove(name);
+                productManager.CheckTransportAvailability(order);
+                transportsListBox.Visible = true;
+                pickTransportButton.Visible = true;
+
+                foreach (Transport transport in productManager.availableTransports)
+                {
+                    transportsListBox.Items.Add(transport);
+                }
             }
             else
             {
                 MessageBox.Show("You have to pick an order");
             }
         }
-        private void addToBeShippedButton_Click(object sender, EventArgs e)
+
+        private void pickTransportButton_Click(object sender, EventArgs e)
         {
+            string? name = ordersListBox.SelectedItem as string;
 
-        }
-
-        private void shipOrderButton_Click(object sender, EventArgs e)
-        {
-
+            if (name != null)
+            {
+                readyToBeShippedListBox.Items.Add(name);
+                ordersListBox.Items.Remove(name);
+            }
+            else
+            {
+                MessageBox.Show("You have to pack a transport");
+            }
         }
     }
 }
