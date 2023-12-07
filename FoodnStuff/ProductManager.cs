@@ -120,7 +120,10 @@ namespace FoodnStuff
                 if (CategoryDictionary.TryGetValue(product.Category, value: out var myList))
                 {
                     // Adds product to the List
-                    myList.Add(product);
+                    if (!myList.Contains(product))
+                    {
+                        myList.Add(product);
+                    }
                 }
                 else
                 {

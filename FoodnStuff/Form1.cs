@@ -75,7 +75,7 @@ namespace FoodnStuff
         private void catagoryListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (catagoryListBox.SelectedIndex >= 0)
+            if (catagoryListBox.SelectedIndex >= 0 && productManager.CategoryDictionary.Count > 0)
             {
                 string selectedCategory = catagoryListBox.SelectedItem.ToString();
                 itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary[selectedCategory], null);
