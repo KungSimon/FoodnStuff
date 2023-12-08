@@ -128,7 +128,7 @@ namespace FoodnStuff
             }
         }
 
-        public void SaveBankManager(List<BankAccount> _bankAccounts)
+        public void SaveBankManager(Dictionary<string, BankAccount> _bankAccounts)
         {
             // bankAccounts
             ExportToJson(_bankAccounts, BankManagerAccounts, BankManagerFolder);
@@ -137,7 +137,7 @@ namespace FoodnStuff
         {
             if (File.Exists($"{BankManagerFolder}/{BankManagerAccounts}.json"))
             {
-                bankManager.BankAccounts = ImportFromJson<List<BankAccount>>($"{BankManagerFolder}/{BankManagerAccounts}.json");
+                bankManager.BankAccounts = ImportFromJson<Dictionary<string, BankAccount>>($"{BankManagerFolder}/{BankManagerAccounts}.json");
             }
         }
 

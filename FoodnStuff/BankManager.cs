@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +10,10 @@ namespace FoodnStuff
     public class BankManager
     {
         private static BankManager instance = null;
-        public List<BankAccount> BankAccounts = new List<BankAccount>();
+        public Dictionary<string, BankAccount> BankAccounts = new Dictionary<string, BankAccount>();
         private BankAccount ActiveAccount;
         private BankManager()
         {
-            BankAccounts.Add(new BankAccount(0000, 0000, 1000));
-            BankAccounts.Add(new BankAccount(1111, 1111, 1000));
-            BankAccounts.Add(new BankAccount(2222, 2222, 1000));
-            BankAccounts.Add(new BankAccount(3333, 3333, 1000));
-            BankAccounts.Add(new BankAccount(4444, 4444, 1000));
         }
         public static BankManager GetInstance()
         {
@@ -28,17 +24,51 @@ namespace FoodnStuff
             return instance;
         }
 
-        public bool TryLogin(int number, int pin)
+        public void TryLogin(string number, string pin)
         {
-            foreach (BankAccount account in BankAccounts)
+            BankAccount thisAccount;
+            if (BankAccounts.TryGetValue(number, out thisAccount))
             {
-                if (account.CardPin == pin && account.CardNumber == number)
+                // check password in account
+                if (thisAccount.Authenticate(pin))
                 {
-                    ActiveAccount = account;
-                    return true;
+                    // Successfully logged in by setting ActiveAccount
+                    MessageBox.Show("Successfully Logged in");
+                    ActiveAccount = thisAccount;
                 }
             }
-            return false;
+            else
+            {
+                // Create Account
+                string dateString = number;
+                DateTime dateValue;
+                if (DateTime.TryParseExact(dateString, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
+                {
+                    // The string is a valid date in the yyyyMMdd format.
+                    DateTime now = DateTime.Now;
+                    int ageInYears = now.Year - dateValue.Year;
+                    if (now.Month < dateValue.Month || (now.Month == dateValue.Month && now.Day < dateValue.Day))
+                    {
+                        ageInYears--;
+                    }
+                    if (ageInYears.ToString() == pin)
+                    {
+                        MessageBox.Show($"Account created with number:{number} and pin:{ageInYears}");
+                        CreateBankAccount(number, pin);
+                    }
+
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+        }
+
+        private void CreateBankAccount(string number, string pin)
+        {
+            BankAccounts.Add(number, new BankAccount(number, pin, 0));
         }
 
         public void LogOut()

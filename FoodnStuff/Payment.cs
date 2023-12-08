@@ -13,6 +13,8 @@ namespace FoodnStuff
 {
     public partial class Payment : Form
     {
+        BankManager bankManager = BankManager.GetInstance();
+        FileManager fileManager = FileManager.GetInstance();
         public Payment()
         {
             InitializeComponent();
@@ -21,7 +23,8 @@ namespace FoodnStuff
 
         private void purchaseButton_Click(object sender, EventArgs e)
         {
-            
+            bankManager.TryLogin(cardNumberTextBox.Text, cardPinTextBox.Text);
+            fileManager.SaveBankManager(bankManager.BankAccounts);
         }
             
 

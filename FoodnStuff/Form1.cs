@@ -157,10 +157,10 @@ namespace FoodnStuff
                 }
                 UpdateTotalCostLabel();
             }
-            foreach (Product product in currentCart.ProductsInCart)
-            {
-                MessageBox.Show($"{product} was in cart");
-            }
+            //foreach (Product product in currentCart.ProductsInCart)
+            //{
+            //    MessageBox.Show($"{product} was in cart");
+            //}
         }
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)

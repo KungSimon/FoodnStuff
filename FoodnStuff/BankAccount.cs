@@ -8,14 +8,39 @@ namespace FoodnStuff
 {
     public class BankAccount
     {
-        public int CashMoney { get; set; }
-        public int CardNumber {  get; set; }
-        public int CardPin { get; set; }
-        public BankAccount(int _cardNumber, int _cardPin, int _cashMoney)
+        private int cashMoney = 1000;
+        public int CashMoney
+        {
+            get
+            {
+                return cashMoney;
+            }
+            set
+            {
+                cashMoney = value;
+            }
+        }
+        public string CardNumber {  get; set; }
+        private string CardPin { get; set; }
+        public BankAccount(string _cardNumber, string _cardPin, int _cashMoney)
         {
             CardNumber = _cardNumber;
             CardPin = _cardPin;
             CashMoney = _cashMoney;
+        }
+
+        public bool Authenticate(string _pin)
+        {// Method to check pincode
+            if (CardPin == _pin)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Subtract(int _amount)
+        {
+            CashMoney -= _amount;
         }
     }
 }
