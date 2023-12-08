@@ -179,6 +179,12 @@ namespace FoodnStuff
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UpdateListBoxes();
+        }
+
+        private void UpdateListBoxes()
+        {
+            // Updates Listbox DataSource when changing tab
             cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
         }
