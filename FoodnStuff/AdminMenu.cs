@@ -71,8 +71,27 @@ namespace FoodnStuff
             }
         }
 
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (itemsListBox.SelectedItems != null)
+            {
+                
+                Product selectedProduct = (Product)itemsListBox.SelectedItem;
+                selectedProduct.GetInfo();
+                
+                NewItem newItem = new NewItem(selectedProduct);
+
+                newItem.Show();
+            }
+
+        }
+
         private void logOutButton_Click(object sender, EventArgs e)
         {
+
+            Form1 form1 = new Form1();
+            this.Hide();
+            form1.ShowDialog();
             //Close();
             //form1.Visible = true;
             //form1.Show();
@@ -120,5 +139,7 @@ namespace FoodnStuff
             Shipping shipping = new Shipping();
             shipping.Show();
         }
+
+
     }
 }

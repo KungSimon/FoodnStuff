@@ -13,11 +13,24 @@ namespace FoodnStuff
     public partial class NewItem : Form
     {
         private AdminMenu adminMenu;
+        private Product product;
         private ProductManager productManager = ProductManager.GetInstance();
         public NewItem(ProductManager _productManager, AdminMenu adminMenu)
         {
             InitializeComponent();
             this.adminMenu = adminMenu;
+        }
+
+        //to be able to fill in the product information when "edit item" is selected
+        public NewItem(Product product)
+        {
+            InitializeComponent();
+            this.product = product;
+
+            catagoryTextBox.Text = product.Category;
+            itemNameTextBox.Text = product.Name;
+            priceNumeric.Value = product.Price;
+            quantityNumeric.Value = product.Quantity;
         }
 
         private void addItemButton_Click(object sender, EventArgs e)
