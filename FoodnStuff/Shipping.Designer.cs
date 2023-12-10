@@ -40,7 +40,7 @@
             // 
             // pickOrderButton
             // 
-            pickOrderButton.Location = new Point(188, 475);
+            pickOrderButton.Location = new Point(188, 471);
             pickOrderButton.Margin = new Padding(4);
             pickOrderButton.Name = "pickOrderButton";
             pickOrderButton.Size = new Size(121, 36);
@@ -83,7 +83,7 @@
             // 
             // pickTransportButton
             // 
-            pickTransportButton.Location = new Point(448, 473);
+            pickTransportButton.Location = new Point(448, 471);
             pickTransportButton.Name = "pickTransportButton";
             pickTransportButton.Size = new Size(145, 34);
             pickTransportButton.TabIndex = 9;
@@ -94,7 +94,7 @@
             // 
             // shipOrderButton
             // 
-            shipOrderButton.Location = new Point(915, 473);
+            shipOrderButton.Location = new Point(915, 471);
             shipOrderButton.Name = "shipOrderButton";
             shipOrderButton.Size = new Size(112, 34);
             shipOrderButton.TabIndex = 10;
@@ -105,7 +105,7 @@
             // 
             // removeFromReadyToBeShippedButton
             // 
-            removeFromReadyToBeShippedButton.Location = new Point(743, 473);
+            removeFromReadyToBeShippedButton.Location = new Point(743, 471);
             removeFromReadyToBeShippedButton.Name = "removeFromReadyToBeShippedButton";
             removeFromReadyToBeShippedButton.Size = new Size(112, 34);
             removeFromReadyToBeShippedButton.TabIndex = 11;
@@ -122,6 +122,7 @@
             removeOrderButton.TabIndex = 12;
             removeOrderButton.Text = "Remove order";
             removeOrderButton.UseVisualStyleBackColor = true;
+            removeOrderButton.Click += removeOrderButton_Click;
             // 
             // Shipping
             // 

@@ -93,5 +93,10 @@ namespace FoodnStuff
                 MessageBox.Show("You have to pack a transport");
             }
         }
+
+        private void removeOrderButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
