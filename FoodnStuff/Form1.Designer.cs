@@ -236,7 +236,7 @@
             logInButton.Name = "logInButton";
             logInButton.Size = new Size(145, 29);
             logInButton.TabIndex = 8;
-            logInButton.Text = "Log In";
+            logInButton.Text = "Login";
             logInButton.UseVisualStyleBackColor = true;
             logInButton.Click += logInButton_Click;
             // 

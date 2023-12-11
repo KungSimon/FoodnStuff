@@ -69,6 +69,8 @@ namespace FoodnStuff
                     logOutButton.Visible = true;
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
+                    //currentCart = user.MyCart;
+                    user.MyCart.MergeCart(currentCart);
                     currentCart = user.MyCart;
                     UpdateTotalCostLabel();
                     return;

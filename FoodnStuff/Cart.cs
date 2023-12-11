@@ -21,6 +21,14 @@ namespace FoodnStuff
             ProductsInCart.Add(products);
         }
 
+        public void MergeCart(Cart cart)
+        {
+            foreach (Product product in cart.ProductsInCart)
+            {
+                this.ProductsInCart.Add((Product)product);
+            }
+        }
+
         public int CalculateCartTotal()
         {
             int total = 0;
