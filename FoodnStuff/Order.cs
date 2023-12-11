@@ -19,7 +19,6 @@ namespace FoodnStuff
             Name = name;
         }
 
-       //Kolla igenom listan med varor i cart, lägga till gemensam kvantitet
         public int CheckTotalOrderQuantity()
         {
             int quantity = 0;
