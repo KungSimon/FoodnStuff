@@ -91,6 +91,7 @@
             Controls.Add(passwordTextBox);
             Name = "WorkerLogIn";
             Text = "WorkerLogIn";
+            FormClosing += WorkerLogIn_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

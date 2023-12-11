@@ -45,5 +45,10 @@ namespace FoodnStuff
                 MessageBox.Show("Invalid username or password. Please try again");
             }
         }
+
+        private void WorkerLogIn_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }
