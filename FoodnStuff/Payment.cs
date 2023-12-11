@@ -18,11 +18,14 @@ namespace FoodnStuff
         BankManager bankManager = BankManager.GetInstance();
         FileManager fileManager = FileManager.GetInstance();
         //private int totalCost;
+         
         public Payment(Form1 form1)
         {
             this.form1 = form1;
             InitializeComponent();
             purchaseButton.Click += purchaseButton_Click;
+            nameTextBox.Text = userManager.CurrentUser.Name;
+            addressTextBox.Text = userManager.CurrentUser.Address;
             //this.totalCost = totalCost;
         }
 

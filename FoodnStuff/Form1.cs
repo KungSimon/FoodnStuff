@@ -18,7 +18,7 @@ namespace FoodnStuff
         {
             InitializeComponent();
 
-            this.payment = new Payment(this);
+            //this.payment = new Payment(this);
             this.FormClosing += Form1_FormClosing;
             this.shipping = new Shipping();
             //MessageBox.Show("Got here 0");
@@ -71,6 +71,7 @@ namespace FoodnStuff
                     logOutButton.Visible = true;
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
+                    
                     //currentCart = user.MyCart;
                     //nameTextBox.Text = user.Name;
                     //adressTextBox.Text = user.Address;
@@ -182,7 +183,7 @@ namespace FoodnStuff
 
         public void proceedToCheckoutButton_Click(object sender, EventArgs e)
         {
-            
+            payment = new Payment(this);
             payment.Show();
         }
 
