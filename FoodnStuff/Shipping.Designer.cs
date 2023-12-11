@@ -35,7 +35,7 @@
             pickTransportButton = new Button();
             shipOrderButton = new Button();
             removeFromReadyToBeShippedButton = new Button();
-            removeOrderButton = new Button();
+            deleteOrderButton = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -116,15 +116,15 @@
             removeFromReadyToBeShippedButton.Visible = false;
             removeFromReadyToBeShippedButton.Click += removeFromReadyToBeShippedButton_Click;
             // 
-            // removeOrderButton
+            // deleteOrderButton
             // 
-            removeOrderButton.Location = new Point(25, 473);
-            removeOrderButton.Name = "removeOrderButton";
-            removeOrderButton.Size = new Size(144, 34);
-            removeOrderButton.TabIndex = 12;
-            removeOrderButton.Text = "Remove order";
-            removeOrderButton.UseVisualStyleBackColor = true;
-            removeOrderButton.Click += removeOrderButton_Click;
+            deleteOrderButton.Location = new Point(25, 473);
+            deleteOrderButton.Name = "deleteOrderButton";
+            deleteOrderButton.Size = new Size(144, 34);
+            deleteOrderButton.TabIndex = 12;
+            deleteOrderButton.Text = "Delete order";
+            deleteOrderButton.UseVisualStyleBackColor = true;
+            deleteOrderButton.Click += deleteOrderButton_Click;
             // 
             // label1
             // 
@@ -163,7 +163,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(removeOrderButton);
+            Controls.Add(deleteOrderButton);
             Controls.Add(removeFromReadyToBeShippedButton);
             Controls.Add(shipOrderButton);
             Controls.Add(pickTransportButton);
@@ -187,7 +187,7 @@
         private Button pickTransportButton;
         private Button shipOrderButton;
         private Button removeFromReadyToBeShippedButton;
-        private Button removeOrderButton;
+        private Button deleteOrderButton;
         private Label label1;
         private Label label2;
         private Label label3;

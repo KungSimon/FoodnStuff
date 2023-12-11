@@ -21,11 +21,16 @@ namespace FoodnStuff
 
             ordersListBox.DisplayMember = "Name";
             ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
-            
+
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
         {
-            //Kallar på funktionen send
+            Order order = readyToBeShippedListBox.SelectedItem as Order;
+
+            if(order != null)
+            {
+               
+            }
         }
 
         private void removeFromReadyToBeShippedButton_Click(object sender, EventArgs e)
@@ -34,11 +39,11 @@ namespace FoodnStuff
         }
         private void pickOrderButton_Click(object sender, EventArgs e)
         {
-            Order test = ordersListBox.SelectedItem as Order;
+            Order orderToLoad = ordersListBox.SelectedItem as Order;
 
-            if (test != null)
+            if (orderToLoad != null)
             {
-                productManager.CheckTransportAvailability(test);
+                productManager.CheckTransportAvailability(orderToLoad);
                 transportsListBox.Visible = true;
                 pickTransportButton.Visible = true;
                 label2.Visible = true;
@@ -62,7 +67,7 @@ namespace FoodnStuff
 
                 if (selectedTransport != null)
                 {
-                    readyToBeShippedListBox.Items.Add(selectedOrder); 
+                    readyToBeShippedListBox.Items.Add(selectedOrder);
                     productManager.Orders.Remove(selectedOrder);
                     ordersListBox.DataSource = null;
                     ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
@@ -91,8 +96,7 @@ namespace FoodnStuff
                 MessageBox.Show("You have to pick an order");
             }
         }
-
-        private void removeOrderButton_Click(object sender, EventArgs e)
+        private void deleteOrderButton_Click(object sender, EventArgs e)
         {
 
         }

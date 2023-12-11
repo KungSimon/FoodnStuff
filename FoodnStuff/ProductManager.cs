@@ -44,16 +44,16 @@ namespace FoodnStuff
 
             //Vill testa om detta funkar med kan inte än
             // Loopa igenom varje order och leta efter en matchande order
-         // foreach (Order order in Orders.ToList()) 
-         // {
-         //     bool orderContainsProductsInTransport = order.InCart.Any(product => transport.ProductsOutOnDelivery.Contains(product));
-         //
-         //     if (orderContainsProductsInTransport)
-         //     {
-         //         Orders.Remove(order);
-         //         break; 
-         //     }
-         // }
+          foreach (Order order in Orders.ToList()) 
+          {
+              bool orderContainsProductsInTransport = order.InCart.Any(product => transport.ProductsOutOnDelivery.Contains(product));
+         
+              if (orderContainsProductsInTransport)
+              {
+                  Orders.Remove(order);
+                  break; 
+              }
+          }
         }
 
         public void CartToOrder(Cart cart, string address, string name)
