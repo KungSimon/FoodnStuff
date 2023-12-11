@@ -38,6 +38,7 @@
             label2 = new Label();
             quantityNumeric = new NumericUpDown();
             priceNumeric = new NumericUpDown();
+            editItemButton = new Button();
             ((System.ComponentModel.ISupportInitialize)quantityNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)priceNumeric).BeginInit();
             SuspendLayout();
@@ -116,12 +117,23 @@
             priceNumeric.Size = new Size(185, 27);
             priceNumeric.TabIndex = 24;
             // 
+            // editItemButton
+            // 
+            editItemButton.Location = new Point(126, 341);
+            editItemButton.Name = "editItemButton";
+            editItemButton.Size = new Size(145, 29);
+            editItemButton.TabIndex = 25;
+            editItemButton.Text = "Edit item";
+            editItemButton.UseVisualStyleBackColor = true;
+            editItemButton.Click += editItemButton_Click;
+            // 
             // NewItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(editItemButton);
             Controls.Add(priceNumeric);
             Controls.Add(quantityNumeric);
             Controls.Add(label2);
@@ -150,5 +162,6 @@
         private Label label2;
         private NumericUpDown quantityNumeric;
         private NumericUpDown priceNumeric;
+        private Button editItemButton;
     }
 }

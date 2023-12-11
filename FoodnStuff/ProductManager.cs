@@ -184,5 +184,10 @@ namespace FoodnStuff
 
             _myCart.RemoveProduct(cartProduct);
         }
+
+        public void UpdateProduct(string _category, string _name, int _price, int _quantity)
+        {
+
+        }
     }
 }

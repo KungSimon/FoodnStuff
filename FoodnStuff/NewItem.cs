@@ -71,5 +71,26 @@ namespace FoodnStuff
             fm.SaveBankManager(bm.BankAccounts);
         }
 
+        private void editItemButton_Click(object sender, EventArgs e)
+        {
+            var product = this.product;
+
+            string _category = catagoryTextBox.Text;
+            string _name = itemNameTextBox.Text;
+            int _price = (int)priceNumeric.Value;
+            int _quantity = (int)quantityNumeric.Value;
+
+
+
+            productManager.UpdateProduct(_category, _name, _price, _quantity);
+            adminMenu.uppdateListBox();
+            catagoryTextBox.Text = "";
+            itemNameTextBox.Text = "";
+            priceNumeric.ResetText();
+            quantityNumeric.ResetText();
+
+            this.Close();
+
+        }
     }
 }
