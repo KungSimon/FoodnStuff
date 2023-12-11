@@ -20,7 +20,7 @@ namespace FoodnStuff
 
             foreach (Order order in productManager.Orders)
             {
-                ordersListBox.Items.Add(order);
+                ordersListBox.Items.Add(order.Address);
             }
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
@@ -61,10 +61,11 @@ namespace FoodnStuff
             //Vill markera en order i orderslistbox och få upp en ledig transport i transportlistbox.
             //Vill kalla på checkcapacity för att se vilka transporter som finns.
             //Vill lopa igenom listan på tillgängliga transporter och visa dom i listboxen.
+            Order test = ordersListBox.SelectedItem as Order;
 
-            if (ordersListBox.SelectedItem is Order order)
+            if (test != null)
             {
-                productManager.CheckTransportAvailability(order);
+                productManager.CheckTransportAvailability(test);
                 transportsListBox.Visible = true;
                 pickTransportButton.Visible = true;
 

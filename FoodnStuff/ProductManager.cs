@@ -56,7 +56,7 @@ namespace FoodnStuff
          // }
         }
 
-        public void CartToOrder(Cart cart, string name, string address)
+        public void CartToOrder(Cart cart, string address, string name)
         {
             if (cart == null) { return; }
             if (cart.ProductsInCart.Count() <= 0) { return; }
