@@ -58,11 +58,6 @@ namespace FoodnStuff
 
         private void pickOrderButton_Click(object sender, EventArgs e)
         {
-            //Vill markera en order i orderslistbox och få upp en ledig transport i transportlistbox.
-            //Vill kalla på checkcapacity för att se vilka transporter som finns.
-            //Vill lopa igenom listan på tillgängliga transporter och visa dom i listboxen.
-            
-
             Order test = ordersListBox.SelectedItem as Order;
 
             if (test != null)
@@ -70,7 +65,6 @@ namespace FoodnStuff
                 productManager.CheckTransportAvailability(test);
                 transportsListBox.Visible = true;
                 pickTransportButton.Visible = true;
-
 
                 transportsListBox.DisplayMember = "Name";
                 transportsListBox.DataSource = new BindingSource(productManager.availableTransports, null);
@@ -83,16 +77,35 @@ namespace FoodnStuff
 
         private void pickTransportButton_Click(object sender, EventArgs e)
         {
-            string? name = ordersListBox.SelectedItem as string;
+            Order selectedOrder = ordersListBox.SelectedItem as Order;
 
-            if (name != null)
+            if (selectedOrder != null)
             {
-                readyToBeShippedListBox.Items.Add(name);
-                ordersListBox.Items.Remove(name);
+                Transport selectedTransport = transportsListBox.SelectedItem as Transport;
+
+                if (selectedTransport != null)
+                {
+                    readyToBeShippedListBox.Items.Add(selectedOrder);
+                    productManager.Orders.Remove(selectedOrder);  // Ta bort från den underliggande datan
+
+                    readyToBeShippedListBox.Visible = true;
+                    shipOrderButton.Visible = true;
+
+                    // Uppdatera ordersListBox genom att sätta om dess DataSource
+                    ordersListBox.DataSource = null;
+                    ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
+
+                    // Ladda transporten med den valda ordern
+                    productManager.LoadTansport(selectedTransport, selectedOrder);
+                }
+                else
+                {
+                    MessageBox.Show("You have to pick a transport");
+                }
             }
             else
             {
-                MessageBox.Show("You have to pack a transport");
+                MessageBox.Show("You have to pick an order");
             }
         }
 
