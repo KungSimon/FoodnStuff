@@ -13,20 +13,42 @@ namespace FoodnStuff
 {
     public partial class Payment : Form
     {
+        Form1 form1;
+        UserManager userManager = UserManager.GetInstance();
         BankManager bankManager = BankManager.GetInstance();
         FileManager fileManager = FileManager.GetInstance();
-        public Payment()
+        //private int totalCost;
+        public Payment(Form1 form1)
         {
+            this.form1 = form1;
             InitializeComponent();
             purchaseButton.Click += purchaseButton_Click;
+            //this.totalCost = totalCost;
         }
 
         private void purchaseButton_Click(object sender, EventArgs e)
         {
-            bankManager.TryLogin(cardNumberTextBox.Text, cardPinTextBox.Text);
+            //if (userManager.CurrentUser != null)
+            //{
+            //    nameTextBox.Text = userManager.CurrentUser.Name;
+            //    addressTextBox.Text = userManager.CurrentUser.Address;
+            //}
+            if (nameTextBox.Text == "" && addressTextBox.Text == "")
+            {
+                MessageBox.Show("Please write name and address to make a purchase");
+                return;
+            }
+            if (!bankManager.TryLogin(cardNumberTextBox.Text, cardPinTextBox.Text))
+            {
+                return;
+            }
+           
+            bankManager.Pay(form1.currentCart.CalculateCartTotal());
             fileManager.SaveBankManager(bankManager.BankAccounts);
+            // Convert to Order
+
         }
-            
+
 
         private void cardNumberTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -34,6 +56,16 @@ namespace FoodnStuff
         }
 
         private void cardPinTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addressTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

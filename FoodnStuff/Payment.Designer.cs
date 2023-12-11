@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Payment));
             cardNumberTextBox = new TextBox();
             purchaseButton = new Button();
             cardPinLabel = new Label();
             cardNumberLabel = new Label();
             cardPinTextBox = new TextBox();
+            nameTextBox = new TextBox();
+            addressLabel = new Label();
+            nameLabel = new Label();
+            addressTextBox = new TextBox();
             SuspendLayout();
             // 
             // cardNumberTextBox
@@ -45,7 +50,7 @@
             // 
             // purchaseButton
             // 
-            purchaseButton.Location = new Point(159, 167);
+            purchaseButton.Location = new Point(352, 178);
             purchaseButton.Name = "purchaseButton";
             purchaseButton.Size = new Size(145, 29);
             purchaseButton.TabIndex = 18;
@@ -79,11 +84,50 @@
             cardPinTextBox.TabIndex = 15;
             cardPinTextBox.TextChanged += cardPinTextBox_TextChanged;
             // 
+            // nameTextBox
+            // 
+            nameTextBox.Location = new Point(506, 45);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(229, 27);
+            nameTextBox.TabIndex = 19;
+            nameTextBox.TextChanged += nameTextBox_TextChanged;
+            // 
+            // addressLabel
+            // 
+            addressLabel.AutoSize = true;
+            addressLabel.Location = new Point(432, 110);
+            addressLabel.Name = "addressLabel";
+            addressLabel.Size = new Size(65, 20);
+            addressLabel.TabIndex = 22;
+            addressLabel.Text = "Address:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new Point(445, 52);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new Size(52, 20);
+            nameLabel.TabIndex = 21;
+            nameLabel.Text = "Name:";
+            // 
+            // addressTextBox
+            // 
+            addressTextBox.Location = new Point(506, 103);
+            addressTextBox.Name = "addressTextBox";
+            addressTextBox.Size = new Size(229, 27);
+            addressTextBox.TabIndex = 20;
+            addressTextBox.TextChanged += addressTextBox_TextChanged;
+            // 
             // Payment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(nameTextBox);
+            Controls.Add(addressLabel);
+            Controls.Add(nameLabel);
+            Controls.Add(addressTextBox);
             Controls.Add(cardNumberTextBox);
             Controls.Add(purchaseButton);
             Controls.Add(cardPinLabel);
@@ -102,5 +146,9 @@
         private Label cardPinLabel;
         private Label cardNumberLabel;
         private TextBox cardPinTextBox;
+        private TextBox nameTextBox;
+        private Label addressLabel;
+        private Label nameLabel;
+        private TextBox addressTextBox;
     }
 }

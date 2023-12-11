@@ -2,12 +2,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.DataFormats;
 
 namespace FoodnStuff
 {
     public partial class Form1 : Form
     {
-        private Cart currentCart = new Cart();
+        public Cart currentCart = new Cart();
         private Payment payment;
         private Shipping shipping;
         private UserManager userManager = UserManager.GetInstance();
@@ -17,7 +18,7 @@ namespace FoodnStuff
         {
             InitializeComponent();
 
-            this.payment = new Payment();
+            this.payment = new Payment(this);
             this.FormClosing += Form1_FormClosing;
             this.shipping = new Shipping();
             //MessageBox.Show("Got here 0");
@@ -58,6 +59,7 @@ namespace FoodnStuff
             {
                 if (user.Username == userName && user.Password == password)
                 {
+                    userManager.CurrentUser = user;
                     MessageBox.Show("Log in successful");
                     usernameTextBox.Text = "";
                     passwordTextBox.Text = "";
@@ -70,10 +72,18 @@ namespace FoodnStuff
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
                     //currentCart = user.MyCart;
+                    //nameTextBox.Text = user.Name;
+                    //adressTextBox.Text = user.Address;
                     user.MyCart.MergeCart(currentCart);
                     currentCart = user.MyCart;
                     UpdateTotalCostLabel();
+                    //if (userManager.CurrentUser != null)
+                    //{
+                    //    nameTextBox.Text = userManager.CurrentUser.Name;
+                    //    addressTextBox.Text = userManager.CurrentUser.Address;
+                    //}
                     return;
+                    
                 }
             }
             MessageBox.Show("Invalid username or password. Please try again");
@@ -170,8 +180,9 @@ namespace FoodnStuff
 
         }
 
-        private void proceedToCheckoutButton_Click(object sender, EventArgs e)
+        public void proceedToCheckoutButton_Click(object sender, EventArgs e)
         {
+            
             payment.Show();
         }
 
