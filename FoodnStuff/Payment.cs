@@ -49,7 +49,14 @@ namespace FoodnStuff
             bankManager.Pay(form1.currentCart.CalculateCartTotal());
             fileManager.SaveBankManager(bankManager.BankAccounts);
             // Convert to Order
-
+            ProductManager productManager = ProductManager.GetInstance();
+            productManager.CartToOrder(form1.currentCart, addressTextBox.Text, nameTextBox.Text);
+            form1.currentCart = new Cart();
+            if (userManager.CurrentUser != null)
+            {
+                userManager.CurrentUser.MyCart.ProductsInCart = new List<Product>();
+            }
+            MessageBox.Show($"Order with {form1.currentCart.ProductsInCart.Count()} items has been placed to {nameTextBox.Text} at {nameTextBox.Text}");
         }
 
 

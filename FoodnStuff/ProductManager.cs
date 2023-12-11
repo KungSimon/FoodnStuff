@@ -55,6 +55,14 @@ namespace FoodnStuff
          //     }
          // }
         }
+
+        public void CartToOrder(Cart cart, string name, string address)
+        {
+            if (cart == null) { return; }
+            if (cart.ProductsInCart.Count() <= 0) { return; }
+            Orders.Add(new Order(cart.ProductsInCart, address, name));
+        }
+
         public void LoadTansport(Transport transport, Order order)
         {
             // Lägg till ordern i den lediga transporten
