@@ -24,8 +24,11 @@ namespace FoodnStuff
             this.form1 = form1;
             InitializeComponent();
             purchaseButton.Click += purchaseButton_Click;
-            nameTextBox.Text = userManager.CurrentUser.Name;
-            addressTextBox.Text = userManager.CurrentUser.Address;
+            if(userManager.CurrentUser != null)
+            {
+                nameTextBox.Text = userManager.CurrentUser.Name;
+                addressTextBox.Text = userManager.CurrentUser.Address;
+            }
             //this.totalCost = totalCost;
         }
 
@@ -51,12 +54,12 @@ namespace FoodnStuff
             // Convert to Order
             ProductManager productManager = ProductManager.GetInstance();
             productManager.CartToOrder(form1.currentCart, addressTextBox.Text, nameTextBox.Text);
+            MessageBox.Show($"Order with {form1.currentCart.ProductsInCart.Count()} items has been placed to {nameTextBox.Text} at {nameTextBox.Text}");
             form1.currentCart = new Cart();
             if (userManager.CurrentUser != null)
             {
                 userManager.CurrentUser.MyCart.ProductsInCart = new List<Product>();
             }
-            MessageBox.Show($"Order with {form1.currentCart.ProductsInCart.Count()} items has been placed to {nameTextBox.Text} at {nameTextBox.Text}");
         }
 
 
