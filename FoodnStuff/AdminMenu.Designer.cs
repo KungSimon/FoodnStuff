@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMenu));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            editButton = new Button();
             itemLabel = new Label();
             removeItemButton = new Button();
             addNewItemButton = new Button();
@@ -45,7 +46,6 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
-            editButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -79,6 +79,15 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Item Manager";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // editButton
+            // 
+            editButton.Location = new Point(638, 315);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(118, 29);
+            editButton.TabIndex = 4;
+            editButton.Text = "Edit item";
+            editButton.UseVisualStyleBackColor = true;
             // 
             // itemLabel
             // 
@@ -221,15 +230,6 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 9;
             // 
-            // editButton
-            // 
-            editButton.Location = new Point(638, 315);
-            editButton.Name = "editButton";
-            editButton.Size = new Size(118, 29);
-            editButton.TabIndex = 4;
-            editButton.Text = "Edit item";
-            editButton.UseVisualStyleBackColor = true;
-            // 
             // AdminMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -238,6 +238,7 @@
             Controls.Add(tabControl1);
             Name = "AdminMenu";
             Text = "AdminMenu";
+            FormClosed += AdminMenu_FormClosed;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();

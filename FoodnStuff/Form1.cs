@@ -19,7 +19,7 @@ namespace FoodnStuff
             InitializeComponent();
 
             //this.payment = new Payment(this);
-            this.FormClosing += Form1_FormClosing;
+            //this.FormClosing += Form1_FormClosing;
             this.shipping = new Shipping();
             //MessageBox.Show("Got here 0");
             fileManager.LoadManagers();
@@ -68,10 +68,16 @@ namespace FoodnStuff
                     usernameTextBox.Visible = false;
                     passwordTextBox.Visible = false;
                     logInButton.Visible = false;
+                    registerButton.Visible = false;
+                    registerLabel.Visible = false;
+                    workerLabel.Visible = false;
+                    logInWorkerButton.Visible = false;
                     logOutButton.Visible = true;
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
-                    
+                    balanceLabel.Visible = true;
+
+
                     //currentCart = user.MyCart;
                     //nameTextBox.Text = user.Name;
                     //adressTextBox.Text = user.Address;
@@ -84,7 +90,7 @@ namespace FoodnStuff
                     //    addressTextBox.Text = userManager.CurrentUser.Address;
                     //}
                     return;
-                    
+
                 }
             }
             MessageBox.Show("Invalid username or password. Please try again");
@@ -124,16 +130,10 @@ namespace FoodnStuff
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            int openForms = Application.OpenForms.Count;
+            for (int i = 0; i < openForms; i++)
             {
-                foreach (Form form in Application.OpenForms)
-                {
-                    if (form != this)
-                    {
-                        //Funkar ej när man försöker stänga i AdminMenu
-                        form.Close();
-                    }
-                }
+                Application.OpenForms[i].Close();
             }
         }
 
@@ -149,6 +149,10 @@ namespace FoodnStuff
             passwordLabel.Visible = true;
             usernameTextBox.Visible = true;
             passwordTextBox.Visible = true;
+            registerButton.Visible = true;
+            registerLabel.Visible = true;
+            workerLabel.Visible = true;
+            logInWorkerButton.Visible = true;
             logInButton.Visible = true;
             logOutButton.Visible = false;
             logOutButton.Location = new Point(881, 14);
@@ -166,6 +170,7 @@ namespace FoodnStuff
                 {
                     Product item = (Product)itemsListBox.SelectedItem;
                     productManager.AddToCart(currentCart, item, 1);
+                    //item.Quantity = -1;
                     //currentCart.AddProduct(item);
                 }
                 UpdateTotalCostLabel();
@@ -223,6 +228,7 @@ namespace FoodnStuff
                     Product itemToRemove = (Product)cartListBox.SelectedItem;
 
                     productManager.RemoveFromCart(currentCart, itemToRemove, 1);
+                    //itemToRemove.Quantity = +1;
 
                     UpdateTotalCostLabel();
                     RefreshCartListBox();
@@ -233,6 +239,11 @@ namespace FoodnStuff
         {
             cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
+        }
+
+        private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

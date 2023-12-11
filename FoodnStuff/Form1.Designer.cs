@@ -43,9 +43,10 @@
             cartLabel = new Label();
             cartListBox = new ListBox();
             tabPage3 = new TabPage();
+            balanceLabel = new Label();
             logOutButton = new Button();
             logInButton = new Button();
-            label1 = new Label();
+            workerLabel = new Label();
             logInWorkerButton = new Button();
             registerLabel = new Label();
             registerButton = new Button();
@@ -202,9 +203,10 @@
             // tabPage3
             // 
             tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
+            tabPage3.Controls.Add(balanceLabel);
             tabPage3.Controls.Add(logOutButton);
             tabPage3.Controls.Add(logInButton);
-            tabPage3.Controls.Add(label1);
+            tabPage3.Controls.Add(workerLabel);
             tabPage3.Controls.Add(logInWorkerButton);
             tabPage3.Controls.Add(registerLabel);
             tabPage3.Controls.Add(registerButton);
@@ -218,6 +220,16 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Log In";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // balanceLabel
+            // 
+            balanceLabel.AutoSize = true;
+            balanceLabel.Location = new Point(769, 17);
+            balanceLabel.Name = "balanceLabel";
+            balanceLabel.Size = new Size(64, 20);
+            balanceLabel.TabIndex = 16;
+            balanceLabel.Text = "Balance:";
+            balanceLabel.Visible = false;
             // 
             // logOutButton
             // 
@@ -240,15 +252,15 @@
             logInButton.UseVisualStyleBackColor = true;
             logInButton.Click += logInButton_Click;
             // 
-            // label1
+            // workerLabel
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = SystemColors.ControlText;
-            label1.Location = new Point(821, 365);
-            label1.Name = "label1";
-            label1.Size = new Size(122, 20);
-            label1.TabIndex = 7;
-            label1.Text = "To workers log in";
+            workerLabel.AutoSize = true;
+            workerLabel.ForeColor = SystemColors.ControlText;
+            workerLabel.Location = new Point(821, 365);
+            workerLabel.Name = "workerLabel";
+            workerLabel.Size = new Size(122, 20);
+            workerLabel.TabIndex = 7;
+            workerLabel.Text = "To workers log in";
             // 
             // logInWorkerButton
             // 
@@ -320,6 +332,7 @@
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing_1;
             Load += catagoryListBox_SelectedIndexChanged;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -344,7 +357,7 @@
         private ListBox cartListBox;
         private Button proceedToCheckoutButton;
         private Button removeItemFromCartButton;
-        private Label label1;
+        private Label workerLabel;
         private Button logInWorkerButton;
         private Label registerLabel;
         private Button registerButton;
@@ -357,5 +370,6 @@
         private Button logOutButton;
         private Button addToCartButton;
         private Label totalCostLabel;
+        private Label balanceLabel;
     }
 }

@@ -29,7 +29,7 @@ namespace FoodnStuff
             itemsListBox.DataSource = productManager.Inventory;
             itemsListBox.DisplayMember = "Name";
 
-            this.FormClosing += AdminMenu_FormClosing;
+            //this.FormClosing += AdminMenu_FormClosing;
             this.shipping = shipping;
         }
 
@@ -75,10 +75,10 @@ namespace FoodnStuff
         {
             if (itemsListBox.SelectedItems != null)
             {
-                
+
                 Product selectedProduct = (Product)itemsListBox.SelectedItem;
                 selectedProduct.GetInfo();
-                
+
                 NewItem newItem = new NewItem(selectedProduct);
 
                 newItem.Show();
@@ -118,21 +118,17 @@ namespace FoodnStuff
             itemsListBox.DataSource = productManager.Inventory;
             itemsListBox.DisplayMember = "Name";
         }
-        private void AdminMenu_FormClosing(object sender, FormClosingEventArgs e)
+        /*private void AdminMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 // Stäng alla former (Forms) här
                 //Funkar inte får "System.StackOverflowException"
-                foreach (Form form in Application.OpenForms)
-                {
-                    if (form != this)
-                    {
-                        form.Close();
-                    }
-                }
+                this.Close();
+                Environment.Exit(1);
             }
-        }
+        }*/
+
 
         private void chooseTransportButton_Click(object sender, EventArgs e)
         {
@@ -140,6 +136,13 @@ namespace FoodnStuff
             shipping.Show();
         }
 
-
+        private void AdminMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            int openForms = Application.OpenForms.Count;
+            for (int i = 0; i < openForms; i++)
+            {
+                Application.OpenForms[i].Close();
+            }
+        }
     }
 }
