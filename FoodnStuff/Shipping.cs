@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.DataFormats;
 
 namespace FoodnStuff
 {
@@ -18,10 +19,9 @@ namespace FoodnStuff
         {
             InitializeComponent();
 
-            foreach (Order order in productManager.Orders)
-            {
-                ordersListBox.Items.Add(order.Address);
-            }
+            ordersListBox.DisplayMember = "Name";
+            ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
+            
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
         {
@@ -61,6 +61,8 @@ namespace FoodnStuff
             //Vill markera en order i orderslistbox och få upp en ledig transport i transportlistbox.
             //Vill kalla på checkcapacity för att se vilka transporter som finns.
             //Vill lopa igenom listan på tillgängliga transporter och visa dom i listboxen.
+            
+
             Order test = ordersListBox.SelectedItem as Order;
 
             if (test != null)
@@ -69,10 +71,9 @@ namespace FoodnStuff
                 transportsListBox.Visible = true;
                 pickTransportButton.Visible = true;
 
-                foreach (Transport transport in productManager.availableTransports)
-                {
-                    transportsListBox.Items.Add(transport);
-                }
+
+                transportsListBox.DisplayMember = "Name";
+                transportsListBox.DataSource = new BindingSource(productManager.availableTransports, null);
             }
             else
             {

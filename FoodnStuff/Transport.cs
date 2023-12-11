@@ -24,5 +24,10 @@ namespace FoodnStuff
             ProductsOutOnDelivery.Clear();
             Available = true;
         }
+
+        public override string ToString()
+        {
+            return TransportID.ToString();
+        }
     }
 }
