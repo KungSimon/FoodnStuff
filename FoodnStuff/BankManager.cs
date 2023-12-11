@@ -41,25 +41,26 @@ namespace FoodnStuff
                 }
                 else
                 {
-                    // Create Account
-                    string dateString = number;
-                    DateTime dateValue;
-                    if (DateTime.TryParseExact(dateString, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
-                    {
-                        // The string is a valid date in the yyyyMMdd format.
-                        DateTime now = DateTime.Now;
-                        int ageInYears = now.Year - dateValue.Year;
-                        if (now.Month < dateValue.Month || (now.Month == dateValue.Month && now.Day < dateValue.Day))
-                        {
-                            ageInYears--;
-                        }
-                        if (ageInYears.ToString() == pin)
-                        {
-                            MessageBox.Show($"Account created with number:{number} and pin:{ageInYears}");
-                            CreateBankAccount(number, pin);
-                            return true;
-                        }
-                    }
+                // Create Account
+                //string dateString = number;
+                //DateTime dateValue;
+                //if (DateTime.TryParseExact(dateString, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
+                //{
+                //    // The string is a valid date in the yyyyMMdd format.
+                //    DateTime now = DateTime.Now;
+                //    int ageInYears = now.Year - dateValue.Year;
+                //    if (now.Month < dateValue.Month || (now.Month == dateValue.Month && now.Day < dateValue.Day))
+                //    {
+                //        ageInYears--;
+                //    }
+                //    if (ageInYears.ToString() == pin)
+                //    {
+                //        MessageBox.Show($"Account created with number:{number} and pin:{ageInYears}");
+                //        CreateBankAccount(number, pin);
+                //        return true;
+                //    }
+                //}
+                CreateBankAccount(number, pin);
                 }
                 return false;
         }
