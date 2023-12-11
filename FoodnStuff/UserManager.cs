@@ -9,6 +9,8 @@ namespace FoodnStuff
     public class UserManager
     {
         private static UserManager instance = null;
+
+        public User CurrentUser = null;
         public List<User> RegisteredCustomers {  get; set; } = new List<User>();
         // Initializes the Administrator list with one user already in it.
         public List<User> Administrators { get; set; } = new List<User> { new User("admin", "admin", "Administerstreet", "admin", 0) };
