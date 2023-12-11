@@ -36,6 +36,9 @@
             shipOrderButton = new Button();
             removeFromReadyToBeShippedButton = new Button();
             removeOrderButton = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // pickOrderButton
@@ -69,7 +72,6 @@
             ordersListBox.Name = "ordersListBox";
             ordersListBox.Size = new Size(284, 404);
             ordersListBox.TabIndex = 3;
-            ordersListBox.SelectedIndexChanged += ordersListBox_SelectedIndexChanged;
             // 
             // readyToBeShippedListBox
             // 
@@ -124,11 +126,43 @@
             removeOrderButton.UseVisualStyleBackColor = true;
             removeOrderButton.Click += removeOrderButton_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(119, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 25);
+            label1.TabIndex = 13;
+            label1.Text = "Orders";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(485, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(94, 25);
+            label2.TabIndex = 14;
+            label2.Text = "Transports";
+            label2.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(761, 6);
+            label3.Name = "label3";
+            label3.Size = new Size(238, 25);
+            label3.TabIndex = 15;
+            label3.Text = "Orders loaded on transports";
+            label3.Visible = false;
+            // 
             // Shipping
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1105, 523);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(removeOrderButton);
             Controls.Add(removeFromReadyToBeShippedButton);
             Controls.Add(shipOrderButton);
@@ -141,6 +175,7 @@
             Name = "Shipping";
             Text = "Shipping";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -153,5 +188,8 @@
         private Button shipOrderButton;
         private Button removeFromReadyToBeShippedButton;
         private Button removeOrderButton;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

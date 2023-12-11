@@ -32,30 +32,6 @@ namespace FoodnStuff
         {
             //Flyttar tillbaka ordern till listan av ordrar
         }
-
-        private void ordersListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            //Vill markera en order i orderslistbox och få upp en ledig transport i transportlistbox.
-            //Vill kalla på checkcapacity för att se vilka transporter som finns.
-            //Vill lopa igenom listan på tillgängliga transporter och visa dom i listboxen.
-
-            //if (ordersListBox.SelectedItem is Order order)
-            //{
-            //    productManager.CheckCapacity(order);
-            //    transportsListBox.Visible = true;
-            //    addToBeShippedButton.Visible = true;
-            //    foreach (Transport transport in productManager.availableTransports)
-            //    {
-            //        transportsListBox.Items.Add(transport);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("You have to pick an order");
-            //}
-        }
-
         private void pickOrderButton_Click(object sender, EventArgs e)
         {
             Order test = ordersListBox.SelectedItem as Order;
@@ -65,6 +41,7 @@ namespace FoodnStuff
                 productManager.CheckTransportAvailability(test);
                 transportsListBox.Visible = true;
                 pickTransportButton.Visible = true;
+                label2.Visible = true;
 
                 transportsListBox.DisplayMember = "Name";
                 transportsListBox.DataSource = new BindingSource(productManager.availableTransports, null);
@@ -85,18 +62,24 @@ namespace FoodnStuff
 
                 if (selectedTransport != null)
                 {
-                    readyToBeShippedListBox.Items.Add(selectedOrder);
-                    productManager.Orders.Remove(selectedOrder);  // Ta bort från den underliggande datan
-
-                    readyToBeShippedListBox.Visible = true;
-                    shipOrderButton.Visible = true;
-
-                    // Uppdatera ordersListBox genom att sätta om dess DataSource
+                    readyToBeShippedListBox.Items.Add(selectedOrder); 
+                    productManager.Orders.Remove(selectedOrder);
                     ordersListBox.DataSource = null;
                     ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
 
-                    // Ladda transporten med den valda ordern
+                    readyToBeShippedListBox.Visible = true;
+                    shipOrderButton.Visible = true;
+                    label3.Visible = true;
+
                     productManager.LoadTansport(selectedTransport, selectedOrder);
+
+                    if (selectedTransport.Capacity == 0)
+                    {
+                        productManager.availableTransports.Remove(selectedTransport);
+
+                        transportsListBox.DataSource = null;
+                        transportsListBox.DataSource = new BindingSource(productManager.availableTransports, null);
+                    }
                 }
                 else
                 {
