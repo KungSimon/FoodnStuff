@@ -28,5 +28,10 @@ namespace FoodnStuff
             }
             return quantity;
         }
+
+        public override string ToString()
+        {
+            return Address;
+        }
     }
 }

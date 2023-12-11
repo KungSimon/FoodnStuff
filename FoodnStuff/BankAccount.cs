@@ -21,7 +21,7 @@ namespace FoodnStuff
             }
         }
         public string CardNumber {  get; set; }
-        private string CardPin { get; set; }
+        public string CardPin { get; set; }
         public BankAccount(string _cardNumber, string _cardPin, int _cashMoney)
         {
             CardNumber = _cardNumber;
