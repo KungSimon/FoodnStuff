@@ -99,15 +99,18 @@ namespace FoodnStuff
         private void addButton_Click(object sender, EventArgs e)
         {
             Order orderToLoad = ordersListBox.SelectedItem as Order;
-           
             Transport chosenTransport = transportsListBox.SelectedItem as Transport;
-           
+
             if (orderToLoad != null && chosenTransport != null)
             {
-                productManager.LoadTansport(chosenTransport, orderToLoad);
-                productManager.Orders.Remove(orderToLoad);
+                bool loadSuccess = productManager.LoadTansport(chosenTransport, orderToLoad);
+
+                if (loadSuccess)
+                {
+                    productManager.Orders.Remove(orderToLoad);
+                    UpdateListBoxes();
+                }
             }
-            UpdateListBoxes();
         }
 
         private void UpdateListBoxes()

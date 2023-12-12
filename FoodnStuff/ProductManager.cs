@@ -59,7 +59,7 @@ namespace FoodnStuff
             Orders.Add(new Order(cart.ProductsInCart, address, name));
         }
 
-        public void LoadTansport(Transport transport, Order order)
+        public bool LoadTansport(Transport transport, Order order)
         {
             int quantity = order.CheckTotalOrderQuantity();
 
@@ -67,10 +67,12 @@ namespace FoodnStuff
             {
                 transport.OrdersOutOnDelivery.Add(order);
                 transport.Capacity -= quantity;
+                return true;
             }
             else
             {
                 MessageBox.Show("This order does not fit this transport");
+                return false;
             }
         }
         public List<Transport> CheckTransportAvailability(Order order)
