@@ -45,6 +45,7 @@ namespace FoodnStuff
                 {
                     productManager.Orders.Add(selectedOrder);
                     selectedTransport.OrdersOutOnDelivery.Remove(selectedOrder);
+                    selectedTransport.Capacity += selectedOrder.CheckTotalOrderQuantity();
 
                     UpdateListBoxes();
                 }
@@ -98,9 +99,9 @@ namespace FoodnStuff
         private void addButton_Click(object sender, EventArgs e)
         {
             Order orderToLoad = ordersListBox.SelectedItem as Order;
-
+           
             Transport chosenTransport = transportsListBox.SelectedItem as Transport;
-
+           
             if (orderToLoad != null && chosenTransport != null)
             {
                 productManager.LoadTansport(chosenTransport, orderToLoad);
