@@ -35,7 +35,7 @@ namespace FoodnStuff
 
             foreach (Product product in ProductsInCart)
             {
-                total += product.Price;
+                total += product.Price * product.Quantity;
             }
 
             return total;
@@ -43,28 +43,41 @@ namespace FoodnStuff
 
         public void RemoveProduct(Product product)
         {
-            Product productToRemove = null;
-
-            foreach (Product p in ProductsInCart)
-            {
-                if (p.ID == product.ID)
-                {
-                    productToRemove = p;
-                    break;
-                }
-            }
-
-            if (productToRemove != null)
-            {
-                if (productToRemove.Quantity > product.Quantity)
-                {
-                    productToRemove.Quantity -= product.Quantity;
-                }
-                else
-                {
-                    ProductsInCart.Remove(productToRemove);
-                }
-            }
+            if (product == null) {  return; }
+            ProductsInCart.Remove(product);
+            //Product productToRemove = null;
+            //foreach (Product p in ProductsInCart)
+            //{
+            //    if (p.ID == product.ID)
+            //    {
+            //        productToRemove = p;
+            //        break;
+            //    }
+            //}
+            //
+            //if (productToRemove != null)
+            //{
+            //    var productManager = ProductManager.GetInstance();
+            //    foreach (var item in productManager.Inventory)
+            //    {
+            //        if (item.ID == productToRemove.ID)
+            //        {
+            //            //item.Quantity += productToRemove.Quantity;
+            //            break;
+            //        }
+            //    }
+            //
+            //    //productManager.Inventory.Add(productToRemove);
+            //
+            //    //if (productToRemove.Quantity > product.Quantity)
+            //    //{
+            //    //    productToRemove.Quantity -= product.Quantity;
+            //    //}
+            //    //else
+            //    //{
+            //    //    ProductsInCart.Remove(productToRemove);
+            //    //}
+            //}
 
             /*Product productToRemove = ProductsInCart.FirstOrDefault(p => p.ID == product.ID);
 

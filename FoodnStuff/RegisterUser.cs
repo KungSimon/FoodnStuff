@@ -28,6 +28,8 @@ namespace FoodnStuff
 
 
             userManager.RegisterCustomer(name, userName, address, password);
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
             MessageBox.Show("Registration successful!");
             Close();
         }

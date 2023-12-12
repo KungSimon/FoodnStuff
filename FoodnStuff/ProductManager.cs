@@ -63,10 +63,10 @@ namespace FoodnStuff
         {
             int quantity = order.CheckTotalOrderQuantity();
 
-            if (transport.Capacity >= quantity)
+            if (transport.Capacity + quantity <= transport.MaxCapacity)
             {
                 transport.OrdersOutOnDelivery.Add(order);
-                transport.Capacity -= quantity;
+                transport.Capacity += quantity;
                 return true;
             }
             else
@@ -159,6 +159,7 @@ namespace FoodnStuff
         // Function goes through Inventory and sorts them into our dictionary
         public void CategorySorter()
         {
+            CategoryDictionary.Clear();
             // Get list of all keys in our category dictionary
             keyList = new List<string>(CategoryDictionary.Keys);
             // Create a list of products that have the same category
@@ -213,9 +214,21 @@ namespace FoodnStuff
 
         public void RemoveFromCart(Cart _myCart, Product _product, int _quantity)
         {
-            Product cartProduct = new Product(_product, _quantity);
-
-            _myCart.RemoveProduct(cartProduct);
+            bool FoundItem = false;
+            foreach(Product product in Inventory)
+            {
+                if (product.ID == _product.ID)
+                {
+                    FoundItem = true;
+                    product.Quantity += _quantity;
+                    break;
+                }
+            }
+            if (!FoundItem)
+            {
+                Inventory.Add(_product);
+            }
+            _myCart.RemoveProduct(_product);
         }
 
         public void UpdateProduct(string _category, string _name, int _price, int _quantity)

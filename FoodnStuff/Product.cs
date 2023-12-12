@@ -8,9 +8,39 @@ namespace FoodnStuff
 {
     public class Product
     {
-        public string Category { get; set; }
+        private string _category;
+        public string Category
+        {
+            get { return _category; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    _category = value;
+                }
+                else
+                {
+                    _category = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower();
+                }
+            }
+        }
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    _name = value;
+                }
+                else
+                {
+                    _name = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower();
+                }
+            }
+        }
         public string Description { get; set; }
-        public string Name { get; set; }
         public int Quantity { get; set; }
         public int ID { get; set; }
         public int Price { get; set; }

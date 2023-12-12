@@ -18,7 +18,9 @@ namespace FoodnStuff
         //private UserManager userManager;
         private Shipping shipping;
         private User Admin;
-        //private ProductManager ProductManager;
+        private Form1 form;
+
+        private bool _isDirty = false;
         public AdminMenu(UserManager userManager, User admin, ProductManager productManager, Shipping shipping)
         {
             InitializeComponent();
@@ -61,6 +63,7 @@ namespace FoodnStuff
                 Product selectedProduct = (Product)itemsListBox.SelectedItem;
 
                 productManager.Inventory.Remove(selectedProduct);
+                productManager.CategorySorter();
 
                 uppdateListBox();
 
@@ -70,6 +73,8 @@ namespace FoodnStuff
             {
                 MessageBox.Show("Please select an item to remove.");
             }
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -107,6 +112,14 @@ namespace FoodnStuff
                 Product selectedProduct = (Product)itemsListBox.SelectedItem;
                 itemLabel.Visible = true;
                 itemLabel.Text = selectedProduct.GetInfo();
+
+                categoryTextBox.Text = selectedProduct.Category;
+                nameTextBox.Text = selectedProduct.Name;
+                descriptionTextBox.Text = selectedProduct.Description;
+                idTextBox.Text = selectedProduct.ID.ToString();
+                priceTextBox.Text = selectedProduct.Price.ToString();
+                quantityTextBox.Text = selectedProduct.Quantity.ToString();
+                _isDirty = false;
             }
             else
             {
@@ -137,6 +150,11 @@ namespace FoodnStuff
             shipping.Show();
         }
 
+        public void SetForm(Form1 form)
+        {
+            this.form = form;
+        }
+
         private void AdminMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             //int openForms = Application.OpenForms.Count;
@@ -144,6 +162,43 @@ namespace FoodnStuff
             //{
             //    Application.OpenForms[i].Close();
             //}
+        }
+
+
+        private void editButton_Click_1(object sender, EventArgs e)
+        {
+            if (!_isDirty)
+            {
+                MessageBox.Show("No changes found");
+                return;
+            }
+            MessageBox.Show("Successfully updated product");
+            Product product = itemsListBox.SelectedItem as Product;
+            if (product != null)
+            {
+                product.Category = categoryTextBox.Text;
+                product.Name = nameTextBox.Text;
+                product.Description = descriptionTextBox.Text;
+                if (int.TryParse(idTextBox.Text, out int _idTextBox))
+                {
+                    product.ID = _idTextBox;
+                }
+                if (int.TryParse(priceTextBox.Text, out int _priceTextBox))
+                {
+                    product.Price = _priceTextBox;
+                }
+                if (int.TryParse(quantityTextBox.Text, out int _quantityTextBox))
+                {
+                    product.Quantity = _quantityTextBox;
+                }
+            }
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
+        }
+
+        private void aTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _isDirty = true;
         }
     }
 }

@@ -97,11 +97,9 @@
             quantityNumericUpDown.Location = new Point(678, 21);
             quantityNumericUpDown.Margin = new Padding(3, 2, 3, 2);
             quantityNumericUpDown.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
-            quantityNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             quantityNumericUpDown.Name = "quantityNumericUpDown";
             quantityNumericUpDown.Size = new Size(131, 23);
             quantityNumericUpDown.TabIndex = 6;
-            quantityNumericUpDown.Value = new decimal(new int[] { 1, 0, 0, 0 });
             quantityNumericUpDown.ValueChanged += quantityNumericUpDown_ValueChanged;
             // 
             // addToCartButton

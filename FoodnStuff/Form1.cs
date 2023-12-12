@@ -47,6 +47,7 @@ namespace FoodnStuff
             WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager, shipping);
             workerLogIn.Show();
 
+
         }
 
         private void logInButton_Click(object sender, EventArgs e)
@@ -187,8 +188,15 @@ namespace FoodnStuff
             {
                 Product item = (Product)itemsListBox.SelectedItem;
                 int stock = item.Quantity;
-                quantityNumericUpDown.Value = 1;
                 quantityNumericUpDown.Maximum = stock;
+                if (stock > 0)
+                {
+                    quantityNumericUpDown.Value = 1;
+                }
+                else
+                {
+                    quantityNumericUpDown.Value = 0;
+                }
             }
         }
 
@@ -213,6 +221,7 @@ namespace FoodnStuff
             // Updates Listbox DataSource when changing tab
             cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
+
         }
 
         public void UpdateTotalCostLabel()
@@ -234,7 +243,7 @@ namespace FoodnStuff
                 {
                     Product itemToRemove = (Product)cartListBox.SelectedItem;
 
-                    productManager.RemoveFromCart(currentCart, itemToRemove, 1);
+                    productManager.RemoveFromCart(currentCart, itemToRemove, itemToRemove.Quantity);
                     //itemToRemove.Quantity = +1;
 
                     UpdateTotalCostLabel();

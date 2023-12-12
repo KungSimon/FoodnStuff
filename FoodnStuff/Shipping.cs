@@ -18,9 +18,7 @@ namespace FoodnStuff
         public Shipping()
         {
             InitializeComponent();
-
-            ordersListBox.DisplayMember = "Info";
-            ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
+            UpdateListBoxes();
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
         {
@@ -45,7 +43,7 @@ namespace FoodnStuff
                 {
                     productManager.Orders.Add(selectedOrder);
                     selectedTransport.OrdersOutOnDelivery.Remove(selectedOrder);
-                    selectedTransport.Capacity += selectedOrder.CheckTotalOrderQuantity();
+                    selectedTransport.Capacity -= selectedOrder.CheckTotalOrderQuantity();
 
                     UpdateListBoxes();
                 }
@@ -64,6 +62,7 @@ namespace FoodnStuff
 
                 if (deleteOrder == DialogResult.Yes)
                 {
+
                     productManager.Orders.Remove(orderToDelete);
                     UpdateListBoxes();
                 }
