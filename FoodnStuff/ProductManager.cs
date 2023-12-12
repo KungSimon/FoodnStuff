@@ -65,23 +65,13 @@ namespace FoodnStuff
 
             if (transport.Capacity >= quantity)
             {
-                // availableTransports.Add(transport);
-              
-                    transport.OrdersOutOnDelivery.Add(order);
-                    transport.Capacity -= quantity;
-                
+                transport.OrdersOutOnDelivery.Add(order);
+                transport.Capacity -= quantity;
             }
             else
             {
                 MessageBox.Show("This order does not fit this transport");
             }
-
-          /*  if (transport.Capacity == 0)
-            {
-
-                transport.Available = false;
-                //availableTransports.Remove(transport);
-            }*/
         }
         public List<Transport> CheckTransportAvailability(Order order)
         {

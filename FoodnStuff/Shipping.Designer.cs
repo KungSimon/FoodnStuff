@@ -32,7 +32,6 @@
             transportsListBox = new ListBox();
             ordersListBox = new ListBox();
             readyToBeShippedListBox = new ListBox();
-            pickTransportButton = new Button();
             shipOrderButton = new Button();
             removeFromReadyToBeShippedButton = new Button();
             deleteOrderButton = new Button();
@@ -85,20 +84,9 @@
             readyToBeShippedListBox.TabIndex = 8;
             readyToBeShippedListBox.Visible = false;
             // 
-            // pickTransportButton
-            // 
-            pickTransportButton.Location = new Point(448, 471);
-            pickTransportButton.Name = "pickTransportButton";
-            pickTransportButton.Size = new Size(145, 34);
-            pickTransportButton.TabIndex = 9;
-            pickTransportButton.Text = "Pick transport";
-            pickTransportButton.UseVisualStyleBackColor = true;
-            pickTransportButton.Visible = false;
-            pickTransportButton.Click += pickTransportButton_Click;
-            // 
             // shipOrderButton
             // 
-            shipOrderButton.Location = new Point(915, 471);
+            shipOrderButton.Location = new Point(933, 461);
             shipOrderButton.Name = "shipOrderButton";
             shipOrderButton.Size = new Size(112, 34);
             shipOrderButton.TabIndex = 10;
@@ -109,12 +97,13 @@
             // 
             // removeFromReadyToBeShippedButton
             // 
-            removeFromReadyToBeShippedButton.Location = new Point(743, 471);
+            removeFromReadyToBeShippedButton.Location = new Point(761, 461);
             removeFromReadyToBeShippedButton.Name = "removeFromReadyToBeShippedButton";
             removeFromReadyToBeShippedButton.Size = new Size(112, 34);
             removeFromReadyToBeShippedButton.TabIndex = 11;
             removeFromReadyToBeShippedButton.Text = "Remove";
             removeFromReadyToBeShippedButton.UseVisualStyleBackColor = true;
+            removeFromReadyToBeShippedButton.Visible = false;
             removeFromReadyToBeShippedButton.Click += removeFromReadyToBeShippedButton_Click;
             // 
             // deleteOrderButton
@@ -167,7 +156,6 @@
             Controls.Add(deleteOrderButton);
             Controls.Add(removeFromReadyToBeShippedButton);
             Controls.Add(shipOrderButton);
-            Controls.Add(pickTransportButton);
             Controls.Add(readyToBeShippedListBox);
             Controls.Add(addButton);
             Controls.Add(transportsListBox);
@@ -185,7 +173,6 @@
         private ListBox transportsListBox;
         private ListBox ordersListBox;
         private ListBox readyToBeShippedListBox;
-        private Button pickTransportButton;
         private Button shipOrderButton;
         private Button removeFromReadyToBeShippedButton;
         private Button deleteOrderButton;

@@ -35,15 +35,20 @@ namespace FoodnStuff
         }
         private void removeFromReadyToBeShippedButton_Click(object sender, EventArgs e)
         {
-            //Flyttar tillbaka ordern till listan av ordrar
-        }
-        private void pickOrderButton_Click(object sender, EventArgs e)
-        {
-        }
+            Transport selectedTransport = transportsListBox.SelectedItem as Transport;
 
-        private void pickTransportButton_Click(object sender, EventArgs e)
-        {
-           
+            if (selectedTransport != null && selectedTransport.OrdersOutOnDelivery.Count > 0)
+            {
+                Order selectedOrder = readyToBeShippedListBox.SelectedItem as Order;
+
+                if (selectedOrder != null)
+                {
+                    productManager.Orders.Add(selectedOrder);
+                    selectedTransport.OrdersOutOnDelivery.Remove(selectedOrder);
+
+                    UpdateListBoxes();
+                }
+            }
         }
         private void deleteOrderButton_Click(object sender, EventArgs e)
         {
@@ -57,7 +62,6 @@ namespace FoodnStuff
             {
                 productManager.CheckTransportAvailability(orderToLoad);
                 transportsListBox.Visible = true;
-                pickTransportButton.Visible = true;
                 label2.Visible = true;
 
                 transportsListBox.DisplayMember = "Name";
@@ -75,10 +79,10 @@ namespace FoodnStuff
 
                 readyToBeShippedListBox.Visible = true;
                 shipOrderButton.Visible = true;
+                removeFromReadyToBeShippedButton.Visible = true;
                 label3.Visible = true;
             }
         }
-
         private void addButton_Click(object sender, EventArgs e)
         {
             Order orderToLoad = ordersListBox.SelectedItem as Order;
