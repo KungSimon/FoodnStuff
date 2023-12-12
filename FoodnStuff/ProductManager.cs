@@ -44,16 +44,16 @@ namespace FoodnStuff
 
             //Vill testa om detta funkar med kan inte än
             // Loopa igenom varje order och leta efter en matchande order
-          foreach (Order order in Orders.ToList()) 
+         /* foreach (Order order in Orders.ToList()) 
           {
-              bool orderContainsProductsInTransport = order.InCart.Any(product => transport.ProductsOutOnDelivery.Contains(product));
+              bool orderContainsProductsInTransport = order.InCart.Any(product => transport.OrdersOutOnDelivery.Contains(product));
          
               if (orderContainsProductsInTransport)
               {
                   Orders.Remove(order);
                   break; 
               }
-          }
+          }*/
         }
 
         public void CartToOrder(Cart cart, string address, string name)
@@ -65,25 +65,37 @@ namespace FoodnStuff
 
         public void LoadTansport(Transport transport, Order order)
         {
-            foreach (Product product in order.InCart)
+            int quantity = order.CheckTotalOrderQuantity();
+
+            if (transport.Capacity >= quantity)
             {
-                transport.ProductsOutOnDelivery.Add(product);
-                transport.Capacity -= product.Quantity;
+                // availableTransports.Add(transport);
+              
+                    transport.OrdersOutOnDelivery.Add(order);
+                    transport.Capacity -= quantity;
+                
             }
-            if (transport.Capacity == 0)
+            else
+            {
+                MessageBox.Show("This order does not fit this transport");
+            }
+
+          /*  if (transport.Capacity == 0)
             {
 
                 transport.Available = false;
-                availableTransports.Remove(transport);
-            }
+                //availableTransports.Remove(transport);
+            }*/
         }
         public List<Transport> CheckTransportAvailability(Order order)
         {
+            availableTransports.Clear();
+
             foreach (Transport transport in Transports)
             {
                 int quantity = order.CheckTotalOrderQuantity();
 
-                if (transport.Available && transport.Capacity >= quantity)
+                if (transport.Available && transport.Capacity >= quantity && !availableTransports.Contains(transport))
                 {
                     availableTransports.Add(transport);
                 }

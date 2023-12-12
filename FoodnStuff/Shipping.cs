@@ -21,15 +21,14 @@ namespace FoodnStuff
 
             ordersListBox.DisplayMember = "Name";
             ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
-
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
         {
             Order order = readyToBeShippedListBox.SelectedItem as Order;
 
-            if(order != null)
+            if (order != null)
             {
-               
+
             }
         }
 
@@ -38,6 +37,19 @@ namespace FoodnStuff
             //Flyttar tillbaka ordern till listan av ordrar
         }
         private void pickOrderButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pickTransportButton_Click(object sender, EventArgs e)
+        {
+           
+        }
+        private void deleteOrderButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ordersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Order orderToLoad = ordersListBox.SelectedItem as Order;
 
@@ -49,56 +61,55 @@ namespace FoodnStuff
                 label2.Visible = true;
 
                 transportsListBox.DisplayMember = "Name";
-                transportsListBox.DataSource = new BindingSource(productManager.availableTransports, null);
-            }
-            else
-            {
-                MessageBox.Show("You have to pick an order");
+                transportsListBox.DataSource = new BindingSource(productManager.Transports, null);
             }
         }
 
-        private void pickTransportButton_Click(object sender, EventArgs e)
+        private void transportsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Order selectedOrder = ordersListBox.SelectedItem as Order;
+            Transport chosenTransport = transportsListBox.SelectedItem as Transport;
 
-            if (selectedOrder != null)
+            if (chosenTransport != null)
             {
-                Transport selectedTransport = transportsListBox.SelectedItem as Transport;
+                readyToBeShippedListBox.DisplayMember = "Name";
+                readyToBeShippedListBox.DataSource = new BindingSource(chosenTransport.OrdersOutOnDelivery, null);
 
-                if (selectedTransport != null)
-                {
-                    readyToBeShippedListBox.Items.Add(selectedOrder);
-                    productManager.Orders.Remove(selectedOrder);
-                    ordersListBox.DataSource = null;
-                    ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
-
-                    readyToBeShippedListBox.Visible = true;
-                    shipOrderButton.Visible = true;
-                    label3.Visible = true;
-
-                    productManager.LoadTansport(selectedTransport, selectedOrder);
-
-                    if (selectedTransport.Capacity == 0)
-                    {
-                        productManager.availableTransports.Remove(selectedTransport);
-
-                        transportsListBox.DataSource = null;
-                        transportsListBox.DataSource = new BindingSource(productManager.availableTransports, null);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("You have to pick a transport");
-                }
-            }
-            else
-            {
-                MessageBox.Show("You have to pick an order");
+                readyToBeShippedListBox.Visible = true;
+                shipOrderButton.Visible = true;
+                label3.Visible = true;
             }
         }
-        private void deleteOrderButton_Click(object sender, EventArgs e)
-        {
 
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Order orderToLoad = ordersListBox.SelectedItem as Order;
+
+            Transport chosenTransport = transportsListBox.SelectedItem as Transport;
+
+            if (orderToLoad != null && chosenTransport != null)
+            {
+                productManager.LoadTansport(chosenTransport, orderToLoad);
+                productManager.Orders.Remove(orderToLoad);
+            }
+            UpdateListBoxes();
+        }
+
+
+        private void UpdateListBoxes()
+        {
+            ordersListBox.DisplayMember = "Name";
+            ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
+
+            transportsListBox.DisplayMember = "Name";
+            transportsListBox.DataSource = new BindingSource(productManager.Transports, null);
+
+            Transport chosenTransport = transportsListBox.SelectedItem as Transport;
+
+            if (chosenTransport != null)
+            {
+                readyToBeShippedListBox.DisplayMember = "Name";
+                readyToBeShippedListBox.DataSource = new BindingSource(chosenTransport.OrdersOutOnDelivery, null);
+            }
         }
     }
 }

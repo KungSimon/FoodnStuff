@@ -9,7 +9,7 @@ namespace FoodnStuff
 {
     public class Transport
     {
-        public List<Product> ProductsOutOnDelivery { get; set; } = new List<Product>();
+        public List<Order> OrdersOutOnDelivery { get; set; } = new List<Order>();
         public int TransportID { get; set; }
         public bool Available { get; set; } = true;
         public int Capacity { get; set; } = 10;
@@ -21,7 +21,7 @@ namespace FoodnStuff
 
         public void Delivered()
         {
-            ProductsOutOnDelivery.Clear();
+            OrdersOutOnDelivery.Clear();
             Available = true;
         }
 
