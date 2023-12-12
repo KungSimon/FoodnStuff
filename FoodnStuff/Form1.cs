@@ -45,7 +45,6 @@ namespace FoodnStuff
         private void logInWorkerButton_Click(object sender, EventArgs e)
         {
             WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager, shipping);
-
             workerLogIn.Show();
 
         }
@@ -251,7 +250,7 @@ namespace FoodnStuff
 
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-
+            fileManager.SaveManagers();
         }
 
         private void quantityNumericUpDown_ValueChanged(object sender, EventArgs e)

@@ -19,7 +19,7 @@ namespace FoodnStuff
         {
             InitializeComponent();
 
-            ordersListBox.DisplayMember = "Name";
+            ordersListBox.DisplayMember = "Info";
             ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace FoodnStuff
 
             if (orderToDelete != null)
             {
-                DialogResult deleteOrder = MessageBox.Show("Are you sure you want to delete this order?" 
+                DialogResult deleteOrder = MessageBox.Show("Are you sure you want to delete this order?"
                  , "Delete Order", MessageBoxButtons.YesNo);
 
                 if (deleteOrder == DialogResult.Yes)
@@ -77,7 +77,7 @@ namespace FoodnStuff
                 transportsListBox.Visible = true;
                 label2.Visible = true;
 
-                transportsListBox.DisplayMember = "Name";
+                transportsListBox.DisplayMember = "Info";
                 transportsListBox.DataSource = new BindingSource(productManager.Transports, null);
             }
         }
@@ -87,7 +87,7 @@ namespace FoodnStuff
 
             if (chosenTransport != null)
             {
-                readyToBeShippedListBox.DisplayMember = "Name";
+                readyToBeShippedListBox.DisplayMember = "Info";
                 readyToBeShippedListBox.DataSource = new BindingSource(chosenTransport.OrdersOutOnDelivery, null);
 
                 readyToBeShippedListBox.Visible = true;
@@ -115,17 +115,17 @@ namespace FoodnStuff
 
         private void UpdateListBoxes()
         {
-            ordersListBox.DisplayMember = "Name";
+            ordersListBox.DisplayMember = "Info";
             ordersListBox.DataSource = new BindingSource(productManager.Orders, null);
 
-            transportsListBox.DisplayMember = "Name";
+            transportsListBox.DisplayMember = "Info";
             transportsListBox.DataSource = new BindingSource(productManager.Transports, null);
 
             Transport chosenTransport = transportsListBox.SelectedItem as Transport;
 
             if (chosenTransport != null)
             {
-                readyToBeShippedListBox.DisplayMember = "Name";
+                readyToBeShippedListBox.DisplayMember = "Info";
                 readyToBeShippedListBox.DataSource = new BindingSource(chosenTransport.OrdersOutOnDelivery, null);
             }
         }

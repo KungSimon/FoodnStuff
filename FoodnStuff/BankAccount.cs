@@ -8,7 +8,7 @@ namespace FoodnStuff
 {
     public class BankAccount
     {
-        private int cashMoney = 1000;
+        private int cashMoney = 10000;
         public int CashMoney
         {
             get

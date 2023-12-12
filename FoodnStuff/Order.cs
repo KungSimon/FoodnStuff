@@ -11,6 +11,10 @@ namespace FoodnStuff
         public List<Product> InCart = new List<Product>();
         public string Address;
         public string Name;
+        public string Info
+        {
+            get { return GetInfo(); }
+        }
 
         public Order(List<Product> list, string address, string name)
         {
@@ -29,6 +33,11 @@ namespace FoodnStuff
             return quantity;
         }
 
+        private string GetInfo()
+        {
+            string quantity = CheckTotalOrderQuantity().ToString();
+            return $"{Address}, {quantity} items";
+        }
         public override string ToString()
         {
             return Address;

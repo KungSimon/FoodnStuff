@@ -81,7 +81,12 @@ namespace FoodnStuff
                 LoadBankManager(bankManager);
             }
         }
-
+        public void SaveManagers()
+        {
+            SaveProductManager(productManager.Inventory, productManager.ProductID);
+            SaveUserManager(userManager.RegisteredCustomers, userManager.Administrators, userManager.UserID);
+            SaveBankManager(bankManager.BankAccounts);
+        }
         public void SaveProductManager(List<Product> _products, int _idManager)
         {
             // Inventory
