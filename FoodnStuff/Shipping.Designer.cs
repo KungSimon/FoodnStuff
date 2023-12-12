@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pickOrderButton = new Button();
+            addButton = new Button();
             transportsListBox = new ListBox();
             ordersListBox = new ListBox();
             readyToBeShippedListBox = new ListBox();
@@ -41,16 +41,16 @@
             label3 = new Label();
             SuspendLayout();
             // 
-            // pickOrderButton
+            // addButton
             // 
-            pickOrderButton.Location = new Point(188, 471);
-            pickOrderButton.Margin = new Padding(4);
-            pickOrderButton.Name = "pickOrderButton";
-            pickOrderButton.Size = new Size(121, 36);
-            pickOrderButton.TabIndex = 5;
-            pickOrderButton.Text = "Pick order";
-            pickOrderButton.UseVisualStyleBackColor = true;
-            pickOrderButton.Click += pickOrderButton_Click;
+            addButton.Location = new Point(188, 471);
+            addButton.Margin = new Padding(4);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(121, 36);
+            addButton.TabIndex = 5;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // transportsListBox
             // 
@@ -62,6 +62,7 @@
             transportsListBox.Size = new Size(284, 404);
             transportsListBox.TabIndex = 4;
             transportsListBox.Visible = false;
+            transportsListBox.SelectedIndexChanged += transportsListBox_SelectedIndexChanged;
             // 
             // ordersListBox
             // 
@@ -72,12 +73,13 @@
             ordersListBox.Name = "ordersListBox";
             ordersListBox.Size = new Size(284, 404);
             ordersListBox.TabIndex = 3;
+            ordersListBox.SelectedIndexChanged += ordersListBox_SelectedIndexChanged;
             // 
             // readyToBeShippedListBox
             // 
             readyToBeShippedListBox.FormattingEnabled = true;
             readyToBeShippedListBox.ItemHeight = 25;
-            readyToBeShippedListBox.Location = new Point(743, 32);
+            readyToBeShippedListBox.Location = new Point(761, 34);
             readyToBeShippedListBox.Name = "readyToBeShippedListBox";
             readyToBeShippedListBox.Size = new Size(284, 404);
             readyToBeShippedListBox.TabIndex = 8;
@@ -113,7 +115,6 @@
             removeFromReadyToBeShippedButton.TabIndex = 11;
             removeFromReadyToBeShippedButton.Text = "Remove";
             removeFromReadyToBeShippedButton.UseVisualStyleBackColor = true;
-            removeFromReadyToBeShippedButton.Visible = false;
             removeFromReadyToBeShippedButton.Click += removeFromReadyToBeShippedButton_Click;
             // 
             // deleteOrderButton
@@ -168,7 +169,7 @@
             Controls.Add(shipOrderButton);
             Controls.Add(pickTransportButton);
             Controls.Add(readyToBeShippedListBox);
-            Controls.Add(pickOrderButton);
+            Controls.Add(addButton);
             Controls.Add(transportsListBox);
             Controls.Add(ordersListBox);
             Margin = new Padding(4);
@@ -180,7 +181,7 @@
 
         #endregion
 
-        private Button pickOrderButton;
+        private Button addButton;
         private ListBox transportsListBox;
         private ListBox ordersListBox;
         private ListBox readyToBeShippedListBox;
