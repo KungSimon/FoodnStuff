@@ -52,7 +52,19 @@ namespace FoodnStuff
         }
         private void deleteOrderButton_Click(object sender, EventArgs e)
         {
+            Order orderToDelete = ordersListBox.SelectedItem as Order;
 
+            if (orderToDelete != null)
+            {
+                DialogResult deleteOrder = MessageBox.Show("Are you sure you want to delete this order?" 
+                 , "Delete Order", MessageBoxButtons.YesNo);
+
+                if (deleteOrder == DialogResult.Yes)
+                {
+                    productManager.Orders.Remove(orderToDelete);
+                    UpdateListBoxes();
+                }
+            }
         }
         private void ordersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
