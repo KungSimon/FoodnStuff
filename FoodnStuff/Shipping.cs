@@ -24,14 +24,15 @@ namespace FoodnStuff
         }
         private void shipOrderButton_Click(object sender, EventArgs e)
         {
-            Order order = readyToBeShippedListBox.SelectedItem as Order;
+            Transport chosenTransport = transportsListBox.SelectedItem as Transport;
 
-            if (order != null)
+            if (chosenTransport != null)
             {
-
+                productManager.SendTransport(chosenTransport);
+                chosenTransport.OrdersOutOnDelivery.Clear();
             }
+            UpdateListBoxes();
         }
-
         private void removeFromReadyToBeShippedButton_Click(object sender, EventArgs e)
         {
             //Flyttar tillbaka ordern till listan av ordrar
@@ -48,7 +49,6 @@ namespace FoodnStuff
         {
 
         }
-
         private void ordersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Order orderToLoad = ordersListBox.SelectedItem as Order;
@@ -64,7 +64,6 @@ namespace FoodnStuff
                 transportsListBox.DataSource = new BindingSource(productManager.Transports, null);
             }
         }
-
         private void transportsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Transport chosenTransport = transportsListBox.SelectedItem as Transport;
@@ -93,7 +92,6 @@ namespace FoodnStuff
             }
             UpdateListBoxes();
         }
-
 
         private void UpdateListBoxes()
         {

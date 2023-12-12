@@ -40,22 +40,18 @@ namespace FoodnStuff
         }
         public void SendTransport(Transport transport)
         {
+            foreach (Order order in Orders.ToList())
+            {
+                bool orderContainsProductsInTransport = transport.OrdersOutOnDelivery.Contains(order);
+
+                if (orderContainsProductsInTransport)
+                {
+                    Orders.Remove(order);
+                    break;
+                }
+            }
             transport.Delivered();
-
-            //Vill testa om detta funkar med kan inte än
-            // Loopa igenom varje order och leta efter en matchande order
-         /* foreach (Order order in Orders.ToList()) 
-          {
-              bool orderContainsProductsInTransport = order.InCart.Any(product => transport.OrdersOutOnDelivery.Contains(product));
-         
-              if (orderContainsProductsInTransport)
-              {
-                  Orders.Remove(order);
-                  break; 
-              }
-          }*/
         }
-
         public void CartToOrder(Cart cart, string address, string name)
         {
             if (cart == null) { return; }
