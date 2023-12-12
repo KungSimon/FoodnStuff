@@ -42,7 +42,8 @@ namespace FoodnStuff
             MessageBox.Show("Admin registration successful!");
             usernameTextBox.Clear();
             passwordTextBox.Clear();
-
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
         }
 
         private void addNewItemButton_Click(object sender, EventArgs e)
@@ -138,11 +139,11 @@ namespace FoodnStuff
 
         private void AdminMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
-            int openForms = Application.OpenForms.Count;
-            for (int i = 0; i < openForms; i++)
-            {
-                Application.OpenForms[i].Close();
-            }
+            //int openForms = Application.OpenForms.Count;
+            //for (int i = 0; i < openForms; i++)
+            //{
+            //    Application.OpenForms[i].Close();
+            //}
         }
     }
 }

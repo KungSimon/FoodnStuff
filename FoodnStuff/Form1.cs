@@ -250,7 +250,6 @@ namespace FoodnStuff
 
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            fileManager.SaveManagers();
         }
 
         private void quantityNumericUpDown_ValueChanged(object sender, EventArgs e)

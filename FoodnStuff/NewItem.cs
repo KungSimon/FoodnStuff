@@ -63,12 +63,8 @@ namespace FoodnStuff
             quantityNumeric.ResetText();
 
             // Testing filesaving
-            var fm = FileManager.GetInstance();
-            fm.SaveProductManager(productManager.Inventory, productManager.ProductID);
-            var um = UserManager.GetInstance();
-            fm.SaveUserManager(um.RegisteredCustomers, um.Administrators, um.UserID);
-            var bm = BankManager.GetInstance();
-            fm.SaveBankManager(bm.BankAccounts);
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
         }
 
         private void editItemButton_Click(object sender, EventArgs e)

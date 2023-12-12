@@ -67,7 +67,7 @@ namespace FoodnStuff
 
         private void CreateBankAccount(string number, string pin)
         {
-            BankAccounts.Add(number, new BankAccount(number, pin, 0));
+            BankAccounts.Add(number, new BankAccount(number, pin));
         }
 
         public void LogOut()
@@ -79,9 +79,9 @@ namespace FoodnStuff
         {
             // Failcheck
             if (ActiveAccount == null) return false;
-            if (ActiveAccount.CashMoney < _cost) return false;
+            if (ActiveAccount.cashMoney < _cost) return false;
             // Successfully pay
-            ActiveAccount.CashMoney -= _cost;
+            ActiveAccount.cashMoney -= _cost;
             return true;
         }
     }

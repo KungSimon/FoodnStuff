@@ -19,6 +19,8 @@ namespace FoodnStuff
         // File names
         private string ProductManagerInventory = "productManagerInventory";
         private string ProductManagerID = "productManagerID";
+        private string ProductManagerOrders = "productManagerOrders";
+        private string ProductManagerTransports = "productManagerTransports";
         private string UserManagerCustomers = "userManagerCustomer";
         private string UserManagerAdministrators = "userManagerAdministrators";
         private string UserManagerID = "userManagerID";
@@ -83,18 +85,22 @@ namespace FoodnStuff
         }
         public void SaveManagers()
         {
-            SaveProductManager(productManager.Inventory, productManager.ProductID);
+            SaveProductManager(productManager.Inventory, productManager.ProductID, productManager.Orders, productManager.Transports);
             SaveUserManager(userManager.RegisteredCustomers, userManager.Administrators, userManager.UserID);
             SaveBankManager(bankManager.BankAccounts);
         }
-        public void SaveProductManager(List<Product> _products, int _idManager)
+        public void SaveProductManager(List<Product> _products, int _idManager, List<Order> _orders, List<Transport> _transports)
         {
             // Inventory
             // IDManager
             var productManagerInventoryJson = ProductManagerInventory;
             var productManagerIDManagerJson = ProductManagerID;
+            var productManagerOrdersJson = ProductManagerOrders;
+            var productManagerTransportsJson = ProductManagerTransports;
             ExportToJson(_products, productManagerInventoryJson, ProductManagerFolder);
             ExportToJson(_idManager, productManagerIDManagerJson, ProductManagerFolder);
+            ExportToJson(_orders, productManagerOrdersJson, ProductManagerFolder);
+            ExportToJson(_transports, productManagerTransportsJson, ProductManagerFolder);
         }
         private void LoadProductManager(ProductManager _productManager)
         {
@@ -106,6 +112,15 @@ namespace FoodnStuff
             if (File.Exists($"{ProductManagerFolder}/{ProductManagerID}.json")){
                 _productManager.ProductID = ImportFromJson<int>($"{ProductManagerFolder}/{ProductManagerID}.json");
             }
+            if (File.Exists($"{ProductManagerFolder}/{ProductManagerOrders}.json"))
+            {
+                _productManager.Orders = ImportFromJson<List<Order>>($"{ProductManagerFolder}/{ProductManagerOrders}.json");
+            }
+            if (File.Exists($"{ProductManagerFolder}/{ProductManagerTransports}.json"))
+            {
+                _productManager.Transports = ImportFromJson<List<Transport>>($"{ProductManagerFolder}/{ProductManagerTransports}.json");
+            }
+
         }
 
         public void SaveUserManager(List<User> _registeredCustomers, List<User> _administrators, int _userID)

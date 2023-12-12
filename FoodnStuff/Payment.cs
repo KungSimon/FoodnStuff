@@ -43,7 +43,6 @@ namespace FoodnStuff
                 return;
             }
             bankManager.Pay(form1.currentCart.CalculateCartTotal());
-            fileManager.SaveBankManager(bankManager.BankAccounts);
             // Convert to Order
             ProductManager productManager = ProductManager.GetInstance();
             productManager.CartToOrder(form1.currentCart, addressTextBox.Text, nameTextBox.Text);
@@ -55,6 +54,7 @@ namespace FoodnStuff
             }
             form1.UpdateTotalCostLabel();
             form1.RefreshCartListBox();
+            fileManager.SaveManagers();
             this.Close();
         }
 

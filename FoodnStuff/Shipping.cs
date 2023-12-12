@@ -50,6 +50,8 @@ namespace FoodnStuff
                     UpdateListBoxes();
                 }
             }
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
         }
         private void deleteOrderButton_Click(object sender, EventArgs e)
         {
@@ -111,6 +113,8 @@ namespace FoodnStuff
                     UpdateListBoxes();
                 }
             }
+            var fileManager = FileManager.GetInstance();
+            fileManager.SaveManagers();
         }
 
         private void UpdateListBoxes()
