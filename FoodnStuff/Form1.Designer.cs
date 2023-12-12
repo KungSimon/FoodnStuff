@@ -43,7 +43,6 @@
             cartLabel = new Label();
             cartListBox = new ListBox();
             tabPage3 = new TabPage();
-            balanceLabel = new Label();
             logOutButton = new Button();
             logInButton = new Button();
             workerLabel = new Label();
@@ -54,10 +53,12 @@
             usernameLabel = new Label();
             passwordTextBox = new TextBox();
             usernameTextBox = new TextBox();
+            quantityNumericUpDown = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)quantityNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -75,6 +76,7 @@
             // tabPage1
             // 
             tabPage1.BackgroundImage = (Image)resources.GetObject("tabPage1.BackgroundImage");
+            tabPage1.Controls.Add(quantityNumericUpDown);
             tabPage1.Controls.Add(addToCartButton);
             tabPage1.Controls.Add(itemsListBox);
             tabPage1.Controls.Add(searchLabel);
@@ -203,7 +205,6 @@
             // tabPage3
             // 
             tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
-            tabPage3.Controls.Add(balanceLabel);
             tabPage3.Controls.Add(logOutButton);
             tabPage3.Controls.Add(logInButton);
             tabPage3.Controls.Add(workerLabel);
@@ -220,16 +221,6 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Log In";
             tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // balanceLabel
-            // 
-            balanceLabel.AutoSize = true;
-            balanceLabel.Location = new Point(769, 17);
-            balanceLabel.Name = "balanceLabel";
-            balanceLabel.Size = new Size(64, 20);
-            balanceLabel.TabIndex = 16;
-            balanceLabel.Text = "Balance:";
-            balanceLabel.Visible = false;
             // 
             // logOutButton
             // 
@@ -324,6 +315,14 @@
             usernameTextBox.Size = new Size(185, 27);
             usernameTextBox.TabIndex = 0;
             // 
+            // quantityNumericUpDown
+            // 
+            quantityNumericUpDown.Location = new Point(775, 28);
+            quantityNumericUpDown.Name = "quantityNumericUpDown";
+            quantityNumericUpDown.Size = new Size(150, 27);
+            quantityNumericUpDown.TabIndex = 6;
+            quantityNumericUpDown.ValueChanged += quantityNumericUpDown_ValueChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -341,6 +340,7 @@
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)quantityNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 
@@ -370,6 +370,6 @@
         private Button logOutButton;
         private Button addToCartButton;
         private Label totalCostLabel;
-        private Label balanceLabel;
+        private NumericUpDown quantityNumericUpDown;
     }
 }

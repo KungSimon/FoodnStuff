@@ -60,6 +60,7 @@ namespace FoodnStuff
             {
                 userManager.CurrentUser.MyCart.ProductsInCart = new List<Product>();
             }
+            form1.UpdateTotalCostLabel();
         }
 
 

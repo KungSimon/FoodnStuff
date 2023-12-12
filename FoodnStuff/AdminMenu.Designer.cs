@@ -38,7 +38,6 @@
             itemsListBox = new ListBox();
             tabPage2 = new TabPage();
             chooseTransportButton = new Button();
-            tabPage3 = new TabPage();
             tabPage4 = new TabPage();
             logOutButton = new Button();
             registerButton = new Button();
@@ -56,7 +55,6 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(0, -1);
             tabControl1.Name = "tabControl1";
@@ -151,16 +149,6 @@
             chooseTransportButton.UseVisualStyleBackColor = true;
             chooseTransportButton.Click += chooseTransportButton_Click;
             // 
-            // tabPage3
-            // 
-            tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(795, 421);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Inventory ";
-            tabPage3.UseVisualStyleBackColor = true;
-            // 
             // tabPage4
             // 
             tabPage4.BackgroundImage = (Image)resources.GetObject("tabPage4.BackgroundImage");
@@ -253,7 +241,6 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private TabPage tabPage3;
         private Label itemLabel;
         private Button removeItemButton;
         private Button addNewItemButton;

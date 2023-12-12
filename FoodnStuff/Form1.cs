@@ -75,7 +75,7 @@ namespace FoodnStuff
                     logOutButton.Visible = true;
                     logOutButton.Location = new Point(440, 202);
                     logOutButton.Size = new Size(150, 75);
-                    balanceLabel.Visible = true;
+
 
 
                     //currentCart = user.MyCart;
@@ -208,7 +208,7 @@ namespace FoodnStuff
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
         }
 
-        private void UpdateTotalCostLabel()
+        public void UpdateTotalCostLabel()
         {
             int totalCost = currentCart.CalculateCartTotal();
             totalCostLabel.Text = $"Total Cost: {totalCost} kr";
@@ -242,6 +242,11 @@ namespace FoodnStuff
         }
 
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void quantityNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
 
         }
