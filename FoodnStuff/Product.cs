@@ -14,6 +14,13 @@ namespace FoodnStuff
         public int Quantity { get; set; }
         public int ID { get; set; }
         public int Price { get; set; }
+        public string DisplayInfo
+        {
+            get
+            {
+                return GetDisplayInfo();
+            }
+        }
 
         public Product()
         {
@@ -44,9 +51,13 @@ namespace FoodnStuff
         {
             return Name;
         }
+        private string GetDisplayInfo()
+        {
+            return $"{Name.PadRight(20)}\tPrice: {Price.ToString("C").PadRight(20)}\tStock: {Quantity.ToString().PadRight(20)}";
+        }
         public string GetInfo()
         {
-            return ("Quantity in stock" + Quantity + ", Price: " + Price + "kr" + " ,Category: " + Category);
+            return $"Stock: {Quantity.ToString().PadRight(20)}\tPrice: {Price.ToString("C").PadRight(20)}\tCategory: {Category.ToString().PadRight(20)}";
         }
     }
 }

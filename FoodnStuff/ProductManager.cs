@@ -75,6 +75,32 @@ namespace FoodnStuff
                 return false;
             }
         }
+        private bool InventoryCheck(Order order)
+        {
+            bool exist = false;
+
+            // Checks inventory
+            var itemList = order.InCart;
+            foreach (var item in itemList)
+            {
+                foreach (var product in Inventory)
+                {
+                    if (item.ID == product.ID)
+                    {
+                        if (item.Quantity <= product.Quantity)
+                        {
+                            exist = true;
+
+                        }
+                    }
+                }
+                if (!exist)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public List<Transport> CheckTransportAvailability(Order order)
         {
             availableTransports.Clear();
@@ -105,13 +131,20 @@ namespace FoodnStuff
         // Function that adds the product to cart
         public void AddToCart(Cart _myCart, Product _product, int _quantity)
         {
-            // Uses secondary constructor of Products to create a copy with new quantity
-            Product cartProduct = new Product(_product, _quantity);
-            _myCart.AddProduct(cartProduct);
-        }
+            if (_product.Quantity >= _quantity)
+            {
+                Product cartProduct = new Product(_product, _quantity);
 
-        // Function doesnt require login and therefor works for both logged in and anonoymous users 
-        public bool AddOrder(Cart _checkoutCart, string _myAddress, string _myName)
+                _myCart.AddProduct(cartProduct);
+                _product.Quantity -= _quantity;
+            }
+            else
+            {
+                MessageBox.Show("Not enough quantity available");
+            }
+        }
+            // Function doesnt require login and therefor works for both logged in and anonoymous users 
+            public bool AddOrder(Cart _checkoutCart, string _myAddress, string _myName)
         {
             // Fail checking
             if (_checkoutCart == null || _checkoutCart.ProductsInCart.Count == 0) return false;

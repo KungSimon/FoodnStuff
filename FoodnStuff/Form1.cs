@@ -47,7 +47,6 @@ namespace FoodnStuff
             WorkerLogIn workerLogIn = new WorkerLogIn(userManager, this, productManager, shipping);
 
             workerLogIn.Show();
-            Hide();
 
         }
 
@@ -103,8 +102,9 @@ namespace FoodnStuff
             if (catagoryListBox.SelectedIndex >= 0 && productManager.CategoryDictionary.Count > 0)
             {
                 string selectedCategory = catagoryListBox.SelectedItem.ToString();
+
                 itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary[selectedCategory], null);
-                itemsListBox.DisplayMember = "Name";
+                itemsListBox.DisplayMember = "DisplayInfo";
                 itemsListBox.Visible = true;
             }
             /*catagoryListBox.SelectedIndexChanged += (sender, args) =>
@@ -169,9 +169,10 @@ namespace FoodnStuff
                 if (itemsListBox.SelectedItem is Product)
                 {
                     Product item = (Product)itemsListBox.SelectedItem;
-                    productManager.AddToCart(currentCart, item, 1);
-                    //item.Quantity = -1;
-                    //currentCart.AddProduct(item);
+                    if (int.TryParse(quantityNumericUpDown.Text, out int inputQuantity))
+                    {
+                        productManager.AddToCart(currentCart, item, inputQuantity);
+                    }
                 }
                 UpdateTotalCostLabel();
             }
@@ -183,11 +184,18 @@ namespace FoodnStuff
 
         private void itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (itemsListBox.SelectedItem is Product)
+            {
+                Product item = (Product)itemsListBox.SelectedItem;
+                int stock = item.Quantity;
+                quantityNumericUpDown.Value = 1;
+                quantityNumericUpDown.Maximum = stock;
+            }
         }
 
         public void proceedToCheckoutButton_Click(object sender, EventArgs e)
         {
+            if (currentCart.ProductsInCart.Count() <= 0) { return; }
             payment = new Payment(this);
             payment.Show();
         }
@@ -235,7 +243,7 @@ namespace FoodnStuff
                 }
             }
         }
-        private void RefreshCartListBox()
+        public void RefreshCartListBox()
         {
             cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);

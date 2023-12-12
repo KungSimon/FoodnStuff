@@ -23,7 +23,6 @@ namespace FoodnStuff
         {
             this.form1 = form1;
             InitializeComponent();
-            purchaseButton.Click += purchaseButton_Click;
             if(userManager.CurrentUser != null)
             {
                 nameTextBox.Text = userManager.CurrentUser.Name;
@@ -34,11 +33,6 @@ namespace FoodnStuff
 
         private void purchaseButton_Click(object sender, EventArgs e)
         {
-            //if (userManager.CurrentUser != null)
-            //{
-            //    nameTextBox.Text = userManager.CurrentUser.Name;
-            //    addressTextBox.Text = userManager.CurrentUser.Address;
-            //}
             if (nameTextBox.Text == "" && addressTextBox.Text == "")
             {
                 MessageBox.Show("Please write name and address to make a purchase");
@@ -48,7 +42,6 @@ namespace FoodnStuff
             {
                 return;
             }
-           
             bankManager.Pay(form1.currentCart.CalculateCartTotal());
             fileManager.SaveBankManager(bankManager.BankAccounts);
             // Convert to Order
@@ -61,6 +54,8 @@ namespace FoodnStuff
                 userManager.CurrentUser.MyCart.ProductsInCart = new List<Product>();
             }
             form1.UpdateTotalCostLabel();
+            form1.RefreshCartListBox();
+            this.Close();
         }
 
 
