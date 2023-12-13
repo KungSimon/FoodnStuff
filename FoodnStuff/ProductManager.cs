@@ -40,16 +40,6 @@ namespace FoodnStuff
         }
         public void SendTransport(Transport transport)
         {
-            foreach (Order order in Orders.ToList())
-            {
-                bool orderContainsProductsInTransport = transport.OrdersOutOnDelivery.Contains(order);
-
-                if (orderContainsProductsInTransport)
-                {
-                    Orders.Remove(order);
-                    break;
-                }
-            }
             transport.Delivered();
         }
         public void CartToOrder(Cart cart, string address, string name)

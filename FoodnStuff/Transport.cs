@@ -32,6 +32,7 @@ namespace FoodnStuff
         public void Delivered()
         {
             OrdersOutOnDelivery.Clear();
+            Capacity = 0;
             Available = true;
         }
         private string GetInfo()
