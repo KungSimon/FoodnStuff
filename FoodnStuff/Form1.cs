@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.DataFormats;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FoodnStuff
 {
@@ -14,6 +15,7 @@ namespace FoodnStuff
         private UserManager userManager = UserManager.GetInstance();
         private ProductManager productManager = ProductManager.GetInstance();
         private FileManager fileManager = FileManager.GetInstance();
+        private AutoCompleteStringCollection allowedTypes;
         public Form1()
         {
             InitializeComponent();
@@ -32,6 +34,13 @@ namespace FoodnStuff
             itemsListBox.DataSource = new BindingSource(productManager.CategoryDictionary, null);
             cartListBox.DisplayMember = "Name";
             cartListBox.DataSource = new BindingSource(currentCart.ProductsInCart, null);
+            allowedTypes = new AutoCompleteStringCollection();
+            allowedTypes.AddRange(productManager.SuggestionList.ToArray());
+            searchTextBox.AutoCompleteCustomSource = allowedTypes;
+            searchTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            searchTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+
         }
 
 
@@ -264,6 +273,66 @@ namespace FoodnStuff
         private void quantityNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _isDirty = true;
+            if (searchTextBox.Text.Length > 0)
+            {
+                searchTextBox.Text = searchTextBox.Text.Substring(0, 1).ToUpper() + searchTextBox.Text.Substring(1);
+                searchTextBox.SelectionStart = searchTextBox.Text.Length;
+            }
+        }
+        private bool _isDirty = false;
+        private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (_isDirty && e.KeyCode == Keys.Enter)
+            {
+                string firstSuggestion = allowedTypes.Cast<string>().FirstOrDefault(s => s.StartsWith(searchTextBox.Text));
+                searchTextBox.Text = firstSuggestion;
+                //MessageBox.Show("started search");
+                string _category = null;
+                string _name = null;
+                string keyword = searchTextBox.Text;
+                foreach (Product product in productManager.Inventory)
+                {
+                    if (product.Name == keyword)
+                    {
+                        _name = product.Name;
+                        _category = product.Category;
+                        break;
+                    }
+                }
+                if (_category != null && _name != null)
+                {
+                    foreach (var item in catagoryListBox.Items)
+                    {
+                        if (item.ToString() == _category)
+                        {
+                            //MessageBox.Show("found category");
+                            catagoryListBox.SelectedItem = item;
+                            break;
+                        }
+                    }
+                    foreach (var item in itemsListBox.Items)
+                    {
+                        if (item.ToString() == _name)
+                        {
+                            //MessageBox.Show("found name");
+                            itemsListBox.SelectedItem = item;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void searchTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            searchTextBox.Text = string.Empty;
+            _isDirty = false;
         }
     }
 }

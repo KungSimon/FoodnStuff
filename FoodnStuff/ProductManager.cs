@@ -14,7 +14,7 @@ namespace FoodnStuff
         public List<Product> Inventory { get; set; } = new List<Product>();
         // Use this dictionary to create a Listbox or something similar and use the keys as category name then grab the list with that key and unpack all products
         public Dictionary<string, List<Product>> CategoryDictionary { get; set; } = new Dictionary<string, List<Product>>();
-        public List<string> keyList = new List<string>();
+        public List<string> SuggestionList = new List<string>();
         public List<Order> Orders { get; set; } = new List<Order>();
         public List<Transport> Transports { get; set; } = new List<Transport>();
         public  List<Transport> availableTransports = new List<Transport>();
@@ -157,11 +157,11 @@ namespace FoodnStuff
         }
 
         // Function goes through Inventory and sorts them into our dictionary
+
         public void CategorySorter()
         {
             CategoryDictionary.Clear();
-            // Get list of all keys in our category dictionary
-            keyList = new List<string>(CategoryDictionary.Keys);
+            SuggestionList.Clear();
             // Create a list of products that have the same category
             List<Product> CategoryList = new List<Product>();
             string currentKey = string.Empty;
@@ -190,6 +190,7 @@ namespace FoodnStuff
                     // Adds product to the List
                     if (!myList.Contains(product))
                     {
+                        SuggestionList.Add(product.Name);
                         myList.Add(product);
                     }
                 }
@@ -197,6 +198,7 @@ namespace FoodnStuff
                 {
                     // If the category/key does not exist then we create it.
                     myList = new List<Product> {product};
+                    SuggestionList.Add(product.Name);
                     CategoryDictionary.Add(product.Category, myList);
                 }
             }

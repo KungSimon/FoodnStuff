@@ -141,6 +141,9 @@
             searchTextBox.Name = "searchTextBox";
             searchTextBox.Size = new Size(220, 23);
             searchTextBox.TabIndex = 1;
+            searchTextBox.MouseClick += searchTextBox_MouseClick;
+            searchTextBox.TextChanged += searchTextBox_TextChanged;
+            searchTextBox.KeyDown += searchTextBox_KeyDown;
             // 
             // catagoryListBox
             // 
